@@ -8,6 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:background">@color/background</item>
         <item name="android:textColor">@color/textColor</item>
+        <item name="android:editTextBackground">@drawable/ic_edit_text_background</item>
     </style>
 
 </resources>
