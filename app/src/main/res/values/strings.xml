@@ -11,6 +11,10 @@
     <string name="log_in">LOG IN</string>
     <string name="no_account_yet">No account Yet?</string>
     <string name="register_here">Register Here</string>
+    <string name="select_one_of_the_choice_above" />
+    <string name="register_with_our" />
+    <string name="rider_portal" />
+    <string name="customer_portal" />
 
     <string-array name="gender">
         <item>MALE</item>
