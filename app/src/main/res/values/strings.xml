@@ -1,4 +1,16 @@
 <resources>
     <string name="app_name">Myxa</string>
     <string name="label_email">Email</string>
+    <string name="logo">LOGO</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="gender">Gender</string>
+    <string name="age">Age</string>
+    <string name="password">Password</string>
+    <string name="sign_up">SIGN UP</string>
+
+    <string-array name="gender">
+        <item>MALE</item>
+        <item>FEMALE</item>
+    </string-array>
 </resources>
