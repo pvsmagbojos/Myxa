@@ -13,7 +13,7 @@ public class CustomerRegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_registration);
 
-        Spinner genderSpinner = findViewById(R.id.spinnerGender);
+        Spinner genderSpinner = findViewById(R.id.spinnerGender_c_gender);
 
         ArrayAdapter<String> genderAdapter = new ArrayAdapter<String>(CustomerRegistrationActivity.this, android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.gender));

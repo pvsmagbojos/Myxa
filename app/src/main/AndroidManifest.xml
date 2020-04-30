@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/myxa_logo_bg"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GeneralRegistrationActivity"></activity>
+        <activity android:name=".GeneralRegistrationActivity" />
         <activity android:name=".CustomerRegistrationActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity">

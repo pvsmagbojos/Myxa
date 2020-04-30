@@ -15,7 +15,8 @@
     <string name="select_one_of_the_choice_above">Select one of the choice above</string>
     <string name="rider_portal">Rider Portal</string>
     <string name="customer_portal">Customer Portal</string>
-
+    <string name="btn_continue">CONTINUE</string>
+    <string name="confirm_password">Confirm Password</string>
 
     <string-array name="gender">
         <item>MALE</item>

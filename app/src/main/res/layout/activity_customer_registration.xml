@@ -7,18 +7,43 @@
     android:textAlignment="center"
     tools:context=".CustomerRegistrationActivity">
 
+    <EditText
+        android:id="@+id/editText7_c_confirmpassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:ems="10"
+        android:inputType="textPassword"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6_c_confirmpassword" />
+
+    <TextView
+        android:id="@+id/textView6_c_confirmpassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/raleway_bold"
+        android:text="@string/confirm_password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText7_c_password" />
+
     <Button
-        android:id="@+id/button_login2"
+        android:id="@+id/button_c_signup"
         android:layout_width="313dp"
         android:layout_height="55dp"
+        android:layout_marginTop="20dp"
         android:background="#CDDC39"
         android:text="@string/sign_up"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText7"
-        app:layout_constraintVertical_bias="0.22000003" />
+        app:layout_constraintTop_toBottomOf="@+id/editText7_c_confirmpassword" />
 
     <ImageView
         android:id="@+id/imageView_logo_header2"
@@ -34,63 +59,57 @@
         app:srcCompat="@drawable/myxa_512" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView_c_firstname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/raleway_bold"
         android:text="@string/first_name"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline"
-        app:layout_constraintVertical_bias="0.029999971" />
+        app:layout_constraintTop_toTopOf="@+id/guideline" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="543dp" />
+        app:layout_constraintGuide_begin="200dp" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/editText_c_firstname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autofillHints=""
         android:ems="10"
         android:inputType="textPersonName"
         android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.029999971" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_c_firstname" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView2_c_lastname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/raleway_bold"
         android:text="@string/last_name"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
-        app:layout_constraintVertical_bias="0.029999971" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_c_firstname" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/editText2_c_lastname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autofillHints=""
         android:ems="10"
         android:inputType="textPersonName"
         android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.029999971" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2_c_lastname" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -100,9 +119,10 @@
         app:layout_constraintGuide_begin="202dp" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textView3_c_gender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/raleway_bold"
         android:text="@string/gender"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
@@ -121,12 +141,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="356dp" />
+        app:layout_constraintGuide_begin="338dp" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textView4_c_age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/raleway_bold"
         android:text="@string/age"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
@@ -141,87 +162,77 @@
         app:layout_constraintGuide_begin="362dp" />
 
     <Spinner
-        android:id="@+id/spinnerGender"
+        android:id="@+id/spinnerGender_c_gender"
         android:layout_width="123dp"
         android:layout_height="40dp"
         android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        app:layout_constraintVertical_bias="0.028" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3_c_gender" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/editText5_c_age"
         android:layout_width="123dp"
         android:layout_height="40dp"
         android:autofillHints=""
         android:ems="10"
         android:inputType="number"
         android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.029999971" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4_c_age" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="455dp" />
+        app:layout_constraintGuide_begin="407dp" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/textView5_c_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/raleway_bold"
         android:text="@string/label_email"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline6"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="@+id/guideline6" />
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/editText6_c_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autofillHints=""
         android:ems="10"
         android:inputType="textPersonName"
         android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
-        app:layout_constraintVertical_bias="0.029999971" />
+        app:layout_constraintTop_toBottomOf="@+id/textView5_c_email" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textView6_c_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/raleway_bold"
         android:text="@string/password"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText6"
-        app:layout_constraintVertical_bias="0.029999971" />
+        app:layout_constraintTop_toBottomOf="@+id/editText6_c_email" />
 
     <EditText
-        android:id="@+id/editText7"
+        android:id="@+id/editText7_c_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autofillHints=""
         android:ems="10"
         android:inputType="textPassword"
         android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:layout_constraintVertical_bias="0.029999971" />
+        app:layout_constraintTop_toBottomOf="@+id/textView6_c_password" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
