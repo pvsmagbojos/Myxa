@@ -9,8 +9,7 @@
     <string name="password">Password</string>
     <string name="sign_up">SIGN UP</string>
     <string name="log_in">LOG IN</string>
-    <string name="no_account_yet">No account Yet?</string>
-    <string name="register_here">Register Here</string>
+    <string name="register_here"><u>No account yet? Register Here</u></string>
     <string name="todo">TODO</string>
     <string name="register_with_our">Register with our</string>
     <string name="select_one_of_the_choice_above">Select one of the choice above</string>
