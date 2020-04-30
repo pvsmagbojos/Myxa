@@ -20,6 +20,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        email = (EditText)findViewById(R.id.editText_email);
+        password = (EditText)findViewById(R.id.editText_password);
+
         register = (TextView)findViewById(R.id.textView_register_link);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,19 +46,14 @@ public class LoginActivity extends AppCompatActivity {
     //temporary login function
     public void loginFunc(View view){
 
-        email = (EditText)findViewById(R.id.editText_email);
-        password = (EditText)findViewById(R.id.editText_password);
-        String emailAdd = email.getText().toString();
-        String pass = password.getText().toString();
-
-        if(!emailAdd.isEmpty()){
-            if(!pass.isEmpty()){
+        if(!email.getText().toString().isEmpty()){
+            if(!password.getText().toString().isEmpty()){
                 //check email if exists on database
-                if(emailAdd.equals("admin")) {
+                if(email.getText().toString().equals("admin")) {
                     //check if rider or customer
                     //if(customer){
                         //check password if correct
-                        if (pass.equals("password123")) {
+                        if (password.getText().toString().equals("password123")) {
                             customerLogIn();
                         } else {
                             //wrong password
