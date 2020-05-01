@@ -13,7 +13,7 @@ public class CustomerRegistrationActivity extends AppCompatActivity {
     Button customerSignUp;
     EditText fName;
     EditText lName;
-    EditText gender;
+    Spinner gender;
     EditText age;
     EditText email;
     EditText password;
@@ -24,20 +24,21 @@ public class CustomerRegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_registration);
 
-        Spinner genderSpinner = findViewById(R.id.spinnerGender_c_gender);
+        fName = (EditText)findViewById(R.id.editText_c_firstname);
+        lName = (EditText)findViewById(R.id.editText_c_lastname);
+        age = (EditText)findViewById(R.id.editText_c_age);
+        gender = findViewById(R.id.spinnerGender_c_gender);
+        email = (EditText)findViewById(R.id.editText_c_email);
+        password = (EditText)findViewById(R.id.editText_c_password);
+        cpassword = (EditText)findViewById(R.id.editText7_c_confirmpassword);
 
         ArrayAdapter<String> genderAdapter = new ArrayAdapter<String>(CustomerRegistrationActivity.this, android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.gender));
         genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        genderSpinner.setAdapter(genderAdapter);
+        gender.setAdapter(genderAdapter);
 
-        fName = findViewById(R.id.editText_c_firstname);
-        lName = findViewById(R.id.editText_c_lastname);
-        //gender = findViewById(R.id.editText_c_gender);
-        age = findViewById(R.id.editText_c_age);
-        email = findViewById(R.id.editText_c_email);
-        password = findViewById(R.id.editText_c_password);
-        cpassword = findViewById(R.id.editText7_c_confirmpassword);
+
+
         
         customerSignUp = findViewById(R.id.button_c_signup);
         customerSignUp.setOnClickListener(new View.OnClickListener() {
@@ -47,7 +48,9 @@ public class CustomerRegistrationActivity extends AppCompatActivity {
             }
         });
 
+        gender.getSelectedItem().toString();
 
+        signUpFunc();
     }
 
     public void signUpFunc(){
