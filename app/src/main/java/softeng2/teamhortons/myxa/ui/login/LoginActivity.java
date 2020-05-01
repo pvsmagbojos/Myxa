@@ -20,6 +20,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import softeng2.teamhortons.myxa.CustomerRegistrationActivity;
 import softeng2.teamhortons.myxa.GeneralRegistrationActivity;
 import softeng2.teamhortons.myxa.MainActivity;
 import softeng2.teamhortons.myxa.R;
@@ -27,11 +28,22 @@ import softeng2.teamhortons.myxa.R;
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
+    private TextView register;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        register = (TextView)findViewById(R.id.textView_register_link);
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, CustomerRegistrationActivity.class);
+                startActivity(intent);
+            }
+        });
+
         loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
 
