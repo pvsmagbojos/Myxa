@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 
+import softeng2.teamhortons.myxa.ui.login.LoginActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
