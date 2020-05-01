@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import android.util.Patterns;
 
-import softeng2.teamhortons.myxa.data.LoginRepository;
+import softeng2.teamhortons.myxa.data.AuthRepository;
 import softeng2.teamhortons.myxa.data.Result;
 import softeng2.teamhortons.myxa.data.model.LoggedInUser;
 import softeng2.teamhortons.myxa.R;
@@ -14,10 +14,10 @@ public class LoginViewModel extends ViewModel {
 
     private MutableLiveData<LoginFormState> loginFormState = new MutableLiveData<>();
     private MutableLiveData<LoginResult> loginResult = new MutableLiveData<>();
-    private LoginRepository loginRepository;
+    private AuthRepository authRepository;
 
-    LoginViewModel(LoginRepository loginRepository) {
-        this.loginRepository = loginRepository;
+    LoginViewModel(AuthRepository authRepository) {
+        this.authRepository = authRepository;
     }
 
     LiveData<LoginFormState> getLoginFormState() {
@@ -30,18 +30,18 @@ public class LoginViewModel extends ViewModel {
 
     public void login(String email, String password) {
         // can be launched in a separate asynchronous job
-        Result<LoggedInUser> result = loginRepository.login(email, password);
+        Result<LoggedInUser> result = authRepository.login(email, password);
 
         if (result instanceof Result.Success) {
             LoggedInUser data = ((Result.Success<LoggedInUser>) result).getData();
             loginResult.setValue(new LoginResult(new LoggedInUserView(data.getDisplayName())));
         } else {
+            // TODO: Add more failure information
             loginResult.setValue(new LoginResult(R.string.login_failed));
         }
     }
 
-    public void loginDataChanged(String email, String password) {
-
+    void loginDataChanged(String email, String password) {
         //if email ay walang laman - loginFormState.setValue(new LoginFormState("FIELD MUST NOT BE EMPTY", null));
         if (!isEmailValid(email)) {
             loginFormState.setValue(new LoginFormState(R.string.invalid_email, null));
@@ -52,7 +52,6 @@ public class LoginViewModel extends ViewModel {
         }
     }
 
-    // A placeholder username validation check
     private boolean isEmailValid(String email) {
         if (email == null) {
             return false;
@@ -64,7 +63,6 @@ public class LoginViewModel extends ViewModel {
         }
     }
 
-    // A placeholder password validation check
     private boolean isPasswordValid(String password) {
         return password != null && password.trim().length() > 8;
     }

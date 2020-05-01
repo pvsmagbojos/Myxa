@@ -7,13 +7,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class GeneralRegistrationActivity extends AppCompatActivity {
+import softeng2.teamhortons.myxa.ui.signup.customer.SignupActivity;
+
+public class SelectSignupActivity extends AppCompatActivity {
     Button customerPortal;
     Button riderPortal;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_general_select_registration_type);
+        setContentView(R.layout.activity_select_signup);
 
         customerPortal = findViewById(R.id.customer_portal_button);
         customerPortal.setOnClickListener(new View.OnClickListener() {
@@ -34,12 +36,12 @@ public class GeneralRegistrationActivity extends AppCompatActivity {
     }
 
     public void customerRegistration(){
-        Intent intent = new Intent(GeneralRegistrationActivity.this, CustomerRegistrationActivity.class);
+        Intent intent = new Intent(SelectSignupActivity.this, SignupActivity.class);
         startActivity(intent);
     }
 
     public void riderRegistration(){
-        Intent intent = new Intent(GeneralRegistrationActivity.this, CustomerRegistrationActivity.class);//change customerreg to riderreg class
+        Intent intent = new Intent(SelectSignupActivity.this, SignupActivity.class);//change customerreg to riderreg class
         startActivity(intent);
     }
 }
