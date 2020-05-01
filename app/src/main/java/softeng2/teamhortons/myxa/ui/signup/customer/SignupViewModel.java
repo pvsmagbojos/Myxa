@@ -1,31 +1,32 @@
-package softeng2.teamhortons.myxa.ui.login;
+package softeng2.teamhortons.myxa.ui.signup.customer;
+
+import android.util.Patterns;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import android.util.Patterns;
 
+import softeng2.teamhortons.myxa.R;
 import softeng2.teamhortons.myxa.data.AuthRepository;
 import softeng2.teamhortons.myxa.data.Result;
 import softeng2.teamhortons.myxa.data.model.LoggedInUser;
-import softeng2.teamhortons.myxa.R;
 
-public class LoginViewModel extends ViewModel {
+public class SignupViewModel extends ViewModel {
 
-    private MutableLiveData<LoginFormState> loginFormState = new MutableLiveData<>();
-    private MutableLiveData<LoginResult> loginResult = new MutableLiveData<>();
+    private MutableLiveData<SignupFormState> signupFormState = new MutableLiveData<>();
+    private MutableLiveData<SignupResult> signupResult = new MutableLiveData<>();
     private AuthRepository authRepository;
 
-    LoginViewModel(AuthRepository authRepository) {
+    SignupViewModel(AuthRepository authRepository) {
         this.authRepository = authRepository;
     }
 
-    LiveData<LoginFormState> getLoginFormState() {
-        return loginFormState;
+    LiveData<SignupFormState> getSignupFormState() {
+        return signupFormState;
     }
 
-    LiveData<LoginResult> getLoginResult() {
-        return loginResult;
+    LiveData<SignupResult> getSignupResult() {
+        return signupResult;
     }
 
     public void login(String email, String password) {
@@ -34,22 +35,35 @@ public class LoginViewModel extends ViewModel {
 
         if (result instanceof Result.Success) {
             LoggedInUser data = ((Result.Success<LoggedInUser>) result).getData();
-            loginResult.setValue(new LoginResult(new LoggedInUserView(data.getDisplayName())));
+            signupResult.setValue(new SignupResult(new LoggedInUserView(data.getDisplayName())));
         } else {
             // TODO: Add more failure information
-            loginResult.setValue(new LoginResult(R.string.login_failed));
+            signupResult.setValue(new SignupResult(R.string.login_failed));
         }
     }
 
     void loginDataChanged(String email, String password) {
         //TODO: Add more input filters
-        //if email ay walang laman - loginFormState.setValue(new LoginFormState("FIELD MUST NOT BE EMPTY", null));
         if (!isEmailValid(email)) {
-            loginFormState.setValue(new LoginFormState(R.string.invalid_email, null));
+            signupFormState.setValue(new SignupFormState(
+                    R.string.invalid_email,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null));
         } else if (!isPasswordValid(password)) {
-            loginFormState.setValue(new LoginFormState(null, R.string.invalid_password));
+            signupFormState.setValue(new SignupFormState(
+                    null,
+                    null,
+                    null,
+                    R.string.invalid_password,
+                    null,
+                    null,
+                    null));
         } else {
-            loginFormState.setValue(new LoginFormState(true));
+            signupFormState.setValue(new SignupFormState(true));
         }
     }
 

@@ -10,18 +10,18 @@ public class AuthRepository {
 
     private static volatile AuthRepository instance;
 
-    private LoginDataSource dataSource;
+    private AuthDataSource dataSource;
 
     // If user credentials will be cached in local storage, it is recommended it be encrypted
     // @see https://developer.android.com/training/articles/keystore
     private LoggedInUser user = null;
 
     // private constructor : singleton access
-    private AuthRepository(LoginDataSource dataSource) {
+    private AuthRepository(AuthDataSource dataSource) {
         this.dataSource = dataSource;
     }
 
-    public static AuthRepository getInstance(LoginDataSource dataSource) {
+    public static AuthRepository getInstance(AuthDataSource dataSource) {
         if(instance == null){
             instance = new AuthRepository(dataSource);
         }
