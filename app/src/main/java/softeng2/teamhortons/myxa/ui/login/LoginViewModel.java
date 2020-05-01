@@ -42,6 +42,7 @@ public class LoginViewModel extends ViewModel {
     }
 
     void loginDataChanged(String email, String password) {
+        //if email ay walang laman - loginFormState.setValue(new LoginFormState("FIELD MUST NOT BE EMPTY", null));
         if (!isEmailValid(email)) {
             loginFormState.setValue(new LoginFormState(R.string.invalid_email, null));
         } else if (!isPasswordValid(password)) {
