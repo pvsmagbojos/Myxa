@@ -9,8 +9,8 @@
         android:roundIcon="@mipmap/myxa_logo_bg"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-        <activity android:name=".GeneralRegistrationActivity" />
-        <activity android:name=".CustomerRegistrationActivity" />
+        <activity android:name=".SelectSignupActivity" />
+        <activity android:name=".ui.signup.customer.CustomerSignupActivity" />
         <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".MainActivity" >
             <intent-filter>

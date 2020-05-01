@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                startActivityForResult(new Intent(getApplicationContext(),LoginActivity.class),120320);
+                startActivityForResult(new Intent(getApplicationContext(),LoginActivity.class),1203);
             }
         }.start();
     }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:textAlignment="center"
-    tools:context=".CustomerRegistrationActivity">
+    tools:context=".ui.signup.customer.CustomerSignupActivity">
 
     <EditText
         android:id="@+id/editText_confirm_password"

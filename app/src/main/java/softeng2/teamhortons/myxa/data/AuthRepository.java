@@ -6,9 +6,9 @@ import softeng2.teamhortons.myxa.data.model.LoggedInUser;
  * Class that requests authentication and user information from the remote data source and
  * maintains an in-memory cache of login status and user credentials information.
  */
-public class LoginRepository {
+public class AuthRepository {
 
-    private static volatile LoginRepository instance;
+    private static volatile AuthRepository instance;
 
     private LoginDataSource dataSource;
 
@@ -17,13 +17,13 @@ public class LoginRepository {
     private LoggedInUser user = null;
 
     // private constructor : singleton access
-    private LoginRepository(LoginDataSource dataSource) {
+    private AuthRepository(LoginDataSource dataSource) {
         this.dataSource = dataSource;
     }
 
-    public static LoginRepository getInstance(LoginDataSource dataSource) {
+    public static AuthRepository getInstance(LoginDataSource dataSource) {
         if(instance == null){
-            instance = new LoginRepository(dataSource);
+            instance = new AuthRepository(dataSource);
         }
         return instance;
     }

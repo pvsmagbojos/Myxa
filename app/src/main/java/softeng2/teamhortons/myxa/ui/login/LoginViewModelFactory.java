@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.annotation.NonNull;
 
 import softeng2.teamhortons.myxa.data.LoginDataSource;
-import softeng2.teamhortons.myxa.data.LoginRepository;
+import softeng2.teamhortons.myxa.data.AuthRepository;
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.
@@ -18,7 +18,7 @@ public class LoginViewModelFactory implements ViewModelProvider.Factory {
     @SuppressWarnings("unchecked")
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         if (modelClass.isAssignableFrom(LoginViewModel.class)) {
-            return (T) new LoginViewModel(LoginRepository.getInstance(new LoginDataSource()));
+            return (T) new LoginViewModel(AuthRepository.getInstance(new LoginDataSource()));
         } else {
             throw new IllegalArgumentException("Unknown ViewModel class");
         }
