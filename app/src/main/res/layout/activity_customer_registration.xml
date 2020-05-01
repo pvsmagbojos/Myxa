@@ -30,7 +30,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText7_c_password" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_c_password" />
 
     <Button
         android:id="@+id/button_c_signup"
@@ -100,7 +100,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editText_c_firstname" />
 
     <EditText
-        android:id="@+id/editText2_c_lastname"
+        android:id="@+id/editText_c_lastname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autofillHints=""
@@ -171,7 +171,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3_c_gender" />
 
     <EditText
-        android:id="@+id/editText5_c_age"
+        android:id="@+id/editText_c_age"
         android:layout_width="123dp"
         android:layout_height="40dp"
         android:autofillHints=""
@@ -201,7 +201,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline6" />
 
     <EditText
-        android:id="@+id/editText6_c_email"
+        android:id="@+id/editText_c_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autofillHints=""
@@ -221,10 +221,10 @@
         android:text="@string/password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText6_c_email" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_c_email" />
 
     <EditText
-        android:id="@+id/editText7_c_password"
+        android:id="@+id/editText_c_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autofillHints=""

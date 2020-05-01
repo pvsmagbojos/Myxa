@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,6 +15,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView register;
     EditText email;
     EditText password;
+    Button login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,15 @@ public class LoginActivity extends AppCompatActivity {
                 register();
             }
         });
+
+        login = (Button)findViewById(R.id.button_login);
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loginFunc();
+            }
+        });
+
     }
 
     //start registration
@@ -39,35 +50,41 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void customerLogIn(){
-        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);//change main activity to customer home
+        startActivity(intent);
+    }
+
+    public void riderLogIn(){
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);//change main activity to rider home
         startActivity(intent);
     }
 
     //temporary login function
-    public void loginFunc(View view){
-
-        if(!email.getText().toString().isEmpty()){
-            if(!password.getText().toString().isEmpty()){
+    public void loginFunc(){
+        String emailAdd = email.getText().toString();
+        String pass = password.getText().toString();
+        if(!emailAdd.isEmpty()){
+            if(!pass.isEmpty()){
                 //check email if exists on database
-                if(email.getText().toString().equals("admin")) {
+                if(emailAdd.equals("admin")) {
                     //check if rider or customer
                     //if(customer){
                         //check password if correct
-                        if (password.getText().toString().equals("password123")) {
+                        if (pass.equals("password123")) {
                             customerLogIn();
                         } else {
                             //wrong password
                             password.setError("Your Password is incorrect!");
                         }
-                    //}else{
-                    // check password if correct
-                    //   if(correct password){
-                            //
-                    //   }else{
-                            //password.setError("Your Password is incorrect!");
-                        //}
-                    // }
-
+                /*     }else{
+                        check password if correct
+                        if (password.getText().toString().equals("password123")) {
+                            riderLogIn();
+                        }else{
+                            //wrong password
+                            password.setError("Your Password is incorrect!");
+                        }
+                    }*/
                 }else{
                     //email doesn't exist
                     email.setError("Email doesn't exist!");

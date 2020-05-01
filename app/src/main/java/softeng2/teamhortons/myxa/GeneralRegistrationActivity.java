@@ -9,6 +9,7 @@ import android.widget.Button;
 
 public class GeneralRegistrationActivity extends AppCompatActivity {
     Button customerPortal;
+    Button riderPortal;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,10 +23,23 @@ public class GeneralRegistrationActivity extends AppCompatActivity {
             }
         });
 
+        riderPortal = findViewById(R.id.rider_portal_button);
+        riderPortal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                riderRegistration();
+            }
+        });
+
     }
 
     public void customerRegistration(){
         Intent intent = new Intent(GeneralRegistrationActivity.this, CustomerRegistrationActivity.class);
+        startActivity(intent);
+    }
+
+    public void riderRegistration(){
+        Intent intent = new Intent(GeneralRegistrationActivity.this, CustomerRegistrationActivity.class);//change customerreg to riderreg class
         startActivity(intent);
     }
 }
