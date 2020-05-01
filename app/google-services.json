@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "952694779192",
+    "firebase_url": "https://teamhortons-myxa.firebaseio.com",
+    "project_id": "teamhortons-myxa",
+    "storage_bucket": "teamhortons-myxa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:952694779192:android:a9abdf0c8b35012ead25cd",
+        "android_client_info": {
+          "package_name": "softeng2.teamhortons.myxa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "952694779192-q2mjnbd0p6s1e4ca3fes2fv5hf35hr4f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "softeng2.teamhortons.myxa",
+            "certificate_hash": "4a83d8b9ef6ab0291b01ebd58dd8fc4e0ec66047"
+          }
+        },
+        {
+          "client_id": "952694779192-p319nnt0db7rglkvr4siibcknt7pugpq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDy09k4dexLHboVWfwgOMWbBZqIERZlXGY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "952694779192-p319nnt0db7rglkvr4siibcknt7pugpq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
