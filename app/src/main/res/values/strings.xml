@@ -1,22 +1,37 @@
 <resources>
     <string name="app_name">Myxa</string>
-    <string name="label_email">Email</string>
     <string name="logo">LOGO</string>
-    <string name="first_name">First Name</string>
-    <string name="last_name">Last Name</string>
-    <string name="gender">Gender</string>
-    <string name="age">Age</string>
-    <string name="password">Password</string>
-    <string name="sign_up">SIGN UP</string>
-    <string name="log_in">LOG IN</string>
-    <string name="register_here"><u>No account yet? Register Here</u></string>
+
+
+    <string name="button_sign_up">SIGN UP</string>
+    <string name="button_log_in">LOG IN</string>
+    <string name="button_rider_portal">Rider Portal</string>
+    <string name="button_customer_portal">Customer Portal</string>
+
+    <string name="no_account_yet">No account yet?</string>
+    <string name="register_here">Register Here</string>
+
     <string name="todo">TODO</string>
     <string name="register_with_our">Register with our</string>
     <string name="select_one_of_the_choice_above">Select one of the choice above</string>
-    <string name="rider_portal">Rider Portal</string>
-    <string name="customer_portal">Customer Portal</string>
+
     <string name="btn_continue">CONTINUE</string>
-    <string name="confirm_password">Confirm Password</string>
+    <string name="prompt_confirm_password">Confirm Password</string>
+
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="prompt_first_name">First Name</string>
+    <string name="prompt_last_name">Last Name</string>
+    <string name="prompt_gender">Gender</string>
+    <string name="prompt_age">Age</string>
+
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_email">Not a valid email</string>
+    <string name="invalid_password">Password must be >8 characters</string>
+    <string name="login_failed">"Login failed"</string>
+
 
     <string-array name="gender">
         <item>MALE</item>
