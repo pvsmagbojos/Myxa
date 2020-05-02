@@ -40,4 +40,12 @@
         <item>MALE</item>
         <item>FEMALE</item>
     </string-array>
+    <string name="title_activity_home_page">HomePageActivity</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_notifications">Notifications</string>
+    <string name="nav_dashboard">Dashboard</string>
+
+    <string name="home_fragment_text">This is the home fragment</string>
+    <string name="notifications_fragment_text">This is the notifications fragment</string>
+    <string name="dashboard_fragment_text">This is the dashboard fragment</string>
 </resources>
