@@ -104,8 +104,7 @@ public class SignupActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //loadingProgressBar.setVisibility(View.VISIBLE);
                 //TODO: Implement signup
-                signupViewModel.login(emailEditText.getText().toString(),
-                        passwordEditText.getText().toString());
+                signupViewModel.login(emailEditText.getText().toString(),passwordEditText.getText().toString());
             }
         });
     }

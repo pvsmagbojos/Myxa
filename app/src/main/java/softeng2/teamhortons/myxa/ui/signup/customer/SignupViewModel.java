@@ -67,18 +67,29 @@ public class SignupViewModel extends ViewModel {
         }
     }
 
-    private boolean isEmailValid(String email) {
+    /*private*/protected boolean isEmailValid(String email) {
         if (email == null) {
             return false;
+        }else{
+            String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+            return email.matches(regex);
         }
-        if (email.contains("@")) {
-            return Patterns.EMAIL_ADDRESS.matcher(email).matches();
-        } else {
-            return !email.trim().isEmpty();
-        }
+
+//        if (email.contains("@")) {
+//            ///return Patterns.EMAIL_ADDRESS.matcher(email).matches();
+//            return true;
+//        } else {
+//            //return !email.trim().isEmpty();
+//            return false;
+//        }
     }
 
-    private boolean isPasswordValid(String password) {
-        return password != null && password.trim().length() > 8;
+    /*private*/protected boolean isPasswordValid(String password) {
+        // return password != null && password.trim().length() > 8;
+        if (password != null && password.trim().length() > 8) {
+            return true;
+        }else{
+            return false;
+        }
     }
 }

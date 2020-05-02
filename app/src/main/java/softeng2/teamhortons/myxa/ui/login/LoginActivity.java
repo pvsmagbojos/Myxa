@@ -79,6 +79,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        //not working
         TextWatcher afterTextChangedListener = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -92,8 +93,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                loginViewModel.loginDataChanged(emailEditText.getText().toString(),
-                        passwordEditText.getText().toString());
+                loginViewModel.loginDataChanged(emailEditText.getText().toString(),passwordEditText.getText().toString());
             }
         };
         emailEditText.addTextChangedListener(afterTextChangedListener);
@@ -114,8 +114,32 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //loadingProgressBar.setVisibility(View.VISIBLE);
-                loginViewModel.login(emailEditText.getText().toString(),
-                        passwordEditText.getText().toString());
+               //loginViewModel.login(emailEditText.getText().toString(),passwordEditText.getText().toString());
+                String emailString = emailEditText.getText().toString();
+                String passwordString = passwordEditText.getText().toString();
+                String emptyField = "Field must not be empty!";
+
+                boolean emailValid = false;
+                boolean passValid = false;
+
+                if(emailString.isEmpty()){
+                    emailEditText.setError(emptyField);
+                }else{
+                    emailValid = true;
+                }
+                if(passwordString.isEmpty()){
+                    passwordEditText.setError(emptyField);
+                }
+                else{
+                    passValid = true;
+                }
+
+                if(emailValid){
+                    if(passValid){
+                        loginViewModel.loginDataChanged(emailString,passwordString);
+                    }
+                }
+
             }
         });
     }

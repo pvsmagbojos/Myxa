@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import android.util.Patterns;
+import android.widget.EditText;
 
 import softeng2.teamhortons.myxa.data.AuthRepository;
 import softeng2.teamhortons.myxa.data.Result;
@@ -40,31 +41,59 @@ public class LoginViewModel extends ViewModel {
             loginResult.setValue(new LoginResult(R.string.login_failed));
         }
     }
-
+    //not workingz
     void loginDataChanged(String email, String password) {
         //TODO: Add more input filters
         //if email ay walang laman - loginFormState.setValue(new LoginFormState("FIELD MUST NOT BE EMPTY", null));
-        if (!isEmailValid(email)) {
-            loginFormState.setValue(new LoginFormState(R.string.invalid_email, null));
-        } else if (!isPasswordValid(password)) {
-            loginFormState.setValue(new LoginFormState(null, R.string.invalid_password));
-        } else {
-            loginFormState.setValue(new LoginFormState(true));
+
+//        if (!isEmailValid(email)) {
+//            loginFormState.setValue(new LoginFormState(R.string.invalid_email, null));
+//        } else if (!isPasswordValid(password)) {
+//            loginFormState.setValue(new LoginFormState(null, R.string.invalid_password));
+//        } else {
+//            loginFormState.setValue(new LoginFormState(true));
+//        }
+
+        if(!email.isEmpty()){
+            if(isEmailValid(email)){
+                if(!password.isEmpty()){
+                    if(isPasswordValid(password)){
+                        //proceed to login
+                    }else{
+                        loginFormState.setValue(new LoginFormState(null, R.string.invalid_password));
+                    }
+                }else{
+                    loginFormState.setValue(new LoginFormState(null, R.string.empty_field));
+                }
+            }else{
+                loginFormState.setValue(new LoginFormState(R.string.invalid_email, null));
+            }
+        }else{
+            loginFormState.setValue(new LoginFormState(R.string.empty_field,null));
         }
+
+
+
+//        //loadingProgressBar.setVisibility(View.VISIBLE);
+//        //loginViewModel.login(emailEditText.getText().toString(),passwordEditText.getText().toString());
+
     }
 
-    private boolean isEmailValid(String email) {
+    /*private*/protected boolean isEmailValid(String email) {
         if (email == null) {
             return false;
         }
-        if (email.contains("@")) {
+        else{
             return Patterns.EMAIL_ADDRESS.matcher(email).matches();
-        } else {
-            return !email.trim().isEmpty();
         }
     }
 
-    private boolean isPasswordValid(String password) {
-        return password != null && password.trim().length() > 8;
+    /*private*/protected boolean isPasswordValid(String password) {
+       // return password != null && password.trim().length() > 8;
+        if (password != null && password.trim().length() > 8) {
+            return true;
+        }else{
+            return false;
+        }
     }
 }
