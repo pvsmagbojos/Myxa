@@ -29,7 +29,7 @@ public class SignupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_customer_signup);
 
         final EditText emailEditText = findViewById(R.id.editText_email);
-        final EditText passwordEditText = findViewById(R.id.editText_password);
+        final EditText passwordEditText = findViewById(R.id.editText_confirm_password);
         final Button signupButton = findViewById(R.id.button_signup);
 
         signupViewModel = ViewModelProviders.of(this, new SignupViewModelFactory())
