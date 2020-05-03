@@ -7,6 +7,7 @@
     <color name="textColor">#757575</color>
     <color name="viewBackground">#80C4C4C4</color>
 
-    <color name="colorWhiteBottomNavigation">#ffffff</color>
-    <color name="colorTransparentBottomNavigation">#00000000</color>
+    <color name="colorSelectedPrimary">#CDDC39</color>
+    <color name="colorUnselectedPrimary">#aaafaa</color>
+    <color name="colorBottomNavigationBackground">#ffffff</color>
 </resources>

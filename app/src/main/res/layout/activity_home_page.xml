@@ -6,22 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".ui.homepage.HomePageActivity">
 
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_main_bottomNavigation"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        app:itemBackground="@color/colorWhiteBottomNavigation"
-        app:itemTextColor="@color/colorPrimaryDark"
+        app:itemBackground="@color/colorBottomNavigationBackground"
+        app:itemIconTint="@color/bottomnavigation_item_colors"
+        app:itemTextColor="@color/bottomnavigation_item_colors"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/nav_items" />
+
+    <FrameLayout
+        android:id="@+id/frame_main_frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/nav_main_bottomNavigation"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+    </FrameLayout>
+
+
 </RelativeLayout>
-<!--<com.google.android.material.bottomnavigation.BottomNavigationView-->
-<!--android:layout_width="match_parent"-->
-<!--android:layout_height="56dp"-->
-<!--android:layout_alignParentStart="true"-->
-<!--android:layout_alignParentBottom="true"-->
-<!--app:itemBackground="@color/colorPrimaryDark"-->
-<!--app:itemIconTint="@color/bottomnavigation_item_colors"-->
-<!--app:itemTextColor="@color/bottomnavigation_item_colors"-->
-<!--app:menu="@menu/nav_items" />-->
 

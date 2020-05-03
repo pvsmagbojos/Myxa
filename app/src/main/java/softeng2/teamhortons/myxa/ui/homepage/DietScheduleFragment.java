@@ -13,10 +13,11 @@ import softeng2.teamhortons.myxa.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DashboardFragment extends Fragment
+public class DietScheduleFragment extends Fragment
 {
 
-    public DashboardFragment() {
+    public DietScheduleFragment()
+    {
         // Required empty public constructor
     }
 
@@ -26,6 +27,6 @@ public class DashboardFragment extends Fragment
                              Bundle savedInstanceState)
     {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dashboard, container, false);
+        return inflater.inflate(R.layout.fragment_diet_schedule, container, false);
     }
 }

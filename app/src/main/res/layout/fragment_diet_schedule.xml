@@ -3,12 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.homepage.NotificationsFragment">
+    tools:context=".ui.homepage.DietScheduleFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/notifications_fragment_text" />
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        android:text="@string/diet_schedule_fragment_text" />
 
 </FrameLayout>

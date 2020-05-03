@@ -42,10 +42,10 @@
     </string-array>
     <string name="title_activity_home_page">HomePageActivity</string>
     <string name="nav_home">Home</string>
-    <string name="nav_notifications">Notifications</string>
-    <string name="nav_dashboard">Dashboard</string>
+    <string name="nav_diet_Schedule">Diet Schedule</string>
+    <string name="nav_your_cart">Your Cart</string>
 
     <string name="home_fragment_text">This is the home fragment</string>
-    <string name="notifications_fragment_text">This is the notifications fragment</string>
-    <string name="dashboard_fragment_text">This is the dashboard fragment</string>
+    <string name="diet_schedule_fragment_text">This is the diet schedule fragment</string>
+    <string name="your_cart_fragment_text">This is the your cart fragment</string>
 </resources>
