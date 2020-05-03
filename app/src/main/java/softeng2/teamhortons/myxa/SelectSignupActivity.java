@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import softeng2.teamhortons.myxa.ui.signup.customer.SignupActivity;
+import softeng2.teamhortons.myxa.ui.signup.rider.RiderSignUpActivity;
 
 public class SelectSignupActivity extends AppCompatActivity {
     Button customerPortal;
@@ -41,7 +42,7 @@ public class SelectSignupActivity extends AppCompatActivity {
     }
 
     public void riderRegistration(){
-        Intent intent = new Intent(SelectSignupActivity.this, SignupActivity.class);//change customerreg to riderreg class
+        Intent intent = new Intent(SelectSignupActivity.this, RiderSignUpActivity.class);//change customerreg to riderreg class
         startActivity(intent);
     }
 }
