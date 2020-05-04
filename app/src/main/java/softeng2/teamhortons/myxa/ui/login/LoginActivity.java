@@ -20,6 +20,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import softeng2.teamhortons.myxa.R;
 import softeng2.teamhortons.myxa.SelectSignupActivity;
+import softeng2.teamhortons.myxa.ui.homepage.HomePageActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -89,57 +90,42 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 // ignore
+                if(loginViewModel.loginDataChanged(emailEditText.getText().toString(),passwordEditText.getText().toString())){
+                    //validate to database
+                    Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
+                    startActivity(intent);
+                }
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                loginViewModel.loginDataChanged(emailEditText.getText().toString(),passwordEditText.getText().toString());
+
             }
         };
         emailEditText.addTextChangedListener(afterTextChangedListener);
         passwordEditText.addTextChangedListener(afterTextChangedListener);
-        passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    loginViewModel.login(emailEditText.getText().toString(),
-                            passwordEditText.getText().toString());
-                }
-                return false;
-            }
-        });
+//        passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//
+//            @Override
+//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+//                if (actionId == EditorInfo.IME_ACTION_DONE) {
+//                    loginViewModel.loginDataChanged(emailEditText.getText().toString(),passwordEditText.getText().toString());
+//                }
+//                return false;
+//            }
+//        });
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //loadingProgressBar.setVisibility(View.VISIBLE);
                //loginViewModel.login(emailEditText.getText().toString(),passwordEditText.getText().toString());
-                String emailString = emailEditText.getText().toString();
-                String passwordString = passwordEditText.getText().toString();
-                String emptyField = "Field must not be empty!";
 
-                boolean emailValid = false;
-                boolean passValid = false;
-
-                if(emailString.isEmpty()){
-                    emailEditText.setError(emptyField);
-                }else{
-                    emailValid = true;
+                if(loginViewModel.loginDataChanged(emailEditText.getText().toString(),passwordEditText.getText().toString())){
+                    //validate to database
+                    Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
+                    startActivity(intent);
                 }
-                if(passwordString.isEmpty()){
-                    passwordEditText.setError(emptyField);
-                }
-                else{
-                    passValid = true;
-                }
-
-                if(emailValid){
-                    if(passValid){
-                        loginViewModel.loginDataChanged(emailString,passwordString);
-                    }
-                }
-
             }
         });
     }
