@@ -51,11 +51,27 @@ public class SignupActivity extends AppCompatActivity {
                     return;
                 }
                 signupButton.setEnabled(signupFormState.isDataValid());
+
+                if (signupFormState.getFirstNameError() != null) {
+                    fNameEditText.setError(getString(signupFormState.getFirstNameError()));
+                }
+                if (signupFormState.getLastNameError() != null) {
+                    lNameEditText.setError(getString(signupFormState.getLastNameError()));
+                }
+//                if (signupFormState.getGenderError() != null) {
+//                    genderSpinner.setError(getString(signupFormState.getGenderError()));
+//                }
+                if (signupFormState.getAgeError() != null) {
+                    ageEditText.setError(getString(signupFormState.getAgeError()));
+                }
                 if (signupFormState.getEmailError() != null) {
                     emailEditText.setError(getString(signupFormState.getEmailError()));
                 }
                 if (signupFormState.getPasswordError() != null) {
                     passwordEditText.setError(getString(signupFormState.getPasswordError()));
+                }
+                if (signupFormState.getConfirmPasswordError() != null) {
+                    confirmPasswordEditText.setError(getString(signupFormState.getConfirmPasswordError()));
                 }
             }
         });
