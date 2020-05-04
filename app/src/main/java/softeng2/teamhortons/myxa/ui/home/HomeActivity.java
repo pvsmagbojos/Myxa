@@ -1,4 +1,4 @@
-package softeng2.teamhortons.myxa.ui.homepage;
+package softeng2.teamhortons.myxa.ui.home;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,7 +14,7 @@ import softeng2.teamhortons.myxa.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
-public class HomePageActivity extends AppCompatActivity
+public class HomeActivity extends AppCompatActivity
 {
     private BottomNavigationView mainBottomNavigation;
     private FrameLayout mainFrameLayout;
@@ -27,7 +27,7 @@ public class HomePageActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_page);
+        setContentView(R.layout.activity_home);
 
         mainFrameLayout = (FrameLayout)findViewById(R.id.frame_main_frameLayout);
         mainBottomNavigation = (BottomNavigationView)findViewById(R.id.nav_main_bottomNavigation);

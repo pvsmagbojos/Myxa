@@ -1,4 +1,4 @@
-package softeng2.teamhortons.myxa.ui.homepage;
+package softeng2.teamhortons.myxa.ui.home;
 
 import android.os.Bundle;
 
@@ -13,10 +13,11 @@ import softeng2.teamhortons.myxa.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class YourCartFragment extends Fragment
+public class HomeFragment extends Fragment
 {
 
-    public YourCartFragment() {
+    public HomeFragment()
+    {
         // Required empty public constructor
     }
 
@@ -26,6 +27,6 @@ public class YourCartFragment extends Fragment
                              Bundle savedInstanceState)
     {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_your_cart, container, false);
+        return inflater.inflate(R.layout.fragment_home, container, false);
     }
 }
