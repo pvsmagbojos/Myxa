@@ -45,7 +45,7 @@ public class LoginViewModel extends ViewModel {
         }
     }
 
-    boolean loginDataChanged(String email, String password) {
+    void loginDataChanged(String email, String password) {
         //TODO: Add more input filters
         //if email ay walang laman - loginFormState.setValue(new LoginFormState("FIELD MUST NOT BE EMPTY", null));
 
@@ -82,10 +82,7 @@ public class LoginViewModel extends ViewModel {
         boolean valid = false;
         if(validEmail && validPass){
             loginFormState.setValue(new LoginFormState(true));
-            valid = true;
         }
-
-        return valid;
 
 //        //loadingProgressBar.setVisibility(View.VISIBLE);
 //        //loginViewModel.login(emailEditText.getText().toString(),passwordEditText.getText().toString());

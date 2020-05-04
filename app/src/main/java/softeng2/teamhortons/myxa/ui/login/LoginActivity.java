@@ -136,12 +136,11 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 if(notEmptyEmail && notEmptyPass){
-                    if(loginViewModel.loginDataChanged(emailString,passwordString)){
+                    loginViewModel.loginDataChanged(emailString,passwordString);
                         //validate to database
                         //if validation is successful, go to homepage
-                        Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
-                        startActivity(intent);
-                    }
+                    Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
+                    startActivity(intent);
                 }
 
             }
