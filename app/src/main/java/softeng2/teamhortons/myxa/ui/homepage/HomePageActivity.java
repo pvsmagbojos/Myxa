@@ -38,6 +38,8 @@ public class HomePageActivity extends AppCompatActivity
 
         setFragment(homeFragment);
 
+        mainBottomNavigation.setSelectedItemId(R.id.nav_home);
+
         mainBottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener()
         {
             @Override

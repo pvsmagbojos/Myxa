@@ -90,16 +90,12 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 // ignore
-                if(loginViewModel.loginDataChanged(emailEditText.getText().toString(),passwordEditText.getText().toString())){
-                    //validate to database
-                    Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
-                    startActivity(intent);
-                }
+
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                loginViewModel.loginDataChanged(emailEditText.getText().toString(),passwordEditText.getText().toString());
             }
         };
         emailEditText.addTextChangedListener(afterTextChangedListener);
@@ -121,11 +117,33 @@ public class LoginActivity extends AppCompatActivity {
                 //loadingProgressBar.setVisibility(View.VISIBLE);
                //loginViewModel.login(emailEditText.getText().toString(),passwordEditText.getText().toString());
 
-                if(loginViewModel.loginDataChanged(emailEditText.getText().toString(),passwordEditText.getText().toString())){
-                    //validate to database
-                    Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
-                    startActivity(intent);
+                String emailString = emailEditText.getText().toString();
+                String passwordString = passwordEditText.getText().toString();
+
+                boolean notEmptyEmail = false;
+                boolean notEmptyPass = false;
+
+                if(!emailString.isEmpty()){
+                    notEmptyEmail = true;
+                }else{
+                    emailEditText.setError("Field must not be empty");
                 }
+
+                if(!passwordString.isEmpty()){
+                    notEmptyPass = true;
+                }else{
+                    passwordEditText.setError("Field must not be empty");
+                }
+
+                if(notEmptyEmail && notEmptyPass){
+                    if(loginViewModel.loginDataChanged(emailString,passwordString)){
+                        //validate to database
+                        //if validation is successful, go to homepage
+                        Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
+                        startActivity(intent);
+                    }
+                }
+
             }
         });
     }

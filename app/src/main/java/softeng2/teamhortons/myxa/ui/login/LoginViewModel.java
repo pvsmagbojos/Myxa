@@ -44,7 +44,7 @@ public class LoginViewModel extends ViewModel {
             loginResult.setValue(new LoginResult(R.string.login_failed));
         }
     }
-    //not workingz
+
     boolean loginDataChanged(String email, String password) {
         //TODO: Add more input filters
         //if email ay walang laman - loginFormState.setValue(new LoginFormState("FIELD MUST NOT BE EMPTY", null));
@@ -81,6 +81,7 @@ public class LoginViewModel extends ViewModel {
 
         boolean valid = false;
         if(validEmail && validPass){
+            loginFormState.setValue(new LoginFormState(true));
             valid = true;
         }
 
