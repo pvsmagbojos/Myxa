@@ -31,13 +31,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_confirm_password" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_password" />
 
     <Button
         android:id="@+id/button_signup"
         android:layout_width="313dp"
         android:layout_height="55dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="10dp"
         android:background="#CDDC39"
         android:text="@string/button_sign_up"
         android:textSize="24sp"
@@ -127,7 +127,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/raleway_bold"
-        android:labelFor="@id/spinnerGender_c_gender"
+        android:labelFor="@id/spinner_gender"
         android:text="@string/prompt_gender"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
@@ -167,7 +167,7 @@
         app:layout_constraintGuide_begin="362dp" />
 
     <Spinner
-        android:id="@+id/spinnerGender_c_gender"
+        android:id="@+id/spinner_gender"
         android:layout_width="152dp"
         android:layout_height="39dp"
         android:textAlignment="center"
@@ -231,13 +231,11 @@
         app:layout_constraintTop_toBottomOf="@+id/editText_email" />
 
     <EditText
-        android:id="@+id/editText_confirm_password"
+        android:id="@+id/editText_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:autofillHints=""
         android:ems="10"
         android:inputType="textPassword"
-        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_password_label" />

@@ -115,7 +115,24 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //loadingProgressBar.setVisibility(View.VISIBLE);
-            loginViewModel.login(emailEditText.getText().toString(), passwordEditText.getText().toString());
+                boolean notEmptyEmail = false;
+                boolean notEmptyPass = false;
+                if((emailEditText.getText().toString()).isEmpty()){
+                    emailEditText.setError("Field must not be empty");
+                } else{
+                    notEmptyEmail = true;
+                }
+
+                if((passwordEditText.getText().toString()).isEmpty()){
+                    passwordEditText.setError("Field must not be empty");
+                } else{
+                    notEmptyPass = true;
+                }
+
+                if(notEmptyEmail && notEmptyPass) {
+                    loginViewModel.login(emailEditText.getText().toString(), passwordEditText.getText().toString());
+                }
+
             }
         });
     }

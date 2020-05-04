@@ -1,5 +1,6 @@
 package softeng2.teamhortons.myxa.ui.signup.customer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +20,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import softeng2.teamhortons.myxa.R;
+import softeng2.teamhortons.myxa.ui.home.HomeActivity;
+import softeng2.teamhortons.myxa.ui.login.LoginActivity;
 
 public class SignupActivity extends AppCompatActivity {
 
@@ -28,8 +32,13 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_signup);
 
+        final EditText fNameEditText = findViewById(R.id.editText_first_name);
+        final EditText lNameEditText = findViewById(R.id.editText_last_name);
+        final Spinner genderSpinner = findViewById(R.id.spinner_gender);
+        final EditText ageEditText = findViewById(R.id.editText_age);
         final EditText emailEditText = findViewById(R.id.editText_email);
-        final EditText passwordEditText = findViewById(R.id.editText_confirm_password);
+        final EditText passwordEditText = findViewById(R.id.editText_password);
+        final EditText confirmPasswordEditText = findViewById(R.id.editText_confirm_password);
         final Button signupButton = findViewById(R.id.button_signup);
 
         signupViewModel = ViewModelProviders.of(this, new SignupViewModelFactory())
@@ -62,6 +71,8 @@ public class SignupActivity extends AppCompatActivity {
                     showLoginFailed(signupResult.getError());
                 }
                 if (signupResult.getSuccess() != null) {
+                    Intent intent = new Intent(SignupActivity.this, HomeActivity.class);
+                    startActivity(intent);
                     updateUiWithUser(signupResult.getSuccess());
                     finish();
                 }
@@ -81,23 +92,30 @@ public class SignupActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                signupViewModel.loginDataChanged(emailEditText.getText().toString(),
-                        passwordEditText.getText().toString());
+                signupViewModel.loginDataChanged(fNameEditText.getText().toString(), lNameEditText.getText().toString(), /*genderSpinner.getSelectedItem().toString(),*/ ageEditText.getText().toString(), emailEditText.getText().toString(),
+                        passwordEditText.getText().toString(), confirmPasswordEditText.getText().toString());
             }
         };
+
+        fNameEditText.addTextChangedListener(afterTextChangedListener);
+        lNameEditText.addTextChangedListener(afterTextChangedListener);
+        //genderSpinner.addTextChangedListener(afterTextChangedListener);
+        ageEditText.addTextChangedListener(afterTextChangedListener);
         emailEditText.addTextChangedListener(afterTextChangedListener);
         passwordEditText.addTextChangedListener(afterTextChangedListener);
-//        passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-//
-//            @Override
-//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-//                if (actionId == EditorInfo.IME_ACTION_DONE) {
-//                    signupViewModel.login(emailEditText.getText().toString(),
-//                            passwordEditText.getText().toString());
-//                }
-//                return false;
-//            }
-//        });
+        confirmPasswordEditText.addTextChangedListener(afterTextChangedListener);
+
+        confirmPasswordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    signupViewModel.loginDataChanged(fNameEditText.getText().toString(), lNameEditText.getText().toString(), /*genderSpinner.getSelectedItem().toString(),*/ ageEditText.getText().toString(), emailEditText.getText().toString(),
+                            passwordEditText.getText().toString(), confirmPasswordEditText.getText().toString());
+                }
+                return false;
+            }
+        });
 
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override

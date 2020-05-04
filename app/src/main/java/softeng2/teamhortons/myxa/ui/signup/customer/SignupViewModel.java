@@ -42,14 +42,87 @@ public class SignupViewModel extends ViewModel {
         }
     }
 
-    void loginDataChanged(String email, String password) {
+    void loginDataChanged(String fName, String lName, /*String gender,*/ String age, String email, String password, String confirmPassword) {
         //TODO: Add more input filters
-        if (!isEmailValid(email)) {
+        int notEmptyCtr = 0;
+        if(fName.isEmpty()){
+            signupFormState.setValue(new SignupFormState(
+                    null,
+                    R.string.empty_field,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null));
+        }else{
+            notEmptyCtr+=1;
+        }
+
+        if(lName.isEmpty()){
+            signupFormState.setValue(new SignupFormState(
+                    null,
+                    null,
+                    R.string.empty_field,
+                    null,
+                    null,
+                    null,
+                    null));
+        }else{
+            notEmptyCtr+=1;
+        }
+
+//        if(gender.equals(" ")){
+//            signupFormState.setValue(new SignupFormState(
+//                    null,
+//                    null,
+//                    null,
+//                    null,
+//                    null,
+//                    R.string.empty_field,
+//                    null));
+//        }else{
+//            notEmptyCtr+=1;
+//        }
+
+        if(age.isEmpty()){
+            signupFormState.setValue(new SignupFormState(
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    R.string.empty_field));
+        }else{
+            notEmptyCtr+=1;
+        }
+
+        if(email.isEmpty()){
+            signupFormState.setValue(new SignupFormState(
+                    R.string.empty_field,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null));
+        } else if (!isEmailValid(email)) {
             signupFormState.setValue(new SignupFormState(
                     R.string.invalid_email,
                     null,
                     null,
                     null,
+                    null,
+                    null,
+                    null));
+        }
+
+        if(password.isEmpty()){
+            signupFormState.setValue(new SignupFormState(
+                    null,
+                    null,
+                    null,
+                    R.string.empty_field,
                     null,
                     null,
                     null));
@@ -62,34 +135,47 @@ public class SignupViewModel extends ViewModel {
                     null,
                     null,
                     null));
-        } else {
-            signupFormState.setValue(new SignupFormState(true));
+        }
+
+        if(confirmPassword.isEmpty()){
+            signupFormState.setValue(new SignupFormState(
+                    null,
+                    null,
+                    null,
+                    null,
+                    R.string.empty_field,
+                    null,
+                    null));
+        } else if(confirmPassword.equals(password)){
+            signupFormState.setValue(new SignupFormState(
+                    null,
+                    null,
+                    null,
+                    null,
+                    R.string.invalid_confirm_password,
+                    null,
+                    null));
+        }
+
+        if(notEmptyCtr == 4 && isEmailValid(email) && isPasswordValid(password) && isConfirmPasswordValid(password,confirmPassword)){
+            recordToDatabase(fName, lName, /*gender,*/ age, email, password, confirmPassword);
         }
     }
 
-    /*private*/protected boolean isEmailValid(String email) {
-        if (email == null) {
-            return false;
-        }else{
-            String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
-            return email.matches(regex);
-        }
-
-//        if (email.contains("@")) {
-//            ///return Patterns.EMAIL_ADDRESS.matcher(email).matches();
-//            return true;
-//        } else {
-//            //return !email.trim().isEmpty();
-//            return false;
-//        }
+    private void recordToDatabase(String fName, String lName, /*String gender,*/ String age, String email, String password, String confirmPassword){
+        //add to db, if successful - setvalue
+        signupFormState.setValue(new SignupFormState(true));
     }
 
-    /*private*/protected boolean isPasswordValid(String password) {
-        // return password != null && password.trim().length() > 8;
-        if (password != null && password.trim().length() > 8) {
-            return true;
-        }else{
-            return false;
-        }
+    private boolean isEmailValid(String email) {
+        return !email.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
+    private boolean isPasswordValid(String password) {
+        return password != null && password.trim().length() > 7;
+    }
+
+    private boolean isConfirmPasswordValid(String password, String confirmPassword) {
+        return password != null && password.equals(confirmPassword);
     }
 }
