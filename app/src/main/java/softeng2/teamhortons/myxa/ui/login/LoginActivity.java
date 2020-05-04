@@ -20,7 +20,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import softeng2.teamhortons.myxa.R;
 import softeng2.teamhortons.myxa.SelectSignupActivity;
-import softeng2.teamhortons.myxa.ui.homepage.HomePageActivity;
+import softeng2.teamhortons.myxa.ui.home.HomeActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -74,13 +74,14 @@ public class LoginActivity extends AppCompatActivity {
                     showLoginFailed(loginResult.getError());
                 }
                 if (loginResult.getSuccess() != null) {
+                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    startActivity(intent);
                     updateUiWithUser(loginResult.getSuccess());
                     finish();
                 }
             }
         });
 
-        //not working
         TextWatcher afterTextChangedListener = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -90,7 +91,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 // ignore
-
             }
 
             @Override
@@ -100,50 +100,22 @@ public class LoginActivity extends AppCompatActivity {
         };
         emailEditText.addTextChangedListener(afterTextChangedListener);
         passwordEditText.addTextChangedListener(afterTextChangedListener);
-//        passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-//
-//            @Override
-//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-//                if (actionId == EditorInfo.IME_ACTION_DONE) {
-//                    loginViewModel.loginDataChanged(emailEditText.getText().toString(),passwordEditText.getText().toString());
-//                }
-//                return false;
-//            }
-//        });
+        passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    loginViewModel.loginDataChanged(emailEditText.getText().toString(),passwordEditText.getText().toString());
+                }
+                return false;
+            }
+        });
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //loadingProgressBar.setVisibility(View.VISIBLE);
-               //loginViewModel.login(emailEditText.getText().toString(),passwordEditText.getText().toString());
-
-                String emailString = emailEditText.getText().toString();
-                String passwordString = passwordEditText.getText().toString();
-
-                boolean notEmptyEmail = false;
-                boolean notEmptyPass = false;
-
-                if(!emailString.isEmpty()){
-                    notEmptyEmail = true;
-                }else{
-                    emailEditText.setError("Field must not be empty");
-                }
-
-                if(!passwordString.isEmpty()){
-                    notEmptyPass = true;
-                }else{
-                    passwordEditText.setError("Field must not be empty");
-                }
-
-                if(notEmptyEmail && notEmptyPass){
-                    if(loginViewModel.loginDataChanged(emailString,passwordString)){
-                        //validate to database
-                        //if validation is successful, go to homepage
-                        Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
-                        startActivity(intent);
-                    }
-                }
-
+            loginViewModel.login(emailEditText.getText().toString(), passwordEditText.getText().toString());
             }
         });
     }
