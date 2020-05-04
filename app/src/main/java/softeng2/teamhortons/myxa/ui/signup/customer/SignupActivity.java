@@ -87,17 +87,17 @@ public class SignupActivity extends AppCompatActivity {
         };
         emailEditText.addTextChangedListener(afterTextChangedListener);
         passwordEditText.addTextChangedListener(afterTextChangedListener);
-        passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    signupViewModel.login(emailEditText.getText().toString(),
-                            passwordEditText.getText().toString());
-                }
-                return false;
-            }
-        });
+//        passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//
+//            @Override
+//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+//                if (actionId == EditorInfo.IME_ACTION_DONE) {
+//                    signupViewModel.login(emailEditText.getText().toString(),
+//                            passwordEditText.getText().toString());
+//                }
+//                return false;
+//            }
+//        });
 
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
