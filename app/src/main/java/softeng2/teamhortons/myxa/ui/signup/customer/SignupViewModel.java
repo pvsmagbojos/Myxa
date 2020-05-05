@@ -23,14 +23,15 @@ import java.util.Map;
 
 import softeng2.teamhortons.myxa.R;
 import softeng2.teamhortons.myxa.data.AuthRepository;
+import softeng2.teamhortons.myxa.data.UserRepository;
 
-public class SignupViewModel extends ViewModel {
+class SignupViewModel extends ViewModel {
 
     private MutableLiveData<SignupFormState> signupFormState = new MutableLiveData<>();
     private MutableLiveData<SignupResult> signupResult = new MutableLiveData<>();
     private AuthRepository authRepository;
 
-    SignupViewModel(AuthRepository authRepository) {
+    SignupViewModel(AuthRepository authRepository, UserRepository userRepository) {
         this.authRepository = authRepository;
     }
 
@@ -64,7 +65,7 @@ public class SignupViewModel extends ViewModel {
                 });
     }
 
-    void loginDataChanged(String fName, String lName, /*String gender,*/ String age, String email, String password, String confirmPassword) {
+    void signUpDataChanged(String fName, String lName, /*String gender,*/ String age, String email, String password, String confirmPassword) {
         //TODO: Add more input filters
         int notEmptyCtr = 0;
         if(fName.isEmpty()){
