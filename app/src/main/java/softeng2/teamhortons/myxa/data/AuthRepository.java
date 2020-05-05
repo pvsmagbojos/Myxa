@@ -9,9 +9,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import javax.annotation.Nonnegative;
+
 /**
- * Class that requests authentication and user information from the remote data source and
- * maintains an in-memory cache of login status and user credentials information.
+ * Class that requests authentication and user information from Firebase authentication servers and
+ * maintains an in-memory cache of login status and user information.
  */
 public class AuthRepository {
 
@@ -45,8 +47,18 @@ public class AuthRepository {
         // @see https://developer.android.com/training/articles/keystore
     }
 
-    public Task<AuthResult> login(String email, String password) {
+    public Task<AuthResult> login(@NonNull String email, @NonNull String password) {
         return dataSource.signInWithEmailAndPassword(email, password)
+                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                    @Override
+                    public void onSuccess(AuthResult authResult) {
+                        setLoggedInUser(authResult.getUser());
+                    }
+                });
+    }
+
+    public Task<AuthResult> signUp(@NonNull String email, @NonNull String password) {
+        return dataSource.createUserWithEmailAndPassword(email, password)
                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
