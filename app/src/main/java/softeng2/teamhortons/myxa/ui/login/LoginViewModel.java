@@ -12,12 +12,11 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseUser;
 
 import softeng2.teamhortons.myxa.R;
 import softeng2.teamhortons.myxa.data.AuthRepository;
 
-public class LoginViewModel extends ViewModel {
+class LoginViewModel extends ViewModel {
 
     private MutableLiveData<LoginFormState> loginFormState = new MutableLiveData<>();
     private MutableLiveData<LoginResult> loginResult = new MutableLiveData<>();
@@ -35,7 +34,7 @@ public class LoginViewModel extends ViewModel {
         return loginResult;
     }
 
-    public void login(String email, String password) {
+    void login(String email, String password) {
         authRepository.login(email, password).addOnCompleteListener(
                 new OnCompleteListener<AuthResult>() {
             @Override
