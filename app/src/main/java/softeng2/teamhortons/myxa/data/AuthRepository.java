@@ -1,11 +1,9 @@
 package softeng2.teamhortons.myxa.data;
 
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import softeng2.teamhortons.myxa.data.model.LoggedInUser;
 
 /**
  * Class that requests authentication and user information from the remote data source and
@@ -48,18 +46,7 @@ public class AuthRepository {
         // @see https://developer.android.com/training/articles/keystore
     }
 
-    public Result<FirebaseUser> login(String email, String password) {
-        dataSource.signInWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-            @Override
-            public void onSuccess(AuthResult authResult) {
-                setLoggedInUser(authResult.getUser());
-            }
-        });
-
-        if(this.user != null) {
-            return new Result.Success(user);
-        }
-
-        return new Result.Error(new Exception("Login Failed"));
+    public Task<AuthResult> login(String email, String password) {
+        return dataSource.signInWithEmailAndPassword(email, password);
     }
 }

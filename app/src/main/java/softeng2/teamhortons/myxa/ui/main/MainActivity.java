@@ -1,18 +1,14 @@
 package softeng2.teamhortons.myxa.ui.main;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProviders;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 
 import softeng2.teamhortons.myxa.R;
-import softeng2.teamhortons.myxa.data.AuthRepository;
 import softeng2.teamhortons.myxa.ui.home.HomeActivity;
 import softeng2.teamhortons.myxa.ui.login.LoginActivity;
 
