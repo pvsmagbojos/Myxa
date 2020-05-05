@@ -2,10 +2,14 @@ package softeng2.teamhortons.myxa.ui.signup.customer;
 
 import android.util.Patterns;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseUser;
 
 import softeng2.teamhortons.myxa.R;
@@ -31,16 +35,25 @@ public class SignupViewModel extends ViewModel {
     }
 
     public void login(String email, String password) {
-        // can be launched in a separate asynchronous job
-        Result<FirebaseUser> result = authRepository.login(email, password);
+        authRepository.login(email, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    FirebaseUser data = task.getResult().getUser();
+                    if(data != null) {
+                        signupResult.setValue(new SignupResult(data));
+                    } else {
+                        signupResult.setValue(new SignupResult(R.string.login_failed));
+                    }
 
-        if (result instanceof Result.Success) {
-            FirebaseUser data = ((Result.Success<FirebaseUser>) result).getData();
-            signupResult.setValue(new SignupResult(data));
-        } else {
-            // TODO: Add more failure information
-            signupResult.setValue(new SignupResult(R.string.signup_failed));
-        }
+                } else {
+                    signupResult.setValue(new SignupResult(R.string.login_failed));
+                }
+            }
+        });
+
+
     }
 
     void loginDataChanged(String fName, String lName, /*String gender,*/ String age, String email, String password, String confirmPassword) {

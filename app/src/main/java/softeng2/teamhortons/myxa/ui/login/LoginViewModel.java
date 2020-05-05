@@ -42,7 +42,12 @@ public class LoginViewModel extends ViewModel {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     FirebaseUser data = task.getResult().getUser();
-                    loginResult.setValue(new LoginResult(data));
+                    if(data != null) {
+                        loginResult.setValue(new LoginResult(data));
+                    } else {
+                        loginResult.setValue(new LoginResult(R.string.login_failed));
+                    }
+
                 } else {
                     loginResult.setValue(new LoginResult(R.string.login_failed));
                 }
