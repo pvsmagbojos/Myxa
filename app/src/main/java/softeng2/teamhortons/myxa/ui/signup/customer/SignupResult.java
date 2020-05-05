@@ -2,6 +2,8 @@ package softeng2.teamhortons.myxa.ui.signup.customer;
 
 import androidx.annotation.Nullable;
 
+import com.google.firebase.auth.FirebaseUser;
+
 import softeng2.teamhortons.myxa.ui.signup.customer.LoggedInUserView;
 
 /**
@@ -9,7 +11,7 @@ import softeng2.teamhortons.myxa.ui.signup.customer.LoggedInUserView;
  */
 class SignupResult {
     @Nullable
-    private LoggedInUserView success;
+    private FirebaseUser success;
     @Nullable
     private Integer error;
 
@@ -17,12 +19,12 @@ class SignupResult {
         this.error = error;
     }
 
-    SignupResult(@Nullable LoggedInUserView success) {
+    SignupResult(@Nullable FirebaseUser success) {
         this.success = success;
     }
 
     @Nullable
-    LoggedInUserView getSuccess() {
+    FirebaseUser getSuccess() {
         return success;
     }
 

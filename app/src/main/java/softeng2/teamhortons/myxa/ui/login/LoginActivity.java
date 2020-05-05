@@ -21,9 +21,11 @@ import androidx.lifecycle.ViewModelProviders;
 import softeng2.teamhortons.myxa.R;
 import softeng2.teamhortons.myxa.SelectSignupActivity;
 import softeng2.teamhortons.myxa.ui.home.HomeActivity;
+import softeng2.teamhortons.myxa.ui.signup.customer.SignupActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
+    public static int REQUEST_CODE = 1;
     private LoginViewModel loginViewModel;
 
     @Override
@@ -42,8 +44,9 @@ public class LoginActivity extends AppCompatActivity {
         findViewById(R.id.textView_register_link).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), SelectSignupActivity.class);
-                startActivity(intent);
+                startActivityForResult(
+                        new Intent(getApplicationContext(), SelectSignupActivity.class),
+                        SignupActivity.REQUEST_CODE);
             }
         });
 
@@ -76,7 +79,6 @@ public class LoginActivity extends AppCompatActivity {
                 if (loginResult.getSuccess() != null) {
                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                     startActivity(intent);
-                    updateUiWithUser(loginResult.getSuccess());
                     finish();
                 }
             }
@@ -115,32 +117,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //loadingProgressBar.setVisibility(View.VISIBLE);
-                boolean notEmptyEmail = false;
-                boolean notEmptyPass = false;
-                if((emailEditText.getText().toString()).isEmpty()){
-                    emailEditText.setError("Field must not be empty");
-                } else{
-                    notEmptyEmail = true;
-                }
-
-                if((passwordEditText.getText().toString()).isEmpty()){
-                    passwordEditText.setError("Field must not be empty");
-                } else{
-                    notEmptyPass = true;
-                }
-
-                if(notEmptyEmail && notEmptyPass) {
-                    loginViewModel.login(emailEditText.getText().toString(), passwordEditText.getText().toString());
-                }
-
+                loginViewModel.login(emailEditText.getText().toString(), passwordEditText.getText().toString());
             }
         });
     }
 
-    private void updateUiWithUser(LoggedInUserView model) {
-        String welcome = getString(R.string.welcome) + model.getDisplayName();
-        // TODO : initiate successful logged in experience
-        Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     private void showLoginFailed(@StringRes Integer errorString) {

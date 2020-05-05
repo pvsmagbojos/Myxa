@@ -93,6 +93,7 @@
         android:layout_marginBottom="16dp"
         android:background="@drawable/ic_rectangle_2"
         android:elevation="8dp"
+        android:enabled="false"
         android:fontFamily="@font/raleway"
         android:text="@string/button_log_in"
         android:textSize="24sp"

@@ -6,10 +6,11 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.google.firebase.auth.FirebaseUser;
+
 import softeng2.teamhortons.myxa.R;
 import softeng2.teamhortons.myxa.data.AuthRepository;
 import softeng2.teamhortons.myxa.data.Result;
-import softeng2.teamhortons.myxa.data.model.LoggedInUser;
 
 public class SignupViewModel extends ViewModel {
 
@@ -31,11 +32,11 @@ public class SignupViewModel extends ViewModel {
 
     public void login(String email, String password) {
         // can be launched in a separate asynchronous job
-        Result<LoggedInUser> result = authRepository.login(email, password);
+        Result<FirebaseUser> result = authRepository.login(email, password);
 
         if (result instanceof Result.Success) {
-            LoggedInUser data = ((Result.Success<LoggedInUser>) result).getData();
-            signupResult.setValue(new SignupResult(new LoggedInUserView(data.getDisplayName())));
+            FirebaseUser data = ((Result.Success<FirebaseUser>) result).getData();
+            signupResult.setValue(new SignupResult(data));
         } else {
             // TODO: Add more failure information
             signupResult.setValue(new SignupResult(R.string.login_failed));

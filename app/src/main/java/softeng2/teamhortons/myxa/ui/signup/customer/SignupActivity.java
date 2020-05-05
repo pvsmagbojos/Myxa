@@ -25,6 +25,7 @@ import softeng2.teamhortons.myxa.ui.login.LoginActivity;
 
 public class SignupActivity extends AppCompatActivity {
 
+    public static int REQUEST_CODE = 2;
     private SignupViewModel signupViewModel;
 
     @Override
@@ -89,7 +90,6 @@ public class SignupActivity extends AppCompatActivity {
                 if (signupResult.getSuccess() != null) {
                     Intent intent = new Intent(SignupActivity.this, HomeActivity.class);
                     startActivity(intent);
-                    updateUiWithUser(signupResult.getSuccess());
                     finish();
                 }
             }
@@ -141,12 +141,6 @@ public class SignupActivity extends AppCompatActivity {
                 signupViewModel.login(emailEditText.getText().toString(),passwordEditText.getText().toString());
             }
         });
-    }
-
-    private void updateUiWithUser(LoggedInUserView model) {
-        String welcome = getString(R.string.welcome) + model.getDisplayName();
-        // TODO : initiate successful logged in experience
-        Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
     }
 
     private void showLoginFailed(@StringRes Integer errorString) {
