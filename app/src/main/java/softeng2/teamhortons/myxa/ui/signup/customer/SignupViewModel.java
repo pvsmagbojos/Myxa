@@ -38,7 +38,7 @@ public class SignupViewModel extends ViewModel {
             signupResult.setValue(new SignupResult(new LoggedInUserView(data.getDisplayName())));
         } else {
             // TODO: Add more failure information
-            signupResult.setValue(new SignupResult(R.string.login_failed));
+            signupResult.setValue(new SignupResult(R.string.signup_failed));
         }
     }
 
