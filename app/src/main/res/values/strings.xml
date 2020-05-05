@@ -38,12 +38,14 @@
     <string name="action_continue_rider">"Continue"</string>
     <string name="prompt_plate_number">"Plate Number"</string>
     <string name="prompt_license_number">"License Number"</string>
+    <string name="btn_checkout">Checkout</string>
 
 
     <string-array name="gender">
-        <item>MALE</item>
-        <item>FEMALE</item>
+        <item>Male</item>
+        <item>Female</item>
     </string-array>
+
     <string name="title_activity_home_page">HomePageActivity</string>
     <string name="nav_home">Home</string>
     <string name="nav_diet_Schedule">Diet Schedule</string>

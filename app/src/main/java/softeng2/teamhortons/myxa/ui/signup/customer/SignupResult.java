@@ -4,8 +4,6 @@ import androidx.annotation.Nullable;
 
 import com.google.firebase.auth.FirebaseUser;
 
-import softeng2.teamhortons.myxa.ui.signup.customer.LoggedInUserView;
-
 /**
  * Authentication result : success (user details) or error message.
  */

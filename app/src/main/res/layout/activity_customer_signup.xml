@@ -170,6 +170,7 @@
         android:id="@+id/spinner_gender"
         android:layout_width="152dp"
         android:layout_height="39dp"
+        android:entries="@array/gender"
         android:textAlignment="center"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
