@@ -58,4 +58,8 @@
     <string name="popular_this_week">Popular this week</string>
     <string name="your_recent_items">Your recent items</string>
     <string name="healthy_options">Healthy options</string>
+    <string name="ongoing">Ongoing</string>
+    <string name="scheduled">Scheduled</string>
+    <string name="past">Past</string>
+    <string name="driver_on_the_way">Driver on the Way</string>
 </resources>
