@@ -38,6 +38,7 @@
     <string name="action_continue_rider">"Continue"</string>
     <string name="prompt_plate_number">"Plate Number"</string>
     <string name="prompt_license_number">"License Number"</string>
+    <string name="btn_checkout">Checkout</string>
 
 
     <string-array name="gender">
