@@ -7,6 +7,7 @@ import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -58,9 +59,9 @@ public class SignupActivity extends AppCompatActivity {
                 if (signupFormState.getLastNameError() != null) {
                     lNameEditText.setError(getString(signupFormState.getLastNameError()));
                 }
-//                if (signupFormState.getGenderError() != null) {
-//                    genderSpinner.setError(getString(signupFormState.getGenderError()));
-//                }
+                if (signupFormState.getGenderError() != null) {
+                    ((TextView)genderSpinner.getSelectedView()).setError(getString(signupFormState.getGenderError()));
+                }
                 if (signupFormState.getAgeError() != null) {
                     ageEditText.setError(getString(signupFormState.getAgeError()));
                 }
@@ -94,6 +95,20 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
 
+        final String[] genderSelected = new String[1];
+        genderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                genderSelected[0] = (String) genderSpinner.getSelectedItem();
+                // Notify the selected item text
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         TextWatcher afterTextChangedListener = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -107,25 +122,29 @@ public class SignupActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                signupViewModel.signUpDataChanged(fNameEditText.getText().toString(), lNameEditText.getText().toString(), /*genderSpinner.getSelectedItem().toString(),*/ ageEditText.getText().toString(), emailEditText.getText().toString(),
+                signupViewModel.signUpDataChanged(fNameEditText.getText().toString(), lNameEditText.getText().toString(), genderSelected[0], ageEditText.getText().toString(), emailEditText.getText().toString(),
                         passwordEditText.getText().toString(), confirmPasswordEditText.getText().toString());
+
             }
         };
 
         fNameEditText.addTextChangedListener(afterTextChangedListener);
         lNameEditText.addTextChangedListener(afterTextChangedListener);
-        //genderSpinner.addTextChangedListener(afterTextChangedListener);
+
         ageEditText.addTextChangedListener(afterTextChangedListener);
         emailEditText.addTextChangedListener(afterTextChangedListener);
         passwordEditText.addTextChangedListener(afterTextChangedListener);
         confirmPasswordEditText.addTextChangedListener(afterTextChangedListener);
+
+
+
 
         confirmPasswordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    signupViewModel.signUpDataChanged(fNameEditText.getText().toString(), lNameEditText.getText().toString(), /*genderSpinner.getSelectedItem().toString(),*/ ageEditText.getText().toString(), emailEditText.getText().toString(),
+                    signupViewModel.signUpDataChanged(fNameEditText.getText().toString(), lNameEditText.getText().toString(), genderSelected[0], ageEditText.getText().toString(), emailEditText.getText().toString(),
                             passwordEditText.getText().toString(), confirmPasswordEditText.getText().toString());
                 }
                 return false;
@@ -136,6 +155,8 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //loadingProgressBar.setVisibility(View.VISIBLE);
+                signupViewModel.recordToDatabase(fNameEditText.getText().toString(), lNameEditText.getText().toString(), genderSelected[0], ageEditText.getText().toString(), emailEditText.getText().toString(),
+                        passwordEditText.getText().toString());
                 signupViewModel.signUp(emailEditText.getText().toString(),passwordEditText.getText().toString());
             }
         });

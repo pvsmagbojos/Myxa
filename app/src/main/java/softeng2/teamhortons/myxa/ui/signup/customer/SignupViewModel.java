@@ -2,6 +2,7 @@ package softeng2.teamhortons.myxa.ui.signup.customer;
 
 import android.util.Log;
 import android.util.Patterns;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
@@ -14,6 +15,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -65,7 +67,7 @@ class SignupViewModel extends ViewModel {
                 });
     }
 
-    void signUpDataChanged(String fName, String lName, /*String gender,*/ String age, String email, String password, String confirmPassword) {
+    void signUpDataChanged(String fName, String lName, String gender, String age, String email, String password, String confirmPassword) {
         //TODO: Add more input filters
         int notEmptyCtr = 0;
         if(fName.isEmpty()){
@@ -94,18 +96,18 @@ class SignupViewModel extends ViewModel {
             notEmptyCtr+=1;
         }
 
-//        if(gender.equals(" ")){
-//            signupFormState.setValue(new SignupFormState(
-//                    null,
-//                    null,
-//                    null,
-//                    null,
-//                    null,
-//                    R.string.empty_field,
-//                    null));
-//        }else{
-//            notEmptyCtr+=1;
-//        }
+        if(gender.isEmpty()){
+            signupFormState.setValue(new SignupFormState(
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    R.string.empty_field,
+                    null));
+        }else{
+            notEmptyCtr+=1;
+        }
 
         if(age.isEmpty()){
             signupFormState.setValue(new SignupFormState(
@@ -169,7 +171,7 @@ class SignupViewModel extends ViewModel {
                     R.string.empty_field,
                     null,
                     null));
-        } else if(confirmPassword.equals(password)){
+        } else if(!isConfirmPasswordValid(password,confirmPassword)){
             signupFormState.setValue(new SignupFormState(
                     null,
                     null,
@@ -181,15 +183,14 @@ class SignupViewModel extends ViewModel {
         }
 
         if(notEmptyCtr == 4 && isEmailValid(email) && isPasswordValid(password) && isConfirmPasswordValid(password,confirmPassword)){
-            recordToDatabase(fName, lName, /*gender,*/ age, email, password, confirmPassword);
+            signupFormState.setValue(new SignupFormState(true));
         }
     }
 
-    private void recordToDatabase(String fName, String lName, /*String gender,*/ String age, String email, String password, String confirmPassword){
-        //add to db, if successful - setvalue
-        signupFormState.setValue(new SignupFormState(true));
-
+    void recordToDatabase(String fName, String lName, String gender, String age, String email, String password){
         //add to db
+        final String a = email;
+        final String b = password;
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -198,7 +199,7 @@ class SignupViewModel extends ViewModel {
         user.put("first", fName);
         user.put("last", lName);
         user.put("age", age);
-        //user.put("gender", gender);
+        user.put("gender", gender);
 
         // Add a new document with a generated ID
         db.collection("users")
@@ -226,10 +227,10 @@ class SignupViewModel extends ViewModel {
     }
 
     private boolean isPasswordValid(String password) {
-        return password != null && password.trim().length() > 8;
+        return password != null && password.trim().length() > 7;
     }
 
     private boolean isConfirmPasswordValid(String password, String confirmPassword) {
-        return password != null && password.equals(confirmPassword);
+        return confirmPassword.equals(password);
     }
 }
