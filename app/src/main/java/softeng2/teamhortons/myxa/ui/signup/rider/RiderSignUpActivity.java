@@ -7,25 +7,30 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import softeng2.teamhortons.myxa.MainActivity;
 import softeng2.teamhortons.myxa.R;
+import softeng2.teamhortons.myxa.ui.login.LoginActivity;
 
 public class RiderSignUpActivity extends AppCompatActivity {
 
-    Button continueSignUp;
+    Button signUpButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rider_signup_screen1);
-        continueSignUp = findViewById(R.id.button_continue_rider);
-        continueSignUp.setOnClickListener(new View.OnClickListener() {
+        setContentView(R.layout.activity_rider_signup_scroll);
+
+        signUpButton = findViewById(R.id.rider_signup_button);
+        signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                continueRegistration();
+                backToLogin();
             }
         });
     }
 
-    public void continueRegistration(){
-        setContentView(R.layout.activity_rider_signup_screen2);
+    public void backToLogin(){
+        Intent intent = new Intent(RiderSignUpActivity.this, LoginActivity.class);
+        startActivity(intent);
     }
+
 }
