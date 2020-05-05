@@ -44,9 +44,7 @@ class LoginViewModel extends ViewModel {
                     public void onSuccess(AuthResult authResult) {
                         loginResult.setValue(new LoginResult(authResult.getUser()));
                     }
-                });
-
-                task.addOnFailureListener(new OnFailureListener() {
+                }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         loginResult.setValue(new LoginResult(R.string.login_failed));

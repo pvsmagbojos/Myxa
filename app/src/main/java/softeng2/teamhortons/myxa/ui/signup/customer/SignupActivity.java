@@ -155,9 +155,12 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //loadingProgressBar.setVisibility(View.VISIBLE);
-                signupViewModel.recordToDatabase(fNameEditText.getText().toString(), lNameEditText.getText().toString(), genderSelected[0], ageEditText.getText().toString(), emailEditText.getText().toString(),
+                signupViewModel.signUp(fNameEditText.getText().toString(),
+                        lNameEditText.getText().toString(),
+                        genderSpinner.getSelectedItem().toString().equals("Male"),
+                        Integer.parseInt(ageEditText.getText().toString()),
+                        emailEditText.getText().toString(),
                         passwordEditText.getText().toString());
-                signupViewModel.signUp(emailEditText.getText().toString(),passwordEditText.getText().toString());
             }
         });
     }

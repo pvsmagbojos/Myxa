@@ -2,7 +2,6 @@ package softeng2.teamhortons.myxa.ui.signup.customer;
 
 import android.util.Log;
 import android.util.Patterns;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
@@ -14,10 +13,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -45,7 +40,7 @@ class SignupViewModel extends ViewModel {
         return signupResult;
     }
 
-    void signUp(String email, String password) {
+    void signUp(final String firstName, final String lastName, final boolean isMale, final int age, final String email, String password) {
         authRepository.signUp(email, password).addOnCompleteListener(
                 new OnCompleteListener<AuthResult>() {
                     @Override
@@ -54,10 +49,9 @@ class SignupViewModel extends ViewModel {
                             @Override
                             public void onSuccess(AuthResult authResult) {
                                 signupResult.setValue(new SignupResult(authResult.getUser()));
+                                recordToDatabase(authResult.getUser().getUid(),firstName, lastName, isMale, age, email);
                             }
-                        });
-
-                        task.addOnFailureListener(new OnFailureListener() {
+                        }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
                                 signupResult.setValue(new SignupResult(R.string.signup_failed));
@@ -66,9 +60,10 @@ class SignupViewModel extends ViewModel {
                     }
                 });
     }
-
     void signUpDataChanged(String fName, String lName, String gender, String age, String email, String password, String confirmPassword) {
-        //TODO: Add more input filters
+
+
+
         int notEmptyCtr = 0;
         if(fName.isEmpty()){
             signupFormState.setValue(new SignupFormState(
@@ -187,39 +182,30 @@ class SignupViewModel extends ViewModel {
         }
     }
 
-    void recordToDatabase(String fName, String lName, String gender, String age, String email, String password){
-        //add to db
-        final String a = email;
-        final String b = password;
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private void recordToDatabase(final String userId, String fName, String lName, boolean isMale, int age, String email){
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         // Create a new user with a first and last name
         Map<String, Object> user = new HashMap<>();
+        user.put("email", email);
         user.put("first", fName);
         user.put("last", lName);
         user.put("age", age);
-        user.put("gender", gender);
+        user.put("isMale", isMale);
 
         // Add a new document with a generated ID
-        db.collection("users")
-                .add(user)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+        db.collection("users").document(userId).set(user)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d("success", "Database connection Success at " + documentReference.getId());
-                        //save to auth
-                        //call here
-
+                    public void onSuccess(Void aVoid) {
+                        Log.d("success", "Database connection Success at " + db.document(userId));
                     }
-                })
-                .addOnFailureListener(new OnFailureListener() {
+                }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.w("error", "Database connection Error", e);
                     }
                 });
-
     }
 
     private boolean isEmailValid(String email) {
@@ -227,7 +213,7 @@ class SignupViewModel extends ViewModel {
     }
 
     private boolean isPasswordValid(String password) {
-        return password != null && password.trim().length() > 7;
+        return password != null && password.trim().length() >= 8;
     }
 
     private boolean isConfirmPasswordValid(String password, String confirmPassword) {
