@@ -43,8 +43,8 @@ class SignupViewModel extends ViewModel {
         return signupResult;
     }
 
-    public void login(String email, String password) {
-        authRepository.login(email, password).addOnCompleteListener(
+    void signUp(String email, String password) {
+        authRepository.signUp(email, password).addOnCompleteListener(
                 new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -58,7 +58,7 @@ class SignupViewModel extends ViewModel {
                         task.addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                signupResult.setValue(new SignupResult(R.string.login_failed));
+                                signupResult.setValue(new SignupResult(R.string.signup_failed));
                             }
                         });
                     }
@@ -222,11 +222,11 @@ class SignupViewModel extends ViewModel {
     }
 
     private boolean isEmailValid(String email) {
-        return !email.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches();
+        return email != null && Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
     private boolean isPasswordValid(String password) {
-        return password != null && password.trim().length() > 7;
+        return password != null && password.trim().length() > 8;
     }
 
     private boolean isConfirmPasswordValid(String password, String confirmPassword) {

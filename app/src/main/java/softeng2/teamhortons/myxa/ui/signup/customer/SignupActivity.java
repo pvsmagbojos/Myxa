@@ -21,7 +21,6 @@ import androidx.lifecycle.ViewModelProviders;
 
 import softeng2.teamhortons.myxa.R;
 import softeng2.teamhortons.myxa.ui.home.HomeActivity;
-import softeng2.teamhortons.myxa.ui.login.LoginActivity;
 
 public class SignupActivity extends AppCompatActivity {
 
@@ -108,7 +107,7 @@ public class SignupActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                signupViewModel.loginDataChanged(fNameEditText.getText().toString(), lNameEditText.getText().toString(), /*genderSpinner.getSelectedItem().toString(),*/ ageEditText.getText().toString(), emailEditText.getText().toString(),
+                signupViewModel.signUpDataChanged(fNameEditText.getText().toString(), lNameEditText.getText().toString(), /*genderSpinner.getSelectedItem().toString(),*/ ageEditText.getText().toString(), emailEditText.getText().toString(),
                         passwordEditText.getText().toString(), confirmPasswordEditText.getText().toString());
             }
         };
@@ -126,7 +125,7 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    signupViewModel.loginDataChanged(fNameEditText.getText().toString(), lNameEditText.getText().toString(), /*genderSpinner.getSelectedItem().toString(),*/ ageEditText.getText().toString(), emailEditText.getText().toString(),
+                    signupViewModel.signUpDataChanged(fNameEditText.getText().toString(), lNameEditText.getText().toString(), /*genderSpinner.getSelectedItem().toString(),*/ ageEditText.getText().toString(), emailEditText.getText().toString(),
                             passwordEditText.getText().toString(), confirmPasswordEditText.getText().toString());
                 }
                 return false;
@@ -137,8 +136,7 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //loadingProgressBar.setVisibility(View.VISIBLE);
-                //TODO: Implement signup
-                signupViewModel.login(emailEditText.getText().toString(),passwordEditText.getText().toString());
+                signupViewModel.signUp(emailEditText.getText().toString(),passwordEditText.getText().toString());
             }
         });
     }
