@@ -1,7 +1,8 @@
-package softeng2.teamhortons.myxa.ui;
+package softeng2.teamhortons.myxa.ui.main;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,13 +17,16 @@ import softeng2.teamhortons.myxa.ui.home.HomeActivity;
 import softeng2.teamhortons.myxa.ui.login.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
-    public static int REQUEST_CODE = 0;
 
+    public static int REQUEST_CODE = 0;
+    private MainViewModel mainViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mainViewModel = ViewModelProviders.of(this, new MainViewModelFactory())
+                .get(MainViewModel.class);
 
         new CountDownTimer(5000,1000) {
             @Override
@@ -32,9 +36,14 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                startActivityForResult(
-                        new Intent(getApplicationContext(), LoginActivity.class),
-                        LoginActivity.REQUEST_CODE);
+                if(mainViewModel.isLoggedIn()) {
+                    startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                } else {
+                    startActivityForResult(
+                            new Intent(getApplicationContext(), LoginActivity.class),
+                            LoginActivity.REQUEST_CODE);
+                }
+
             }
         }.start();
     }
