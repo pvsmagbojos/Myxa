@@ -1,5 +1,9 @@
 package softeng2.teamhortons.myxa.data;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,11 +39,6 @@ public class AuthRepository {
         return this.user != null;
     }
 
-    public void logout() {
-        this.user = null;
-        dataSource.signOut();
-    }
-
     private void setLoggedInUser(FirebaseUser user) {
         this.user = user;
         // If user credentials will be cached in local storage, it is recommended it be encrypted
@@ -47,6 +46,17 @@ public class AuthRepository {
     }
 
     public Task<AuthResult> login(String email, String password) {
-        return dataSource.signInWithEmailAndPassword(email, password);
+        return dataSource.signInWithEmailAndPassword(email, password)
+                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                    @Override
+                    public void onSuccess(AuthResult authResult) {
+                        setLoggedInUser(authResult.getUser());
+                    }
+                });
+    }
+
+    public void logout() {
+        setLoggedInUser(null);
+        dataSource.signOut();
     }
 }

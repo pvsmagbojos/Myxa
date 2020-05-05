@@ -8,13 +8,13 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseUser;
 
 import softeng2.teamhortons.myxa.R;
 import softeng2.teamhortons.myxa.data.AuthRepository;
-import softeng2.teamhortons.myxa.data.Result;
 
 public class SignupViewModel extends ViewModel {
 
@@ -35,25 +35,25 @@ public class SignupViewModel extends ViewModel {
     }
 
     public void login(String email, String password) {
-        authRepository.login(email, password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    FirebaseUser data = task.getResult().getUser();
-                    if(data != null) {
-                        signupResult.setValue(new SignupResult(data));
-                    } else {
-                        signupResult.setValue(new SignupResult(R.string.login_failed));
+        authRepository.login(email, password).addOnCompleteListener(
+                new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        task.addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                            @Override
+                            public void onSuccess(AuthResult authResult) {
+                                signupResult.setValue(new SignupResult(authResult.getUser()));
+                            }
+                        });
+
+                        task.addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                signupResult.setValue(new SignupResult(R.string.login_failed));
+                            }
+                        });
                     }
-
-                } else {
-                    signupResult.setValue(new SignupResult(R.string.login_failed));
-                }
-            }
-        });
-
-
+                });
     }
 
     void loginDataChanged(String fName, String lName, /*String gender,*/ String age, String email, String password, String confirmPassword) {
