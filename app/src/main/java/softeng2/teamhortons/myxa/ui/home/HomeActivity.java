@@ -42,6 +42,7 @@ public class HomeActivity extends AppCompatActivity
 
         mainBottomNavigation.setSelectedItemId(R.id.nav_home);
 
+
         mainBottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener()
         {
             @Override
