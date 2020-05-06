@@ -20,6 +20,7 @@ public class HomeActivity extends AppCompatActivity
     private FrameLayout mainFrameLayout;
 
     private HomeFragment homeFragment;
+    private MainHomeFragment mainHomeFragment;
     private DietScheduleFragment dietScheduleFragment;
     private YourCartFragment yourCartFragment;
 
@@ -33,12 +34,14 @@ public class HomeActivity extends AppCompatActivity
         mainBottomNavigation = (BottomNavigationView)findViewById(R.id.nav_main_bottomNavigation);
 
         homeFragment = new HomeFragment();
+        mainHomeFragment = new MainHomeFragment();
         dietScheduleFragment = new DietScheduleFragment();
         yourCartFragment = new YourCartFragment();
 
-        setFragment(homeFragment);
+        setFragment(mainHomeFragment);
 
         mainBottomNavigation.setSelectedItemId(R.id.nav_home);
+
 
         mainBottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener()
         {
@@ -51,7 +54,7 @@ public class HomeActivity extends AppCompatActivity
                         setFragment(dietScheduleFragment);
                         return true;
                     case R.id.nav_home:
-                        setFragment(homeFragment);
+                        setFragment(mainHomeFragment);
                         return true;
                     case R.id.nav_your_cart:
                         setFragment(yourCartFragment);
