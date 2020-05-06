@@ -20,103 +20,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imageView6"
-            android:layout_width="605dp"
-            android:layout_height="310dp"
-            android:layout_marginBottom="650dp"
-            android:background="#CDDC39"
-            android:contentDescription="@null"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_logo_header_background" />
-
-        <SearchView
-            android:id="@+id/searchRecipe"
-            android:layout_width="553dp"
-            android:layout_height="50dp"
-            android:layout_marginBottom="40dp"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView6"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.452"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:visibility="visible">
-
-        </SearchView>
-
-        <TextView
-            android:id="@+id/favorites"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="65dp"
-            android:layout_marginEnd="10dp"
-            android:background="#CDDC39"
-            android:contentDescription="@null"
-            android:fontFamily="@font/raleway"
-            android:text="@string/your_favorites"
-            android:textColor="#494848"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView6"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchRecipe"
-            app:layout_constraintVertical_bias="0.487" />
-
-        <TextView
-            android:id="@+id/deliveries"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="65dp"
-            android:layout_marginEnd="50dp"
-            android:background="#CDDC39"
-            android:contentDescription="@null"
-            android:fontFamily="@font/raleway"
-            android:text="@string/deliveries"
-            android:textColor="#494848"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView6"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.847"
-            app:layout_constraintStart_toEndOf="@+id/favorites"
-            app:layout_constraintTop_toBottomOf="@+id/searchRecipe"
-            app:layout_constraintVertical_bias="0.519" />
-
-        <TextView
-            android:id="@+id/forYou"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="65dp"
-            android:background="#CDDC39"
-            android:contentDescription="@null"
-            android:fontFamily="@font/raleway"
-            android:text="@string/for_you"
-            android:textColor="#494848"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView6"
-            app:layout_constraintEnd_toStartOf="@+id/favorites"
-            app:layout_constraintHorizontal_bias="0.113"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchRecipe" />
-
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="50dp"
             android:fontFamily="@font/raleway"
             android:text="@string/popular_this_week"
             android:textColor="#494848"
             android:textSize="26sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView3"
@@ -125,7 +40,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="160dp"
             android:fontFamily="@font/raleway"
-            android:text="Your_recent_items"
+            android:text="@string/your_recent_items"
             android:textColor="#494848"
             android:textSize="26sp"
             app:layout_constraintStart_toStartOf="parent"
