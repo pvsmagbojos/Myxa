@@ -41,18 +41,19 @@ public class ViewRecipe extends AppCompatActivity {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         Log.d("TEST1", "DocumentSnapshot data: " + document.getString("name"));
-                        List<String> group = (List<String>) document.get("procedure");
+                        List<String> ingredients = (List<String>) document.get("recipe_ingredients");
+                        List<String> procedure = (List<String>) document.get("procedure");
                         recipeTextView.setText(document.getString("name"));
-                        Log.d("TEST1.5", group.listIterator().next());
+
 
                         ingredientsTextView.setText("");
-                        for(int i = 0; i < group.size(); i++) {
-                            ingredientsTextView.setText(ingredientsTextView.getText() + "\n" + group.get(i));
+                        for(int i = 0; i < ingredients.size(); i++) {
+                            ingredientsTextView.setText(ingredientsTextView.getText() + "\n" + ingredients.get(i));
                         }
 
                         procedureTextView.setText("");
-                        for(int i = 0; i < group.size(); i++) {
-                            procedureTextView.setText(procedureTextView.getText() + "\n" + group.get(i));
+                        for(int i = 0; i < procedure.size(); i++) {
+                            procedureTextView.setText(procedureTextView.getText() + "\n" + procedure.get(i));
                         }
 
                         priceTextView.setText(document.getDouble("price").toString());
