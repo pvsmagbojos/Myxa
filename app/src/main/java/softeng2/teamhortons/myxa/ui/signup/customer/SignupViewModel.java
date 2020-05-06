@@ -1,6 +1,5 @@
 package softeng2.teamhortons.myxa.ui.signup.customer;
 
-import android.util.Log;
 import android.util.Patterns;
 
 import androidx.annotation.NonNull;
@@ -13,10 +12,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import softeng2.teamhortons.myxa.R;
 import softeng2.teamhortons.myxa.data.AuthRepository;
@@ -27,9 +22,11 @@ class SignupViewModel extends ViewModel {
     private MutableLiveData<SignupFormState> signupFormState = new MutableLiveData<>();
     private MutableLiveData<SignupResult> signupResult = new MutableLiveData<>();
     private AuthRepository authRepository;
+    private UserRepository userRepository;
 
     SignupViewModel(AuthRepository authRepository, UserRepository userRepository) {
         this.authRepository = authRepository;
+        this.userRepository = userRepository;
     }
 
     LiveData<SignupFormState> getSignupFormState() {
@@ -40,7 +37,8 @@ class SignupViewModel extends ViewModel {
         return signupResult;
     }
 
-    void signUp(final String firstName, final String lastName, final boolean isMale, final int age, final String email, String password) {
+    void signUp(final String firstName, final String lastName, final boolean isMale, final int age,
+                final String email, String password) {
         authRepository.signUp(email, password).addOnCompleteListener(
                 new OnCompleteListener<AuthResult>() {
                     @Override
@@ -49,7 +47,13 @@ class SignupViewModel extends ViewModel {
                             @Override
                             public void onSuccess(AuthResult authResult) {
                                 signupResult.setValue(new SignupResult(authResult.getUser()));
-                                recordToDatabase(authResult.getUser().getUid(),firstName, lastName, isMale, age, email);
+                                userRepository.recordToDatabase(
+                                        authResult.getUser().getUid(),
+                                        firstName,
+                                        lastName,
+                                        isMale,
+                                        age,
+                                        email);
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
@@ -60,153 +64,42 @@ class SignupViewModel extends ViewModel {
                     }
                 });
     }
-    void signUpDataChanged(String fName, String lName, String gender, String age, String email, String password, String confirmPassword) {
+    void signUpDataChanged(String fName, String lName, String gender, String age,String email,
+            String password, String confirmPassword) {
 
+        signupFormState.setValue(new SignupFormState(
+                (fName.isEmpty() ? R.string.empty_field : null),
+                (lName.isEmpty() ? R.string.empty_field : null),
+                (gender.isEmpty() ? R.string.empty_field : null),
+                (age.isEmpty() ? R.string.empty_field : null),
+                (email.isEmpty() ? R.string.empty_field : null),
+                (password.isEmpty() ? R.string.empty_field : null),
+                (confirmPassword.isEmpty() ? R.string.empty_field : null)
+        ));
 
+        signupFormState.setValue(new SignupFormState(
+                null, null, null, null,
+                (!email.isEmpty() && (isEmailValid(email)) ? null : R.string.invalid_email),
+                ((!password.isEmpty() && confirmPassword.isEmpty() && !isPasswordValid(password))
+                        ? R.string.invalid_password : null),
+                ((password.isEmpty() && !confirmPassword.isEmpty() && !isPasswordValid(confirmPassword))
+                        ? R.string.invalid_password : null)
+        ));
 
-        int notEmptyCtr = 0;
-        if(fName.isEmpty()){
+        if(!isConfirmPasswordValid(password,confirmPassword)) {
             signupFormState.setValue(new SignupFormState(
-                    null,
-                    R.string.empty_field,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null));
-        }else{
-            notEmptyCtr+=1;
-        }
-
-        if(lName.isEmpty()){
-            signupFormState.setValue(new SignupFormState(
-                    null,
-                    null,
-                    R.string.empty_field,
-                    null,
-                    null,
-                    null,
-                    null));
-        }else{
-            notEmptyCtr+=1;
-        }
-
-        if(gender.isEmpty()){
-            signupFormState.setValue(new SignupFormState(
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    R.string.empty_field,
-                    null));
-        }else{
-            notEmptyCtr+=1;
-        }
-
-        if(age.isEmpty()){
-            signupFormState.setValue(new SignupFormState(
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    R.string.empty_field));
-        }else{
-            notEmptyCtr+=1;
-        }
-
-        if(email.isEmpty()){
-            signupFormState.setValue(new SignupFormState(
-                    R.string.empty_field,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null));
-        } else if (!isEmailValid(email)) {
-            signupFormState.setValue(new SignupFormState(
-                    R.string.invalid_email,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null));
-        }
-
-        if(password.isEmpty()){
-            signupFormState.setValue(new SignupFormState(
-                    null,
-                    null,
-                    null,
-                    R.string.empty_field,
-                    null,
-                    null,
-                    null));
-        } else if (!isPasswordValid(password)) {
-            signupFormState.setValue(new SignupFormState(
-                    null,
-                    null,
-                    null,
-                    R.string.invalid_password,
-                    null,
-                    null,
-                    null));
-        }
-
-        if(confirmPassword.isEmpty()){
-            signupFormState.setValue(new SignupFormState(
-                    null,
-                    null,
-                    null,
-                    null,
-                    R.string.empty_field,
-                    null,
-                    null));
-        } else if(!isConfirmPasswordValid(password,confirmPassword)){
-            signupFormState.setValue(new SignupFormState(
-                    null,
-                    null,
-                    null,
-                    null,
+                    null, null, null, null, null,
                     R.string.invalid_confirm_password,
-                    null,
-                    null));
+                    R.string.invalid_confirm_password));
         }
 
-        if(notEmptyCtr == 4 && isEmailValid(email) && isPasswordValid(password) && isConfirmPasswordValid(password,confirmPassword)){
+        if(!isFieldsEmpty(fName, lName, gender, age) && isEmailValid(email) &&
+                isPasswordValid(password) && isConfirmPasswordValid(password, confirmPassword)) {
             signupFormState.setValue(new SignupFormState(true));
         }
     }
 
-    private void recordToDatabase(final String userId, String fName, String lName, boolean isMale, int age, String email){
-        final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        // Create a new user with a first and last name
-        Map<String, Object> user = new HashMap<>();
-        user.put("email", email);
-        user.put("first", fName);
-        user.put("last", lName);
-        user.put("age", age);
-        user.put("isMale", isMale);
-
-        // Add a new document with a generated ID
-        db.collection("users").document(userId).set(user)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d("success", "Database connection Success at " + db.document(userId));
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("error", "Database connection Error", e);
-                    }
-                });
-    }
 
     private boolean isEmailValid(String email) {
         return email != null && Patterns.EMAIL_ADDRESS.matcher(email).matches();
@@ -218,5 +111,9 @@ class SignupViewModel extends ViewModel {
 
     private boolean isConfirmPasswordValid(String password, String confirmPassword) {
         return confirmPassword.equals(password);
+    }
+
+    private boolean isFieldsEmpty(String firstName, String lastName, String gender, String age) {
+        return firstName.isEmpty() && lastName.isEmpty() && gender.isEmpty() && age.isEmpty();
     }
 }

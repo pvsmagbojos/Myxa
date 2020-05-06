@@ -95,17 +95,22 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
 
-        final String[] genderSelected = new String[1];
         genderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                genderSelected[0] = (String) genderSpinner.getSelectedItem();
-                // Notify the selected item text
+                signupViewModel.signUpDataChanged(
+                        fNameEditText.getText().toString(),
+                        lNameEditText.getText().toString(),
+                        genderSpinner.getSelectedItem().toString(),
+                        ageEditText.getText().toString(),
+                        emailEditText.getText().toString(),
+                        passwordEditText.getText().toString(),
+                        confirmPasswordEditText.getText().toString());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
+                //ignore
             }
         });
 
@@ -122,30 +127,34 @@ public class SignupActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                signupViewModel.signUpDataChanged(fNameEditText.getText().toString(), lNameEditText.getText().toString(), genderSelected[0], ageEditText.getText().toString(), emailEditText.getText().toString(),
-                        passwordEditText.getText().toString(), confirmPasswordEditText.getText().toString());
-
+                signupViewModel.signUpDataChanged(
+                        fNameEditText.getText().toString(),
+                        lNameEditText.getText().toString(),
+                        genderSpinner.getSelectedItem().toString(),
+                        ageEditText.getText().toString(),
+                        emailEditText.getText().toString(),
+                        passwordEditText.getText().toString(),
+                        confirmPasswordEditText.getText().toString());
             }
         };
 
         fNameEditText.addTextChangedListener(afterTextChangedListener);
         lNameEditText.addTextChangedListener(afterTextChangedListener);
-
         ageEditText.addTextChangedListener(afterTextChangedListener);
         emailEditText.addTextChangedListener(afterTextChangedListener);
         passwordEditText.addTextChangedListener(afterTextChangedListener);
         confirmPasswordEditText.addTextChangedListener(afterTextChangedListener);
 
-
-
-
         confirmPasswordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    signupViewModel.signUpDataChanged(fNameEditText.getText().toString(), lNameEditText.getText().toString(), genderSelected[0], ageEditText.getText().toString(), emailEditText.getText().toString(),
-                            passwordEditText.getText().toString(), confirmPasswordEditText.getText().toString());
+                    signupViewModel.signUp(fNameEditText.getText().toString(),
+                            lNameEditText.getText().toString(),
+                            genderSpinner.getSelectedItem().toString().equals("Male"),
+                            Integer.parseInt(ageEditText.getText().toString()),
+                            emailEditText.getText().toString(),
+                            passwordEditText.getText().toString());
                 }
                 return false;
             }

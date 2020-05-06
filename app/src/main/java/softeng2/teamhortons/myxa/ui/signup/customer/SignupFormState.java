@@ -24,20 +24,20 @@ class SignupFormState {
     private boolean isDataValid;
 
     SignupFormState(
-            @Nullable Integer emailError,
             @Nullable Integer firstNameError,
             @Nullable Integer lastNameError,
-            @Nullable Integer passwordError,
-            @Nullable Integer confirmPasswordError,
             @Nullable Integer genderError,
-            @Nullable Integer ageError) {
+            @Nullable Integer ageError,
+            @Nullable Integer emailError,
+            @Nullable Integer passwordError,
+            @Nullable Integer confirmPasswordError) {
         this.firstNameError = firstNameError;
         this.lastNameError = lastNameError;
+        this.genderError = genderError;
+        this.ageError = ageError;
         this.emailError = emailError;
         this.passwordError = passwordError;
         this.confirmPasswordError = confirmPasswordError;
-        this.genderError = genderError;
-        this.ageError = ageError;
         this.isDataValid = false;
     }
 
@@ -63,19 +63,19 @@ class SignupFormState {
     }
 
     @Nullable
-    public Integer getFirstNameError() { return firstNameError; }
+    Integer getFirstNameError() { return firstNameError; }
 
     @Nullable
-    public Integer getLastNameError() { return lastNameError; }
+    Integer getLastNameError() { return lastNameError; }
 
     @Nullable
-    public Integer getConfirmPasswordError() { return confirmPasswordError; }
+    Integer getConfirmPasswordError() { return confirmPasswordError; }
 
     @Nullable
-    public Integer getGenderError() { return genderError; }
+    Integer getGenderError() { return genderError; }
 
     @Nullable
-    public Integer getAgeError() { return ageError; }
+    Integer getAgeError() { return ageError; }
 
     boolean isDataValid() {
         return isDataValid;
