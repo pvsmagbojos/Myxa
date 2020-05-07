@@ -20,12 +20,11 @@ import androidx.lifecycle.ViewModelProviders;
 
 import softeng2.teamhortons.myxa.R;
 import softeng2.teamhortons.myxa.SelectSignupActivity;
-import softeng2.teamhortons.myxa.ui.home.HomeActivity;
-import softeng2.teamhortons.myxa.ui.signup.customer.SignupActivity;
+import softeng2.teamhortons.myxa.ui.menu.MenuActivity;
+
+import static softeng2.teamhortons.myxa.generic.RequestCode.REQUEST_SIGNUP;
 
 public class LoginActivity extends AppCompatActivity {
-
-    public static int REQUEST_CODE = 1;
     private LoginViewModel loginViewModel;
 
     @Override
@@ -46,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 startActivityForResult(
                         new Intent(getApplicationContext(), SelectSignupActivity.class),
-                        SignupActivity.REQUEST_CODE);
+                        REQUEST_SIGNUP);
             }
         });
 
@@ -77,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                     showLoginFailed(loginResult.getError());
                 }
                 if (loginResult.getSuccess() != null) {
-                    setResult(RESULT_OK, new Intent(LoginActivity.this, HomeActivity.class));
+                    setResult(RESULT_OK, new Intent(LoginActivity.this, MenuActivity.class));
                     finish();
                 }
             }
@@ -135,7 +134,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == SignupActivity.REQUEST_CODE && resultCode == RESULT_FIRST_USER) {
+        if(requestCode == REQUEST_SIGNUP && resultCode == RESULT_FIRST_USER) {
             setResult(RESULT_OK, data);
             finish();
         }

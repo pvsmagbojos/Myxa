@@ -1,4 +1,4 @@
-package softeng2.teamhortons.myxa.ui.home;
+package softeng2.teamhortons.myxa.ui.menu;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,35 +10,39 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import softeng2.teamhortons.myxa.R;
+import softeng2.teamhortons.myxa.ui.menu.fragment.ScheduleFragment;
+import softeng2.teamhortons.myxa.ui.menu.fragment.ShowcaseFragment;
+import softeng2.teamhortons.myxa.ui.menu.fragment.HomeFragment;
+import softeng2.teamhortons.myxa.ui.menu.fragment.CartFragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
-public class HomeActivity extends AppCompatActivity
+public class MenuActivity extends AppCompatActivity
 {
     private BottomNavigationView mainBottomNavigation;
     private FrameLayout mainFrameLayout;
 
-    private HomeFragment homeFragment;
-    private MainHomeFragment mainHomeFragment;
-    private DietScheduleFragment dietScheduleFragment;
-    private YourCartFragment yourCartFragment;
+    private ShowcaseFragment browseFragment;
+    private HomeFragment HomeFragment;
+    private ScheduleFragment scheduleFragment;
+    private CartFragment cartFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_menu);
 
         mainFrameLayout = (FrameLayout)findViewById(R.id.frame_main_frameLayout);
         mainBottomNavigation = (BottomNavigationView)findViewById(R.id.nav_main_bottomNavigation);
 
-        homeFragment = new HomeFragment();
-        mainHomeFragment = new MainHomeFragment();
-        dietScheduleFragment = new DietScheduleFragment();
-        yourCartFragment = new YourCartFragment();
+        browseFragment = new ShowcaseFragment();
+        HomeFragment = new HomeFragment();
+        scheduleFragment = new ScheduleFragment();
+        cartFragment = new CartFragment();
 
-        setFragment(mainHomeFragment);
+        setFragment(HomeFragment);
 
         mainBottomNavigation.setSelectedItemId(R.id.nav_home);
 
@@ -51,13 +55,13 @@ public class HomeActivity extends AppCompatActivity
                 switch (item.getItemId())
                 {
                     case R.id.nav_diet_schedule:
-                        setFragment(dietScheduleFragment);
+                        setFragment(scheduleFragment);
                         return true;
                     case R.id.nav_home:
-                        setFragment(mainHomeFragment);
+                        setFragment(HomeFragment);
                         return true;
                     case R.id.nav_your_cart:
-                        setFragment(yourCartFragment);
+                        setFragment(cartFragment);
                         return true;
                     default:
                         return false;

@@ -1,5 +1,6 @@
 package softeng2.teamhortons.myxa;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,6 +10,9 @@ import android.widget.Button;
 
 import softeng2.teamhortons.myxa.ui.signup.customer.SignupActivity;
 import softeng2.teamhortons.myxa.ui.signup.rider.RiderSignUpActivity;
+
+import static softeng2.teamhortons.myxa.generic.RequestCode.REQUEST_SIGNUP_CUSTOMER;
+import static softeng2.teamhortons.myxa.generic.RequestCode.REQUEST_SIGNUP_RIDER;
 
 public class SelectSignupActivity extends AppCompatActivity {
     Button customerPortal;
@@ -22,7 +26,8 @@ public class SelectSignupActivity extends AppCompatActivity {
         customerPortal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                customerRegistration();
+                startActivityForResult(new Intent(getApplicationContext(),
+                                SignupActivity.class), REQUEST_SIGNUP_CUSTOMER);
             }
         });
 
@@ -30,19 +35,19 @@ public class SelectSignupActivity extends AppCompatActivity {
         riderPortal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                riderRegistration();
+                startActivityForResult(
+                        new Intent(getApplicationContext(),
+                                RiderSignUpActivity.class), REQUEST_SIGNUP_RIDER);
             }
         });
-
     }
 
-    public void customerRegistration(){
-        Intent intent = new Intent(SelectSignupActivity.this, SignupActivity.class);
-        startActivity(intent);
-    }
-
-    public void riderRegistration(){
-        Intent intent = new Intent(SelectSignupActivity.this, RiderSignUpActivity.class);//change customerreg to riderreg class
-        startActivity(intent);
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_OK) {
+            setResult(RESULT_OK, data);
+            finish();
+        }
     }
 }

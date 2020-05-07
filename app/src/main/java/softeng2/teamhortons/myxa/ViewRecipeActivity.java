@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,9 +18,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
 
-import softeng2.teamhortons.myxa.ui.home.HomeActivity;
+import softeng2.teamhortons.myxa.ui.menu.MenuActivity;
 
-public class ViewRecipe extends AppCompatActivity {
+public class ViewRecipeActivity extends AppCompatActivity {
     public static int REQUEST_CODE = 1;
 
     public static String recipe_name;
@@ -78,7 +77,7 @@ public class ViewRecipe extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ViewRecipe.this, HomeActivity.class);
+                Intent intent = new Intent(ViewRecipeActivity.this, MenuActivity.class);
                 startActivity(intent);
             }
         });

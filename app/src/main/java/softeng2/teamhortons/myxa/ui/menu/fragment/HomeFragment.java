@@ -1,4 +1,4 @@
-package softeng2.teamhortons.myxa.ui.home;
+package softeng2.teamhortons.myxa.ui.menu.fragment;
 
 import android.os.Bundle;
 
@@ -10,23 +10,24 @@ import android.view.ViewGroup;
 
 import softeng2.teamhortons.myxa.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class DietScheduleFragment extends Fragment
-{
 
-    public DietScheduleFragment()
-    {
+public class HomeFragment extends Fragment {
+
+    public HomeFragment() {
         // Required empty public constructor
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState)
-    {
+                             Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_diet_schedule, container, false);
+        return inflater.inflate(R.layout.fragment_showcase, container, false);
     }
+
 }

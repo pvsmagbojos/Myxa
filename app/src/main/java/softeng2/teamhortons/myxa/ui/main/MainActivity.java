@@ -9,12 +9,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 import softeng2.teamhortons.myxa.R;
-import softeng2.teamhortons.myxa.ui.home.HomeActivity;
+import softeng2.teamhortons.myxa.ui.menu.MenuActivity;
 import softeng2.teamhortons.myxa.ui.login.LoginActivity;
 
-public class MainActivity extends AppCompatActivity {
+import static softeng2.teamhortons.myxa.generic.RequestCode.REQUEST_LOGIN;
 
-    public static int REQUEST_CODE = 0;
+public class MainActivity extends AppCompatActivity {
     private MainViewModel mainViewModel;
 
     @Override
@@ -33,11 +33,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 if(mainViewModel.isLoggedIn()) {
-                    startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                    startActivity(new Intent(getApplicationContext(), MenuActivity.class));
                 } else {
                     startActivityForResult(
                             new Intent(getApplicationContext(), LoginActivity.class),
-                            LoginActivity.REQUEST_CODE);
+                            REQUEST_LOGIN);
                 }
 
             }
@@ -48,8 +48,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == LoginActivity.REQUEST_CODE && resultCode == RESULT_OK) {
+        if(resultCode == RESULT_OK) {
             startActivity(data);
+        }
+
+        if(resultCode == RESULT_CANCELED) {
+            finish();
         }
     }
 }
