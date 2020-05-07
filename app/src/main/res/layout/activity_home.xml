@@ -7,6 +7,33 @@
     tools:context=".ui.home.HomeActivity">
 
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="125dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="0dp">
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="453dp"
+            android:layout_height="187dp"
+            android:contentDescription="@string/todo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_logo_header_background" />
+
+        <SearchView
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_main_bottomNavigation"
         android:layout_width="match_parent"
@@ -25,11 +52,11 @@
     <FrameLayout
         android:id="@+id/frame_main_frameLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="548dp"
         android:layout_above="@id/nav_main_bottomNavigation"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true">
-    </FrameLayout>
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="127dp"></FrameLayout>
 
 
 </RelativeLayout>
