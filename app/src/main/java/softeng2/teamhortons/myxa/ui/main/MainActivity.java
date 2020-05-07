@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 import softeng2.teamhortons.myxa.R;
-import softeng2.teamhortons.myxa.ui.home.HomeActivity;
+import softeng2.teamhortons.myxa.ui.menu.MenuActivity;
 import softeng2.teamhortons.myxa.ui.login.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 if(mainViewModel.isLoggedIn()) {
-                    startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                    startActivity(new Intent(getApplicationContext(), MenuActivity.class));
                 } else {
                     startActivityForResult(
                             new Intent(getApplicationContext(), LoginActivity.class),
@@ -50,6 +50,10 @@ public class MainActivity extends AppCompatActivity {
 
         if(requestCode == LoginActivity.REQUEST_CODE && resultCode == RESULT_OK) {
             startActivity(data);
+        }
+
+        if(requestCode == LoginActivity.REQUEST_CODE && resultCode == RESULT_CANCELED) {
+            finish();
         }
     }
 }
