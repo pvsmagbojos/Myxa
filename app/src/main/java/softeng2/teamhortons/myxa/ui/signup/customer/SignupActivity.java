@@ -21,7 +21,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import softeng2.teamhortons.myxa.R;
-import softeng2.teamhortons.myxa.ui.home.HomeActivity;
+import softeng2.teamhortons.myxa.ui.menu.MenuActivity;
 
 public class SignupActivity extends AppCompatActivity {
 
@@ -88,7 +88,7 @@ public class SignupActivity extends AppCompatActivity {
                     showLoginFailed(signupResult.getError());
                 }
                 if (signupResult.getSuccess() != null) {
-                    setResult(RESULT_FIRST_USER, new Intent(SignupActivity.this, HomeActivity.class));
+                    setResult(RESULT_FIRST_USER, new Intent(SignupActivity.this, MenuActivity.class));
                     finish();
                 }
             }

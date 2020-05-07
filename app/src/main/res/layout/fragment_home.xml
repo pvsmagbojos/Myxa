@@ -4,150 +4,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment">
+    tools:context=".ui.menu.fragment.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="@string/home_fragment_text"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+        android:text="@string/hello_blank_fragment" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="50dp"
-            android:fontFamily="@font/raleway"
-            android:text="@string/popular_this_week"
-            android:textColor="#494848"
-            android:textSize="26sp"
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/homeTab"
+            android:layout_width="fill_parent"
+            android:layout_height="51dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="160dp"
-            android:fontFamily="@font/raleway"
-            android:text="@string/your_recent_items"
-            android:textColor="#494848"
-            android:textSize="26sp"
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/for_you" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/your_favorites" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/deliveries" />
+        </com.google.android.material.tabs.TabLayout>
+
+        <FrameLayout
+            android:id="@+id/browse_home_frame"
+            android:layout_width="409dp"
+            android:layout_height="678dp"
+            android:layout_marginTop="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/homeTab">
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="160dp"
-            android:fontFamily="@font/raleway"
-            android:text="@string/healthy_options"
-            android:textColor="#494848"
-            android:textSize="26sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-        <Button
-            android:id="@+id/button11"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="15dp"
-            android:backgroundTint="#CDDC39"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-        <Button
-            android:id="@+id/button14"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="15dp"
-            android:backgroundTint="#CDDC39"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-        <Button
-            android:id="@+id/button17"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="15dp"
-            android:backgroundTint="#CDDC39"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-        <Button
-            android:id="@+id/button12"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="15dp"
-            android:backgroundTint="#C6CF72"
-            app:layout_constraintStart_toEndOf="@+id/button11"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-        <Button
-            android:id="@+id/button15"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="15dp"
-            android:backgroundTint="#C6CF72"
-            app:layout_constraintStart_toEndOf="@+id/button14"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-        <Button
-            android:id="@+id/button18"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="15dp"
-            android:backgroundTint="#C6CF72"
-            app:layout_constraintStart_toEndOf="@+id/button17"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-        <Button
-            android:id="@+id/button19"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="15dp"
-            android:backgroundTint="#C6CF72"
-            app:layout_constraintStart_toEndOf="@+id/button18"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-        <Button
-            android:id="@+id/button16"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="15dp"
-            android:backgroundTint="#C6CF72"
-            app:layout_constraintStart_toEndOf="@+id/button15"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-        <Button
-            android:id="@+id/button13"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="15dp"
-            android:backgroundTint="#C6CF72"
-            app:layout_constraintStart_toEndOf="@+id/button12"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+        </FrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

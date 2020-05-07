@@ -1,4 +1,4 @@
-package softeng2.teamhortons.myxa.ui.home;
+package softeng2.teamhortons.myxa.ui.menu.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,15 +12,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import softeng2.teamhortons.myxa.R;
-import softeng2.teamhortons.myxa.ViewRecipe;
+import softeng2.teamhortons.myxa.ViewRecipeActivity;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends Fragment
+public class ShowcaseFragment extends Fragment
 {
 
-    public HomeFragment()
+    public ShowcaseFragment()
     {
         // Required empty public constructor
     }
@@ -32,7 +32,7 @@ public class HomeFragment extends Fragment
                              Bundle savedInstanceState)
     {
 
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_showcase, container, false);
 
 
         return view;
@@ -48,8 +48,8 @@ public class HomeFragment extends Fragment
             @Override
             public void onClick(View v) {
                 startActivityForResult(
-                        new Intent(getContext(), ViewRecipe.class),
-                        ViewRecipe.REQUEST_CODE);
+                        new Intent(getContext(), ViewRecipeActivity.class),
+                        ViewRecipeActivity.REQUEST_CODE);
             }
         });
     }
