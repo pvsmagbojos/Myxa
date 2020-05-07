@@ -88,8 +88,7 @@ public class SignupActivity extends AppCompatActivity {
                     showLoginFailed(signupResult.getError());
                 }
                 if (signupResult.getSuccess() != null) {
-                    Intent intent = new Intent(SignupActivity.this, HomeActivity.class);
-                    startActivity(intent);
+                    setResult(RESULT_FIRST_USER, new Intent(SignupActivity.this, HomeActivity.class));
                     finish();
                 }
             }
@@ -176,5 +175,12 @@ public class SignupActivity extends AppCompatActivity {
 
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        setResult(RESULT_CANCELED);
+        finish();
     }
 }

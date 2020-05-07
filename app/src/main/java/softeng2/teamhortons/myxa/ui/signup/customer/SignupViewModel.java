@@ -99,8 +99,6 @@ class SignupViewModel extends ViewModel {
         }
     }
 
-
-
     private boolean isEmailValid(String email) {
         return email != null && Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }

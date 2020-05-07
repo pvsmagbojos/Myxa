@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == LoginActivity.REQUEST_CODE && resultCode == RESULT_OK) {
-            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+            startActivity(data);
         }
     }
 }
