@@ -24,8 +24,6 @@ import softeng2.teamhortons.myxa.R;
 import softeng2.teamhortons.myxa.ui.menu.MenuActivity;
 
 public class SignupActivity extends AppCompatActivity {
-
-    public static int REQUEST_CODE = 2;
     private SignupViewModel signupViewModel;
 
     @Override

@@ -12,9 +12,9 @@ import softeng2.teamhortons.myxa.R;
 import softeng2.teamhortons.myxa.ui.menu.MenuActivity;
 import softeng2.teamhortons.myxa.ui.login.LoginActivity;
 
-public class MainActivity extends AppCompatActivity {
+import static softeng2.teamhortons.myxa.generic.RequestCode.REQUEST_LOGIN;
 
-    public static int REQUEST_CODE = 0;
+public class MainActivity extends AppCompatActivity {
     private MainViewModel mainViewModel;
 
     @Override
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     startActivityForResult(
                             new Intent(getApplicationContext(), LoginActivity.class),
-                            LoginActivity.REQUEST_CODE);
+                            REQUEST_LOGIN);
                 }
 
             }
@@ -48,11 +48,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == LoginActivity.REQUEST_CODE && resultCode == RESULT_OK) {
+        if(resultCode == RESULT_OK) {
             startActivity(data);
         }
 
-        if(requestCode == LoginActivity.REQUEST_CODE && resultCode == RESULT_CANCELED) {
+        if(resultCode == RESULT_CANCELED) {
             finish();
         }
     }
