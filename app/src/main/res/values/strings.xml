@@ -67,4 +67,15 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="load_ingredients_here">-load ingredients here-</string>
+    <string name="content">Content</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="procedure">Procedure</string>
+    <string name="x">X</string>
+    <string name="add_to_cart">ADD TO CART</string>
+    <string name="f">F</string>
+    <string name="load_procedure_here">- load procedure here-</string>
+    <string name="php">PhP</string>
+    <string name="price_here">- price here -</string>
+    <string name="recipe_name">Recipe Name</string>
 </resources>
