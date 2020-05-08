@@ -23,7 +23,6 @@ public class MenuActivity extends AppCompatActivity
     private BottomNavigationView mainBottomNavigation;
     private FrameLayout mainFrameLayout;
 
-    private ShowcaseFragment browseFragment;
     private HomeFragment HomeFragment;
     private ScheduleFragment scheduleFragment;
     private CartFragment cartFragment;
@@ -37,7 +36,6 @@ public class MenuActivity extends AppCompatActivity
         mainFrameLayout = (FrameLayout)findViewById(R.id.frame_main_frameLayout);
         mainBottomNavigation = (BottomNavigationView)findViewById(R.id.nav_main_bottomNavigation);
 
-        browseFragment = new ShowcaseFragment();
         HomeFragment = new HomeFragment();
         scheduleFragment = new ScheduleFragment();
         cartFragment = new CartFragment();

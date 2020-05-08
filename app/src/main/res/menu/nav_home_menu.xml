@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_for_you"
+        android:title="@string/nav_for_you" />
+
+    <item
+        android:id="@+id/nav_your_fave"
+        android:title="@string/nav_your_fave" />
+    <item
+        android:id="@+id/nav_deliveries"
+        android:title="@string/nav_deliveries" />
+
+</menu>

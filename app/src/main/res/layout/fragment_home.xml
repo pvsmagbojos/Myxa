@@ -17,41 +17,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/homeTab"
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/homeNavigationView"
             android:layout_width="fill_parent"
-            android:layout_height="51dp"
+            android:layout_height="63dp"
+            app:itemIconSize="0dp"
+            app:itemTextAppearanceActive="@style/BottomNavigationView.Active"
+            app:itemTextAppearanceInactive="@style/BottomNavigationView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/for_you" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/your_favorites" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/deliveries" />
-        </com.google.android.material.tabs.TabLayout>
+            app:layout_constraintTop_toTopOf="parent"
+            app:menu="@menu/nav_home_menu" />
 
         <FrameLayout
-            android:id="@+id/browse_home_frame"
+            android:id="@+id/homeFrame"
             android:layout_width="409dp"
-            android:layout_height="678dp"
-            android:layout_marginTop="1dp"
+            android:layout_height="666dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/homeTab">
+            app:layout_constraintTop_toBottomOf="@+id/homeNavigationView">
 
         </FrameLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
