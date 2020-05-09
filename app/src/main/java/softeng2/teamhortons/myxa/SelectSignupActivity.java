@@ -45,9 +45,16 @@ public class SelectSignupActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == RESULT_OK) {
-            setResult(RESULT_OK, data);
+        if(resultCode == RESULT_FIRST_USER) {
+            setResult(RESULT_FIRST_USER, data);
             finish();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        setResult(RESULT_CANCELED);
+        finish();
     }
 }

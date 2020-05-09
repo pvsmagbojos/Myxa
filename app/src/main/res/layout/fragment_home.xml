@@ -1,44 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.menu.fragment.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/homeNavigationView"
+        android:layout_width="fill_parent"
+        android:layout_height="63dp"
+        app:itemIconSize="0dp"
+        app:itemTextAppearanceActive="@style/BottomNavigationView.Active"
+        app:itemTextAppearanceInactive="@style/BottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/nav_home_menu" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <FrameLayout
+        android:id="@+id/homeFrame"
+        android:layout_width="409dp"
+        android:layout_height="666dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/homeNavigationView">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    </FrameLayout>
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/homeNavigationView"
-            android:layout_width="fill_parent"
-            android:layout_height="63dp"
-            app:itemIconSize="0dp"
-            app:itemTextAppearanceActive="@style/BottomNavigationView.Active"
-            app:itemTextAppearanceInactive="@style/BottomNavigationView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:menu="@menu/nav_home_menu" />
-
-        <FrameLayout
-            android:id="@+id/homeFrame"
-            android:layout_width="409dp"
-            android:layout_height="666dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/homeNavigationView">
-
-        </FrameLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
