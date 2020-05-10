@@ -12,6 +12,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
+import softeng2.teamhortons.myxa.data.model.UserDao;
+
 /**
  * Class that requests authentication and user information from the Firebase database and
  * maintains an in-memory cache of user data.
@@ -38,13 +40,7 @@ public class UserRepository {
     public void recordToDatabase(final String userId, String fName, String lName, boolean isMale, int age, String email){
         final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        // Create a new user with a first and last name
-        Map<String, Object> user = new HashMap<>();
-        user.put("email", email);
-        user.put("first", fName);
-        user.put("last", lName);
-        user.put("age", age);
-        user.put("isMale", isMale);
+        UserDao user = new UserDao(userId, email, fName, lName, age, isMale);
 
         // Add a new document with a generated ID
         db.collection("users").document(userId).set(user)
