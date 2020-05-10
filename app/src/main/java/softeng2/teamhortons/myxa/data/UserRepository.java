@@ -6,15 +6,12 @@ import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import softeng2.teamhortons.myxa.data.model.UserDao;
+import softeng2.teamhortons.myxa.data.model.User;
+import softeng2.teamhortons.myxa.data.model.dao.UserDao;
 
 /**
  * Class that requests authentication and user information from the Firebase database and
@@ -27,7 +24,8 @@ public class UserRepository {
 
     // If user credentials will be cached in local storage, it is recommended it be encrypted
     // @see https://developer.android.com/training/articles/keystore
-    private UserDao user = null;
+    private User user = null;
+    private String userId = null;
 
     // private constructor : singleton access
     private UserRepository(FirebaseFirestore dataSource) {
@@ -42,10 +40,9 @@ public class UserRepository {
     }
 
     public void recordToDatabase(String userId, String fName, String lName, boolean isMale, int age, String email){
-        this.user = new UserDao(userId, email, fName, lName, age, isMale);
+        this.user = new User(userId, email, fName, lName, age, isMale);
 
-        // Add a new document with a generated ID
-        dataSource.collection("users").document(userId).set(user)
+        dataSource.collection("users").document(userId).set(user.toDao())
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -54,23 +51,32 @@ public class UserRepository {
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.w("ERROR", "Database connection Error", e);
+                Log.e("ERROR", "Database connection Error", e);
             }
         });
     }
 
-    public void setUser(final String userId) {
-        dataSource.collection("users").document(userId).get()
+    public User getUser() {
+        return user;
+    }
+
+    public Task<DocumentSnapshot> setUser(String userId) {
+        this.userId = userId;
+        return refreshUserData();
+    }
+
+    private Task<DocumentSnapshot> refreshUserData() {
+        return dataSource.collection("users").document(this.userId).get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        user = documentSnapshot.toObject(UserDao.class);
-                        user.id(documentSnapshot.getId());
+                        user = new User(userId,documentSnapshot.toObject(UserDao.class));
+                        Log.d("SUCCESS", "Successfully retrieved user data");
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-
+                Log.e("ERROR", "User data retrieval failed", e);
             }
         });
     }
