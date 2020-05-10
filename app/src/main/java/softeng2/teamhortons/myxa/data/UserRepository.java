@@ -47,12 +47,12 @@ public class UserRepository {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d("success", "Database connection Success at " + db.document(userId));
+                        Log.d("SUCCESS", "Successfully recorded to database");
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.w("error", "Database connection Error", e);
+                Log.w("ERROR", "Database connection Error", e);
             }
         });
     }
