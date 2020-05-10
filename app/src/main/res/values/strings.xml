@@ -11,11 +11,10 @@
     <string name="no_account_yet">No account yet?</string>
     <string name="register_here">Register Here</string>
 
-    <string name="register_with_our">Register with our</string>
+    <string name="select_account_type">Select Account Type</string>
     <string name="select_one_of_the_choice_above">Select one of the choice above</string>
 
     <string name="btn_continue">CONTINUE</string>
-    <string name="prompt_confirm_password">Confirm Password</string>
 
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -23,6 +22,7 @@
     <string name="prompt_last_name">Last Name</string>
     <string name="prompt_gender">Gender</string>
     <string name="prompt_age">Age</string>
+    <string name="prompt_confirm_password">Confirm Password</string>
 
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
@@ -32,13 +32,12 @@
     <string name="invalid_password">Password must be at least 8 characters</string>
     <string name="invalid_confirm_password">Passwords do not match</string>
 
-    <string name="login_failed">"Login failed"</string>
+    <string name="toast_login_failed">"Login failed"</string>
     <string name="signup_failed">"Sign-up failed"</string>
     <string name="action_continue_rider">"Continue"</string>
     <string name="prompt_plate_number">"Plate Number"</string>
     <string name="prompt_license_number">"License Number"</string>
     <string name="btn_checkout">Checkout</string>
-
 
     <string-array name="gender">
         <item>Male</item>
@@ -82,5 +81,6 @@
     <string name="nav_for_you">For You</string>
     <string name="nav_your_fave">Favorites</string>
     <string name="nav_deliveries">Deliveries</string>
+
 
 </resources>
