@@ -5,21 +5,21 @@ import java.util.HashMap;
 /**
  * Data class that captures user information for logged in users retrieved from LoginRepository
  */
-public class UserDao {
+public class UserDao extends Dao{
 
-    private String userId;
     private String email;
     private String firstName;
     private String lastName;
     private int age;
     private boolean isMale;
 
+    @SuppressWarnings("unused")
     public UserDao() {
-        // Default constructor required for calls to DataSnapshot.getValue(User.class)
+        // Default constructor required for calls to DataSnapshot.getValue(UserDao.class)
     }
 
     public UserDao(String userId, String email, String firstName, String lastName, int age, boolean isMale) {
-        this.userId = userId;
+        super(userId);
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -27,12 +27,12 @@ public class UserDao {
         this.isMale = isMale;
     }
 
-    public String getUserId() {
-        return userId;
-    }
-
     public String getEmail() {
         return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getFirstName() {
@@ -65,17 +65,5 @@ public class UserDao {
 
     public void setMale(boolean male) {
         isMale = male;
-    }
-
-    public HashMap<String, Object> map() {
-        HashMap<String, Object> map = new HashMap<>();
-
-        map.put("email", this.email);
-        map.put("first", this.firstName);
-        map.put("last", this.lastName);
-        map.put("age", this.age);
-        map.put("isMale", this.isMale);
-
-        return map;
     }
 }

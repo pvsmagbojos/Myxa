@@ -43,7 +43,7 @@ public class UserRepository {
         this.user = new UserDao(userId, email, fName, lName, age, isMale);
 
         // Add a new document with a generated ID
-        db.collection("users").document(userId).set(user.map())
+        db.collection("users").document(userId).set(user)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
