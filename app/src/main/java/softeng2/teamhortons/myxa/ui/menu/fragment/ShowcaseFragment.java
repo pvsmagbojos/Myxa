@@ -42,15 +42,6 @@ public class ShowcaseFragment extends Fragment
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        final Button viewRecipe = (Button)getView().findViewById(R.id.button11);
 
-        viewRecipe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivityForResult(
-                        new Intent(getContext(), ViewRecipeActivity.class),
-                        ViewRecipeActivity.REQUEST_CODE);
-            }
-        });
     }
 }
