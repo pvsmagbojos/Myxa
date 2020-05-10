@@ -24,7 +24,7 @@ public class UserRepository {
 
     // If user credentials will be cached in local storage, it is recommended it be encrypted
     // @see https://developer.android.com/training/articles/keystore
-    private FirebaseUser user = null; //TODO: Replace with user model
+    private UserDao user = null; //TODO: Replace with user model
 
     // private constructor : singleton access
     private UserRepository() {
@@ -40,10 +40,10 @@ public class UserRepository {
     public void recordToDatabase(final String userId, String fName, String lName, boolean isMale, int age, String email){
         final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        UserDao user = new UserDao(userId, email, fName, lName, age, isMale);
+        this.user = new UserDao(userId, email, fName, lName, age, isMale);
 
         // Add a new document with a generated ID
-        db.collection("users").document(userId).set(user)
+        db.collection("users").document(userId).set(user.map())
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {

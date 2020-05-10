@@ -2,14 +2,11 @@ package softeng2.teamhortons.myxa.data;
 
 import androidx.annotation.NonNull;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import javax.annotation.Nonnegative;
 
 /**
  * Class that requests authentication and user information from Firebase authentication servers and
