@@ -1,5 +1,7 @@
 package softeng2.teamhortons.myxa.data.model;
 
+import java.util.HashMap;
+
 /**
  * Data class that captures user information for logged in users retrieved from LoginRepository
  */
@@ -63,5 +65,17 @@ public class UserDao {
 
     public void setMale(boolean male) {
         isMale = male;
+    }
+
+    public HashMap<String, Object> map() {
+        HashMap<String, Object> map = new HashMap<>();
+
+        map.put("email", this.email);
+        map.put("first", this.firstName);
+        map.put("last", this.lastName);
+        map.put("age", this.age);
+        map.put("isMale", this.isMale);
+
+        return map;
     }
 }
