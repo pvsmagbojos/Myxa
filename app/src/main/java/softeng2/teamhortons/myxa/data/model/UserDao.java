@@ -1,7 +1,5 @@
 package softeng2.teamhortons.myxa.data.model;
 
-import java.util.HashMap;
-
 /**
  * Data class that captures user information for logged in users retrieved from LoginRepository
  */

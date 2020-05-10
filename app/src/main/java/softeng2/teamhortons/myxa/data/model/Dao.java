@@ -1,19 +1,21 @@
 package softeng2.teamhortons.myxa.data.model;
 
-import java.util.HashMap;
-
 public abstract class Dao {
-    private String userId;
+    private String id;
 
     Dao() {
         //ignore
     }
 
-    Dao(String userId) {
-        this.userId = userId;
+    Dao(String id) {
+        this.id = id;
     }
 
-    public String getUserId() {
-        return userId;
+    public void id(String id) {
+        this.id = id;
+    }
+
+    public String id() {
+        return id;
     }
 }
