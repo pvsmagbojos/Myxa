@@ -1,4 +1,4 @@
-package softeng2.teamhortons.myxa.data;
+package softeng2.teamhortons.myxa.data.repository;
 
 import androidx.annotation.NonNull;
 

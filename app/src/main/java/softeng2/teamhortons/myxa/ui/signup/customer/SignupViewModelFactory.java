@@ -7,8 +7,8 @@ import androidx.lifecycle.ViewModelProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import softeng2.teamhortons.myxa.data.AuthRepository;
-import softeng2.teamhortons.myxa.data.UserRepository;
+import softeng2.teamhortons.myxa.data.repository.AuthRepository;
+import softeng2.teamhortons.myxa.data.repository.UserRepository;
 
 /**
  * ViewModel provider factory to instantiate SignupViewModel.
