@@ -13,7 +13,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.Objects;
 
 import softeng2.teamhortons.myxa.data.model.User;
-import softeng2.teamhortons.myxa.data.model.dao.UserDao;
 
 /**
  * Class that requests authentication and user information from the Firebase database and
@@ -42,12 +41,13 @@ public class UserRepository {
     }
 
     public void recordToDatabase(String userId, String fName, String lName, boolean isMale, int age, String email){
-        this.user = new User(userId, email, fName, lName, age, isMale);
+        final User user = new User(email, fName, lName, age, isMale).withId(userId);
 
-        dataSource.collection("users").document(userId).set(user.toDao())
+        dataSource.collection("users").document(userId).set(user)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
+                        UserRepository.this.user = user;
                         Log.d("SUCCESS", "Successfully recorded to database");
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -59,7 +59,7 @@ public class UserRepository {
     }
 
     public User getUser() {
-        return user;
+        return this.user;
     }
 
     public Task<DocumentSnapshot> setUser(String userId) {
@@ -72,9 +72,8 @@ public class UserRepository {
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        if(documentSnapshot.toObject(UserDao.class) != null) {
-                            user = new User(userId, Objects.requireNonNull(
-                                    documentSnapshot.toObject(UserDao.class)));
+                        if(documentSnapshot.toObject(User.class) != null) {
+                            UserRepository.this.user = documentSnapshot.toObject(User.class);
                             Log.d("SUCCESS", "Successfully retrieved user data");
                         } else {
                             Log.e("ERROR", "Data not found", new Exception());

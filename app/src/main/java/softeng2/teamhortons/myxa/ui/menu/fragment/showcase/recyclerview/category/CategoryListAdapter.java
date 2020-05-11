@@ -13,7 +13,6 @@ import java.util.ArrayList;
 
 import softeng2.teamhortons.myxa.R;
 import softeng2.teamhortons.myxa.data.model.CategoryItem;
-import softeng2.teamhortons.myxa.data.model.dao.CategoryDao;
 import softeng2.teamhortons.myxa.ui.menu.fragment.showcase.recyclerview.recipe.RecipeListAdapter;
 
 public class CategoryListAdapter extends
