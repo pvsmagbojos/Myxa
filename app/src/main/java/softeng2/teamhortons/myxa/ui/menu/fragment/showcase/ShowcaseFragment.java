@@ -15,8 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import softeng2.teamhortons.myxa.R;
-import softeng2.teamhortons.myxa.ui.menu.fragment.HomeFragment;
-import softeng2.teamhortons.myxa.ui.menu.fragment.showcase.recyclerview.category.CategoryListAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -52,7 +50,8 @@ public class ShowcaseFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        showcaseViewModel = ViewModelProviders.of(this).get(ShowcaseViewModel.class);
+        showcaseViewModel = ViewModelProviders.of(this, new ShowcaseViewModelFactory())
+                .get(ShowcaseViewModel.class);
         // TODO: Use the ViewModel
     }
 
