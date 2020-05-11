@@ -10,6 +10,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Objects;
+
 import softeng2.teamhortons.myxa.data.model.User;
 import softeng2.teamhortons.myxa.data.model.dao.UserDao;
 
@@ -70,8 +72,13 @@ public class UserRepository {
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        user = new User(userId,documentSnapshot.toObject(UserDao.class));
-                        Log.d("SUCCESS", "Successfully retrieved user data");
+                        if(documentSnapshot.toObject(UserDao.class) != null) {
+                            user = new User(userId, Objects.requireNonNull(
+                                    documentSnapshot.toObject(UserDao.class)));
+                            Log.d("SUCCESS", "Successfully retrieved user data");
+                        } else {
+                            Log.e("ERROR", "Data not found", new Exception());
+                        }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override

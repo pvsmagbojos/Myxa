@@ -2,7 +2,7 @@ package softeng2.teamhortons.myxa.ui.main;
 
 import androidx.lifecycle.ViewModel;
 
-import softeng2.teamhortons.myxa.data.AuthRepository;
+import softeng2.teamhortons.myxa.data.repository.AuthRepository;
 
 class MainViewModel extends ViewModel {
 

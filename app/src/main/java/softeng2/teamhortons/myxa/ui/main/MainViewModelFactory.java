@@ -6,8 +6,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-import softeng2.teamhortons.myxa.data.AuthRepository;
-import softeng2.teamhortons.myxa.ui.main.MainViewModel;
+import softeng2.teamhortons.myxa.data.repository.AuthRepository;
 
 /**
  * ViewModel provider factory to instantiate MainViewModel.

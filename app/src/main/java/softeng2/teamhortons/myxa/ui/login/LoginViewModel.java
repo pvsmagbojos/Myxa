@@ -14,7 +14,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 
 import softeng2.teamhortons.myxa.R;
-import softeng2.teamhortons.myxa.data.AuthRepository;
+import softeng2.teamhortons.myxa.data.repository.AuthRepository;
 
 class LoginViewModel extends ViewModel {
 

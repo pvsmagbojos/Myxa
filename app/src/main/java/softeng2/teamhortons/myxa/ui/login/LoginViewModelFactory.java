@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-import softeng2.teamhortons.myxa.data.AuthRepository;
+import softeng2.teamhortons.myxa.data.repository.AuthRepository;
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.
