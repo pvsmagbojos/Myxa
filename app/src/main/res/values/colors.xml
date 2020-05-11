@@ -8,6 +8,8 @@
     <color name="textColor">#757575</color>
     <color name="viewBackground">#80C4C4C4</color>
 
+    <color name="colorPrimaryAlpha50">#80CDDC39</color>
+
     <color name="colorSelectedPrimary">#CDDC39</color>
     <color name="colorUnselectedPrimary">#AAAFAA</color>
     <color name="colorBottomNavigationBackground">#FFFFFF</color>

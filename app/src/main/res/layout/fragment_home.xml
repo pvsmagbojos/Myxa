@@ -10,7 +10,9 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/homeNavigationView"
         android:layout_width="fill_parent"
-        android:layout_height="63dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryAlpha50"
+        app:itemBackground="@color/colorPrimaryAlpha50"
         app:itemIconSize="0dp"
         app:itemTextAppearanceActive="@style/BottomNavigationView.Active"
         app:itemTextAppearanceInactive="@style/BottomNavigationView"
@@ -21,8 +23,8 @@
 
     <FrameLayout
         android:id="@+id/homeFrame"
-        android:layout_width="409dp"
-        android:layout_height="666dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
