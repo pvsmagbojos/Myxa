@@ -40,6 +40,7 @@ public class SignupActivity extends AppCompatActivity {
         final EditText confirmPasswordEditText = findViewById(R.id.editText_confirm_password);
         final Button signupButton = findViewById(R.id.button_signup);
 
+
         signupViewModel = ViewModelProviders.of(this, new SignupViewModelFactory())
                 .get(SignupViewModel.class);
 
@@ -89,25 +90,6 @@ public class SignupActivity extends AppCompatActivity {
                     setResult(RESULT_FIRST_USER, new Intent(SignupActivity.this, MenuActivity.class));
                     finish();
                 }
-            }
-        });
-
-        genderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                signupViewModel.signUpDataChanged(
-                        fNameEditText.getText().toString(),
-                        lNameEditText.getText().toString(),
-                        genderSpinner.getSelectedItem().toString(),
-                        ageEditText.getText().toString(),
-                        emailEditText.getText().toString(),
-                        passwordEditText.getText().toString(),
-                        confirmPasswordEditText.getText().toString());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                //ignore
             }
         });
 

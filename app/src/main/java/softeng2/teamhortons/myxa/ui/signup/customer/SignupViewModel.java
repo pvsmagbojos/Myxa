@@ -80,18 +80,11 @@ class SignupViewModel extends ViewModel {
         signupFormState.setValue(new SignupFormState(
                 null, null, null, null,
                 (!email.isEmpty() && (isEmailValid(email)) ? null : R.string.invalid_email),
-                ((!password.isEmpty() && confirmPassword.isEmpty() && !isPasswordValid(password))
+                ((!password.isEmpty() && !isPasswordValid(password))
                         ? R.string.invalid_password : null),
-                ((password.isEmpty() && !confirmPassword.isEmpty() && !isPasswordValid(confirmPassword))
-                        ? R.string.invalid_password : null)
+                ((!confirmPassword.isEmpty() && !isConfirmPasswordValid(password, confirmPassword))
+                        ? R.string.invalid_confirm_password : null)
         ));
-
-        if(!isConfirmPasswordValid(password,confirmPassword)) {
-            signupFormState.setValue(new SignupFormState(
-                    null, null, null, null, null,
-                    R.string.invalid_confirm_password,
-                    R.string.invalid_confirm_password));
-        }
 
         if(!isFieldsEmpty(fName, lName, gender, age) && isEmailValid(email) &&
                 isPasswordValid(password) && isConfirmPasswordValid(password, confirmPassword)) {
