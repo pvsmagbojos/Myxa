@@ -15,7 +15,6 @@ import com.google.firebase.auth.FirebaseUser;
 public class AuthRepository {
 
     private static volatile AuthRepository instance;
-
     private FirebaseAuth dataSource;
 
     // If user credentials will be cached in local storage, it is recommended it be encrypted

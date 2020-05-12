@@ -59,6 +59,6 @@ public class CategoryListAdapter extends
 
     @Override
     public int getItemCount() {
-        return dataset.size();
+        return (dataset == null) ? 0 : dataset.size();
     }
 }

@@ -32,7 +32,6 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
 
 
     // Create new views (invoked by the layout manager)
-
     @Override
     @NonNull
     public RecipeListAdapter.RecipeListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

@@ -1,5 +1,6 @@
 package softeng2.teamhortons.myxa.ui.menu.fragment.showcase;
 
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
@@ -10,11 +11,16 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
 import softeng2.teamhortons.myxa.R;
+import softeng2.teamhortons.myxa.data.model.CategoryItem;
+import softeng2.teamhortons.myxa.ui.menu.fragment.showcase.recyclerview.category.CategoryListAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,12 +28,14 @@ import softeng2.teamhortons.myxa.R;
 public class ShowcaseFragment extends Fragment {
 
     private ShowcaseViewModel showcaseViewModel;
+    private String TAG = "ShowcaseFragment";
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
     public ShowcaseFragment() {
+        //ignore
     }
 
     public static ShowcaseFragment newInstance() {
@@ -35,24 +43,40 @@ public class ShowcaseFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_showcase, container, false);
-
-        RecyclerView categoryListRecyclerView = v.findViewById(R.id.recyclerView_category);
-        categoryListRecyclerView.setHasFixedSize(true);
-        categoryListRecyclerView.setLayoutManager(
-                new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false));
-        //TODO: Set adapter
-        return v;
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        showcaseViewModel = ViewModelProviders.of(this, new ShowcaseViewModelFactory())
+                .get(ShowcaseViewModel.class);
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        showcaseViewModel = ViewModelProviders.of(this, new ShowcaseViewModelFactory())
-                .get(ShowcaseViewModel.class);
-        // TODO: Use the ViewModel
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_showcase, container, false);
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        final RecyclerView categoryListRecyclerView = view.findViewById(R.id.recyclerView_category);
+        categoryListRecyclerView.setHasFixedSize(true);
+        categoryListRecyclerView.setLayoutManager(new LinearLayoutManager(
+                        this.getContext(), LinearLayoutManager.VERTICAL, false));
+        categoryListRecyclerView.setAdapter(new CategoryListAdapter(null));
+
+        showcaseViewModel.getQueryResult().observe(getViewLifecycleOwner(),
+                new Observer<QueryResult>() {
+            @Override
+            public void onChanged(QueryResult queryResult) {
+                if (queryResult.getError() != null) {
+                    Log.e(TAG, "FetchFromRemote Failed", queryResult.getError());
+                }
+                if (queryResult.getSuccess() != null) {
+                    categoryListRecyclerView.swapAdapter(
+                            new CategoryListAdapter(queryResult.getSuccess()),false);
+                }
+            }
+        });
+    }
 }
