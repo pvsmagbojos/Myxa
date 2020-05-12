@@ -6,10 +6,16 @@ import com.google.firebase.firestore.Exclude;
 import java.util.ArrayList;
 
 public class CategoryItem {
+
     private String desc;
     private ArrayList<DocumentReference> recipes;
     @Exclude
     private ArrayList<RecipeItem> recipeItems;
+
+    @SuppressWarnings("unused")
+    public CategoryItem() {
+        // Default constructor required for calls to DataSnapshot.getValue(User.class)
+    }
 
     public CategoryItem(String desc, ArrayList<RecipeItem> recipeItems) {
         this.desc = desc;
@@ -18,10 +24,6 @@ public class CategoryItem {
 
     public String getDesc() {
         return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
     }
 
     public ArrayList<DocumentReference> getRecipes() {

@@ -18,9 +18,10 @@ import softeng2.teamhortons.myxa.data.repository.AuthRepository;
 
 class LoginViewModel extends ViewModel {
 
+    private AuthRepository authRepository;
+
     private MutableLiveData<LoginFormState> loginFormState = new MutableLiveData<>();
     private MutableLiveData<LoginResult> loginResult = new MutableLiveData<>();
-    private AuthRepository authRepository;
 
     LoginViewModel(AuthRepository authRepository) {
         this.authRepository = authRepository;
