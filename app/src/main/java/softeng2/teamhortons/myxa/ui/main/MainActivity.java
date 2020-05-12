@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
                             new Intent(getApplicationContext(), LoginActivity.class),
                             REQUEST_LOGIN);
                 }
-
             }
         }.start();
     }

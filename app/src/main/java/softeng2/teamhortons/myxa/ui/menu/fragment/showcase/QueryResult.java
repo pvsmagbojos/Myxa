@@ -4,11 +4,11 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
-import softeng2.teamhortons.myxa.data.model.CategoryItem;
+import softeng2.teamhortons.myxa.data.model.Category;
 
 class QueryResult {
     @Nullable
-    private ArrayList<CategoryItem> success;
+    private ArrayList<Category> success;
     @Nullable
     private Exception error;
 
@@ -16,12 +16,12 @@ class QueryResult {
         this.error = error;
     }
 
-    QueryResult(@Nullable ArrayList<CategoryItem> success) {
+    QueryResult(@Nullable ArrayList<Category> success) {
         this.success = success;
     }
 
     @Nullable
-    ArrayList<CategoryItem> getSuccess() {
+    ArrayList<Category> getSuccess() {
         return success;
     }
 

@@ -22,21 +22,21 @@ class ShowcaseViewModel extends ViewModel {
     }
 
     LiveData<QueryResult> getQueryResult() {
-        if(showcaseRepository.getCategoryItems() == null) {
-            loadData();
+        if(showcaseRepository.getCategories() == null) {
+            reload();
         }
         return queryResult;
     }
 
-    private void loadData() {
-        if(showcaseRepository.getCategoryItems() != null) {
-            queryResult.setValue(new QueryResult(showcaseRepository.getCategoryItems()));
+    void reload() {
+        if(showcaseRepository.getCategories() != null) {
+            queryResult.setValue(new QueryResult(showcaseRepository.getCategories()));
         }
-        showcaseRepository.fetchDataFromRemote()
+        showcaseRepository.fetchCategoryItemsFromRemote()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                queryResult.setValue(new QueryResult(showcaseRepository.getCategoryItems()));
+                queryResult.setValue(new QueryResult(showcaseRepository.getCategories()));
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

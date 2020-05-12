@@ -1,4 +1,4 @@
-package softeng2.teamhortons.myxa.ui.menu.fragment.showcase.recyclerview.category;
+package softeng2.teamhortons.myxa.ui.menu.fragment.showcase.recyclerview;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,12 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import softeng2.teamhortons.myxa.R;
-import softeng2.teamhortons.myxa.data.model.CategoryItem;
-import softeng2.teamhortons.myxa.ui.menu.fragment.showcase.recyclerview.recipe.RecipeListAdapter;
+import softeng2.teamhortons.myxa.data.model.Category;
 
 public class CategoryListAdapter extends
         RecyclerView.Adapter<CategoryListAdapter.CategoryListViewHolder> {
-    private ArrayList<CategoryItem> dataset;
+    private ArrayList<Category> dataset;
 
     static class CategoryListViewHolder extends RecyclerView.ViewHolder {
         RecyclerView recipeListRecyclerView;
@@ -30,7 +29,7 @@ public class CategoryListAdapter extends
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public CategoryListAdapter(ArrayList<CategoryItem> dataset) {
+    public CategoryListAdapter(ArrayList<Category> dataset) {
         this.dataset = dataset;
     }
 
@@ -54,11 +53,11 @@ public class CategoryListAdapter extends
         llm.setInitialPrefetchItemCount(3);
 
         holder.recipeListRecyclerView.setAdapter(
-                new RecipeListAdapter(dataset.get(position).getRecipeItems()));
+                new RecipeListAdapter(dataset.get(position).getRecipes()));
     }
 
     @Override
     public int getItemCount() {
-        return (dataset == null) ? 0 : dataset.size();
+        return dataset.size();
     }
 }

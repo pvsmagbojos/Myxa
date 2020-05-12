@@ -16,11 +16,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
-
 import softeng2.teamhortons.myxa.R;
-import softeng2.teamhortons.myxa.data.model.CategoryItem;
-import softeng2.teamhortons.myxa.ui.menu.fragment.showcase.recyclerview.category.CategoryListAdapter;
+import softeng2.teamhortons.myxa.ui.menu.fragment.showcase.recyclerview.CategoryListAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -63,7 +60,6 @@ public class ShowcaseFragment extends Fragment {
         categoryListRecyclerView.setHasFixedSize(true);
         categoryListRecyclerView.setLayoutManager(new LinearLayoutManager(
                         this.getContext(), LinearLayoutManager.VERTICAL, false));
-        categoryListRecyclerView.setAdapter(new CategoryListAdapter(null));
 
         showcaseViewModel.getQueryResult().observe(getViewLifecycleOwner(),
                 new Observer<QueryResult>() {
@@ -78,5 +74,11 @@ public class ShowcaseFragment extends Fragment {
                 }
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        showcaseViewModel.reload();
     }
 }
