@@ -35,7 +35,9 @@ public class AuthRepository {
     }
 
     public boolean isLoggedIn() {
-        return this.user != null;
+        this.dataSource = FirebaseAuth.getInstance();
+        this.user = this.dataSource.getCurrentUser();
+        return this.user !=null;
     }
 
     private void setLoggedInUser(FirebaseUser user) {
