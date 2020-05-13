@@ -55,10 +55,12 @@ class CategoryViewModel extends ViewModel {
                                                     category.setRecipes(new ArrayList<Recipe>());
                                                     for(DocumentSnapshot document : queryDocumentSnapshots) {
                                                         category.getRecipes().add(document.toObject(Recipe.class));
+                                                        Log.d("tag", category.getTag());
                                                     }
 
                                                     categories.add(category);
                                                     queryResult.setValue(new QueryResult(categories));
+
                                                 }
                                             });
                                 }

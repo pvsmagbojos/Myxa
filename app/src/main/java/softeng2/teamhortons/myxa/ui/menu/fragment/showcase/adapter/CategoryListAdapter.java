@@ -1,5 +1,6 @@
 package softeng2.teamhortons.myxa.ui.menu.fragment.showcase.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ public class CategoryListAdapter extends
         RecyclerView.Adapter<CategoryListAdapter.CategoryListViewHolder> {
 
     private ArrayList<Category> dataset;
+    Context context;
 
     static class CategoryListViewHolder extends RecyclerView.ViewHolder {
         RecyclerView recipeListRecyclerView;
@@ -30,8 +32,9 @@ public class CategoryListAdapter extends
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public CategoryListAdapter(ArrayList<Category> dataset) {
+    public CategoryListAdapter(ArrayList<Category> dataset, Context context) {
         this.dataset = dataset;
+        this.context = context;
     }
 
     // Create new views (invoked by the layout manager)
@@ -55,7 +58,7 @@ public class CategoryListAdapter extends
 
         holder.recipeListRecyclerView.setLayoutManager(llm);
         holder.recipeListRecyclerView.setAdapter(
-                new RecipeListAdapter(dataset.get(position).getRecipes()));
+                new RecipeListAdapter(dataset.get(position).getRecipes(),context));
     }
 
     @Override

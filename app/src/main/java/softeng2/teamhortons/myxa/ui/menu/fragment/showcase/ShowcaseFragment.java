@@ -20,12 +20,14 @@ import java.util.ArrayList;
 
 import softeng2.teamhortons.myxa.R;
 import softeng2.teamhortons.myxa.data.model.Category;
+import softeng2.teamhortons.myxa.data.model.Recipe;
 import softeng2.teamhortons.myxa.ui.menu.fragment.showcase.adapter.CategoryListAdapter;
+import softeng2.teamhortons.myxa.ui.menu.fragment.showcase.adapter.RecipeListAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ShowcaseFragment extends Fragment {
+public class ShowcaseFragment extends Fragment{
 
     private CategoryViewModel categoryViewModel;
     private String TAG = "ShowcaseFragment";
@@ -59,7 +61,7 @@ public class ShowcaseFragment extends Fragment {
         categoryListRecyclerView.setHasFixedSize(true);
         categoryListRecyclerView.setLayoutManager(new LinearLayoutManager(
                         this.getContext(), LinearLayoutManager.VERTICAL, false));
-        categoryListRecyclerView.setAdapter(new CategoryListAdapter(new ArrayList<Category>()));
+        categoryListRecyclerView.setAdapter(new CategoryListAdapter(new ArrayList<Category>(), this.getContext()));
 
         categoryViewModel.getQueryResult().observe(getViewLifecycleOwner(),
                 new Observer<QueryResult>() {
@@ -70,7 +72,7 @@ public class ShowcaseFragment extends Fragment {
                 }
                 if (queryResult.getSuccess() != null) {
                     categoryListRecyclerView.swapAdapter(
-                            new CategoryListAdapter(queryResult.getSuccess()),false);
+                            new CategoryListAdapter(queryResult.getSuccess(),getContext()),false);
                 }
             }
         });
