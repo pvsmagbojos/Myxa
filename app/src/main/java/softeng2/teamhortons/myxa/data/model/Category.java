@@ -16,11 +16,6 @@ public class Category {
         // Default constructor required for calls to DataSnapshot.getValue(Category.class)
     }
 
-    public Category(String desc, ArrayList<Recipe> recipes) {
-        this.desc = desc;
-        this.recipes = recipes;
-    }
-
     public String getDesc() {
         return desc;
     }

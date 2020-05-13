@@ -16,15 +16,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
 import softeng2.teamhortons.myxa.R;
-import softeng2.teamhortons.myxa.ui.menu.fragment.showcase.recyclerview.CategoryListAdapter;
+import softeng2.teamhortons.myxa.data.model.Category;
+import softeng2.teamhortons.myxa.ui.menu.fragment.showcase.adapter.CategoryListAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ShowcaseFragment extends Fragment {
 
-    private ShowcaseViewModel showcaseViewModel;
+    private CategoryViewModel categoryViewModel;
     private String TAG = "ShowcaseFragment";
 
     /**
@@ -35,15 +38,11 @@ public class ShowcaseFragment extends Fragment {
         //ignore
     }
 
-    public static ShowcaseFragment newInstance() {
-        return new ShowcaseFragment();
-    }
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        showcaseViewModel = ViewModelProviders.of(this, new ShowcaseViewModelFactory())
-                .get(ShowcaseViewModel.class);
+        categoryViewModel = ViewModelProviders.of(this, new CategoryViewModelFactory())
+                .get(CategoryViewModel.class);
     }
 
     @Override
@@ -60,8 +59,9 @@ public class ShowcaseFragment extends Fragment {
         categoryListRecyclerView.setHasFixedSize(true);
         categoryListRecyclerView.setLayoutManager(new LinearLayoutManager(
                         this.getContext(), LinearLayoutManager.VERTICAL, false));
+        categoryListRecyclerView.setAdapter(new CategoryListAdapter(new ArrayList<Category>()));
 
-        showcaseViewModel.getQueryResult().observe(getViewLifecycleOwner(),
+        categoryViewModel.getQueryResult().observe(getViewLifecycleOwner(),
                 new Observer<QueryResult>() {
             @Override
             public void onChanged(QueryResult queryResult) {
@@ -79,6 +79,6 @@ public class ShowcaseFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        showcaseViewModel.reload();
+        categoryViewModel.reload();
     }
 }

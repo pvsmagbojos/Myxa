@@ -1,5 +1,6 @@
-package softeng2.teamhortons.myxa.ui.menu.fragment.showcase.recyclerview;
+package softeng2.teamhortons.myxa.ui.menu.fragment.showcase.adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,13 +21,14 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
 
     static class RecipeListViewHolder extends RecyclerView.ViewHolder {
         ImageView previewImageView;
-        RecipeListViewHolder(ImageView v) {
+        RecipeListViewHolder(View v) {
             super(v);
-            previewImageView = v;
+            previewImageView = v.findViewById(R.id.imageView_preview);
         }
     }
 
     RecipeListAdapter(ArrayList<Recipe> dataset) {
+        Log.d("RecipeListDataSet", dataset.toString());
         this.dataset = dataset;
     }
 
@@ -36,9 +38,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_showcase_recipe, parent, false);
 
-        ImageView previewImageView = view.findViewById(R.id.imageView_preview);
-
-        return new RecipeListViewHolder(previewImageView);
+        return new RecipeListViewHolder(view);
     }
 
     // Replace the contents of a view (invoked by the layout manager)

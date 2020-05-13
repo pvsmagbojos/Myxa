@@ -1,4 +1,4 @@
-package softeng2.teamhortons.myxa.ui.menu.fragment.showcase.recyclerview;
+package softeng2.teamhortons.myxa.ui.menu.fragment.showcase.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +16,7 @@ import softeng2.teamhortons.myxa.data.model.Category;
 
 public class CategoryListAdapter extends
         RecyclerView.Adapter<CategoryListAdapter.CategoryListViewHolder> {
+
     private ArrayList<Category> dataset;
 
     static class CategoryListViewHolder extends RecyclerView.ViewHolder {
@@ -39,8 +40,8 @@ public class CategoryListAdapter extends
     public CategoryListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_showcase_category, parent, false);
-        CategoryListViewHolder vh = new CategoryListViewHolder(v);
-        return vh;
+
+        return new CategoryListViewHolder(v);
     }
 
     @Override
@@ -52,6 +53,7 @@ public class CategoryListAdapter extends
 
         llm.setInitialPrefetchItemCount(3);
 
+        holder.recipeListRecyclerView.setLayoutManager(llm);
         holder.recipeListRecyclerView.setAdapter(
                 new RecipeListAdapter(dataset.get(position).getRecipes()));
     }
