@@ -74,13 +74,10 @@ public class ViewRecipeActivity extends AppCompatActivity {
         }
         procedureTextView.setText(procedures);
 
-
-
-
         //price
         Double rPrice = getIntent().getDoubleExtra("recipePrice", 0.0);
         price = rPrice.toString();
-        priceTextView.setText(price);
+        priceTextView.setText(price+"0");
 
         //buttons
         backButton.setOnClickListener(new View.OnClickListener() {
