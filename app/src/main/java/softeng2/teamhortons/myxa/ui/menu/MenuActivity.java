@@ -43,7 +43,6 @@ public class MenuActivity extends AppCompatActivity implements RecipeListAdapter
         String img = recipe.getImgUriPreview();
 
 
-
         //pass values
         Intent intent = new Intent(this, ViewRecipeActivity.class);
         intent.putExtra("recipeName", rName);
