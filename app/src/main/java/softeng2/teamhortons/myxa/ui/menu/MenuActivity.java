@@ -12,10 +12,12 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import softeng2.teamhortons.myxa.R;
+import softeng2.teamhortons.myxa.ViewRecipeActivity;
 import softeng2.teamhortons.myxa.data.model.Recipe;
 import softeng2.teamhortons.myxa.ui.menu.fragment.showcase.adapter.RecipeListAdapter;
 
@@ -36,17 +38,24 @@ public class MenuActivity extends AppCompatActivity implements RecipeListAdapter
     public void viewModal(Recipe recipe) {
         String rName = recipe.getName();
         Double rPrice = recipe.getPrice();
-        ArrayList<String> rProcedure = recipe.getProcedure();
         HashMap<String, String> rIngredients = recipe.getRecipe_ingredients();
+        ArrayList<String> rProcedure = recipe.getProcedure();
+        String img = recipe.getImgUriPreview();
 
-        //set rName to modal
-        //set rPrice to modal
-        //set rProcedure to modal
-        //set rIngredients to modal
 
+        //pass values
+        Intent intent = new Intent(this, ViewRecipeActivity.class);
+        intent.putExtra("recipeName", rName);
+        intent.putExtra("recipeIngredients", rIngredients);
+
+        Bundle args = new Bundle();
+        args.putSerializable("recipeProcedure",(Serializable)rProcedure);
+        intent.putExtra("BUNDLE",args);
+
+        intent.putExtra("recipePrice", rPrice);
+        intent.putExtra("recipeImage", img);
         //show modal
-
-
+        startActivity(intent);
     }
 
     @Override
