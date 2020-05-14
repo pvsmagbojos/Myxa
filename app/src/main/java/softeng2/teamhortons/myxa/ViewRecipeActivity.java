@@ -38,7 +38,7 @@ public class ViewRecipeActivity extends AppCompatActivity {
     public List<String> ingredientName;
     public List<String> ingredientQty;
 
-    public List<String> procedure;
+    public ArrayList<String> procedure;
     public String price;
     // -----------------------------
 
@@ -59,19 +59,28 @@ public class ViewRecipeActivity extends AppCompatActivity {
         getIntent();
 
         //recipeName - fix autosizing
-        recipeTextView.setText(getIntent().getStringExtra("recipeName"));
+        recipeName = getIntent().getStringExtra("recipeName");
+        recipeTextView.setText(recipeName);
 
-        //ingredients - fix
+        //ingredients - fix this
         ingredientsTextView.setText(getIntent().getSerializableExtra("recipeIngredients").toString());
 
         //procedure - fix
-//        Bundle args = getIntent().getBundleExtra("BUNDLE");
-//        ArrayList<String> procedures = (ArrayList<String>) args.getSerializable("ARRAYLIST");
-//        procedureTextView.setText(procedures.toString());
+        procedure = getIntent().getStringArrayListExtra("recipeProcedure");
+        String procedures = "";
+
+        for(int i=0; i<procedure.size();i++){
+            procedures += (i+1) + ". " + procedure.get(i) + "\n";
+        }
+        procedureTextView.setText(procedures);
+
+
+
 
         //price
-        Double price = getIntent().getDoubleExtra("recipePrice", 0.0);
-        priceTextView.setText(price.toString());
+        Double rPrice = getIntent().getDoubleExtra("recipePrice", 0.0);
+        price = rPrice.toString();
+        priceTextView.setText(price);
 
         //buttons
         backButton.setOnClickListener(new View.OnClickListener() {

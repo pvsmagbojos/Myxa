@@ -42,16 +42,11 @@ public class MenuActivity extends AppCompatActivity implements RecipeListAdapter
         ArrayList<String> rProcedure = recipe.getProcedure();
         String img = recipe.getImgUriPreview();
 
-
         //pass values
         Intent intent = new Intent(this, ViewRecipeActivity.class);
         intent.putExtra("recipeName", rName);
         intent.putExtra("recipeIngredients", rIngredients);
-
-        Bundle args = new Bundle();
-        args.putSerializable("recipeProcedure",(Serializable)rProcedure);
-        intent.putExtra("BUNDLE",args);
-
+        intent.putExtra("recipeProcedure",rProcedure);
         intent.putExtra("recipePrice", rPrice);
         intent.putExtra("recipeImage", img);
         //show modal
