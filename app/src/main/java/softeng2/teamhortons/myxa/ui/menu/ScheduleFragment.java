@@ -1,4 +1,4 @@
-package softeng2.teamhortons.myxa.ui.menu.fragment;
+package softeng2.teamhortons.myxa.ui.menu;
 
 import android.os.Bundle;
 
@@ -13,10 +13,11 @@ import softeng2.teamhortons.myxa.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CartFragment extends Fragment
+public class ScheduleFragment extends Fragment
 {
 
-    public CartFragment() {
+    public ScheduleFragment()
+    {
         // Required empty public constructor
     }
 
@@ -26,6 +27,6 @@ public class CartFragment extends Fragment
                              Bundle savedInstanceState)
     {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cart, container, false);
+        return inflater.inflate(R.layout.fragment_schedule, container, false);
     }
 }

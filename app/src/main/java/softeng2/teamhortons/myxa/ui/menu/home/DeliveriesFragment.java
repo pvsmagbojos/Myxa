@@ -1,4 +1,4 @@
-package softeng2.teamhortons.myxa.ui.menu.fragment;
+package softeng2.teamhortons.myxa.ui.menu.home;
 
 import android.os.Bundle;
 

@@ -1,4 +1,4 @@
-package softeng2.teamhortons.myxa.ui.menu.fragment.showcase;
+package softeng2.teamhortons.myxa.ui.menu.home.showcase;
 
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -20,9 +20,7 @@ import java.util.ArrayList;
 
 import softeng2.teamhortons.myxa.R;
 import softeng2.teamhortons.myxa.data.model.Category;
-import softeng2.teamhortons.myxa.data.model.Recipe;
-import softeng2.teamhortons.myxa.ui.menu.fragment.showcase.adapter.CategoryListAdapter;
-import softeng2.teamhortons.myxa.ui.menu.fragment.showcase.adapter.RecipeListAdapter;
+import softeng2.teamhortons.myxa.ui.menu.home.showcase.adapter.CategoryListAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -55,8 +53,6 @@ public class ShowcaseFragment extends Fragment{
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
         final RecyclerView categoryListRecyclerView = view.findViewById(R.id.recyclerView_category);
         categoryListRecyclerView.setHasFixedSize(true);
         categoryListRecyclerView.setLayoutManager(new LinearLayoutManager(

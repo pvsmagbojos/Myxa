@@ -3,7 +3,6 @@ package softeng2.teamhortons.myxa.ui.menu;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -19,7 +18,7 @@ import java.util.HashMap;
 import softeng2.teamhortons.myxa.R;
 import softeng2.teamhortons.myxa.ViewRecipeActivity;
 import softeng2.teamhortons.myxa.data.model.Recipe;
-import softeng2.teamhortons.myxa.ui.menu.fragment.showcase.adapter.RecipeListAdapter;
+import softeng2.teamhortons.myxa.ui.menu.home.showcase.adapter.RecipeListAdapter;
 
 
 public class MenuActivity extends AppCompatActivity implements RecipeListAdapter.OnItemClickListener {

@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_schedule"
-        android:name="softeng2.teamhortons.myxa.ui.menu.fragment.ScheduleFragment"
+        android:name="softeng2.teamhortons.myxa.ui.menu.ScheduleFragment"
         android:label="@string/title_schedule"
         tools:layout="@layout/fragment_schedule" />
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="softeng2.teamhortons.myxa.ui.menu.fragment.HomeFragment"
+        android:name="softeng2.teamhortons.myxa.ui.menu.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_cart"
-        android:name="softeng2.teamhortons.myxa.ui.menu.fragment.CartFragment"
+        android:name="softeng2.teamhortons.myxa.ui.menu.CartFragment"
         android:label="@string/title_cart"
         tools:layout="@layout/fragment_cart" />
 
