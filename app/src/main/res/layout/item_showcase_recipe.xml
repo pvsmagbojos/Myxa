@@ -5,11 +5,17 @@
     android:layout_height="wrap_content"
     android:background="@android:color/transparent">
 
-    <ImageView
-        android:id="@+id/imageView_preview"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
-        android:layout_margin="16dp"
-        app:srcCompat="@drawable/placeholder_showcase_item" />
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="10dp">
+
+        <ImageView
+            android:id="@+id/imageView_preview"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            app:srcCompat="@drawable/placeholder_showcase_item" />
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>
