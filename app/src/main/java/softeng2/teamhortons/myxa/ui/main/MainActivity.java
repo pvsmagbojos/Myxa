@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
             public void onFinish() {
                 if(mainViewModel.isLoggedIn()) {
                     startActivity(new Intent(getApplicationContext(), MenuActivity.class));
+                    finish();
                 } else {
                     startActivityForResult(
                             new Intent(getApplicationContext(), LoginActivity.class),
