@@ -1,4 +1,4 @@
-package softeng2.teamhortons.myxa;
+package softeng2.teamhortons.myxa.ui;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import softeng2.teamhortons.myxa.R;
 import softeng2.teamhortons.myxa.ui.signup.customer.SignupActivity;
 import softeng2.teamhortons.myxa.ui.signup.rider.RiderSignUpActivity;
 

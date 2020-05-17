@@ -1,4 +1,4 @@
-package softeng2.teamhortons.myxa;
+package softeng2.teamhortons.myxa.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,6 +25,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import softeng2.teamhortons.myxa.R;
 
 public class ViewRecipeActivity extends AppCompatActivity {
     public static int REQUEST_CODE = 1;
