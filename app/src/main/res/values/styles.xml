@@ -1,11 +1,11 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:background">@color/background</item>
+        <item name="background">@color/background</item>
         <item name="android:textColor">@color/textColor</item>
         <item name="android:editTextColor">@color/textColor</item>
         <item name="android:editTextBackground">@drawable/ic_edit_text_background</item>
@@ -22,6 +22,7 @@
 
     <style name="AppTheme.TabLayout" parent="AppTheme">
         <item name="android:background">@color/colorPrimaryAlpha50</item>
+        <item name="tabBackground">@android:color/transparent</item>
         <item name="tabIndicator">@drawable/tab_indicator</item>
         <item name="tabIndicatorColor">@color/colorPrimaryDark</item>
         <item name="tabIndicatorFullWidth">false</item>
