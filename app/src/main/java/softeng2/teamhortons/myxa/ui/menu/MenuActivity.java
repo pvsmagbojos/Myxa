@@ -11,13 +11,12 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import softeng2.teamhortons.myxa.R;
-import softeng2.teamhortons.myxa.ViewRecipeActivity;
 import softeng2.teamhortons.myxa.data.model.Recipe;
+import softeng2.teamhortons.myxa.ui.ViewRecipeActivity;
 import softeng2.teamhortons.myxa.ui.menu.home.showcase.adapter.RecipeListAdapter;
 
 
@@ -48,7 +47,7 @@ public class MenuActivity extends AppCompatActivity implements RecipeListAdapter
         intent.putExtra("recipeIngredients", rIngredients);
 
         Bundle args = new Bundle();
-        args.putSerializable("recipeProcedure",(Serializable)rProcedure);
+        args.putSerializable("recipeProcedure", rProcedure);
         intent.putExtra("BUNDLE",args);
 
         intent.putExtra("recipePrice", rPrice);

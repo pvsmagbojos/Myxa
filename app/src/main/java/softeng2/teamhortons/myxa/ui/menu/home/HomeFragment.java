@@ -17,6 +17,8 @@ import softeng2.teamhortons.myxa.R;
 
 public class HomeFragment extends Fragment {
 
+    private String[] titles = new String[]{"For You", "Favorites", "Deliveries"};
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -36,23 +38,8 @@ public class HomeFragment extends Fragment {
         viewPager.setUserInputEnabled(false);
         viewPager.setAdapter(homePagerAdapter);
 
-        TabLayout tabLayout = view.findViewById(R.id.tab_layout);
+        TabLayout tabLayout = view.findViewById(R.id.tabLayout_home);
         new TabLayoutMediator(tabLayout, viewPager,
-                new TabLayoutMediator.TabConfigurationStrategy() {
-                    @Override
-                    public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-                        switch (position) {
-                            case 0:
-                                tab.setText("For you");
-                                break;
-                            case 1:
-                                tab.setText("Your favorites");
-                                break;
-                            case 2:
-                                tab.setText("Deliveries");
-                                break;
-                        }
-                    }
-                }).attach();
+                (tab, position) -> tab.setText(titles[position])).attach();
     }
 }

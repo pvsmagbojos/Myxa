@@ -2,15 +2,11 @@ package softeng2.teamhortons.myxa.ui.menu.home.showcase;
 
 import android.util.Log;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -40,39 +36,28 @@ class CategoryViewModel extends ViewModel {
             }
         } else {
             showcaseRepository.fetchCategoryListFromRemote()
-                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                        @Override
-                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            final ArrayList<Category> categories = new ArrayList<>();
+                .addOnSuccessListener(categoryDocumentSnapshots -> {
+                    final ArrayList<Category> categories = new ArrayList<>();
 
-                            for(DocumentSnapshot document : queryDocumentSnapshots) {
-                                final Category category = document.toObject(Category.class);
-                                if (category != null) {
-                                    showcaseRepository.fetchRecipeListFromRemote(category.getTag())
-                                            .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                                                @Override
-                                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                                                    category.setRecipes(new ArrayList<Recipe>());
-                                                    for(DocumentSnapshot document : queryDocumentSnapshots) {
-                                                        category.getRecipes().add(document.toObject(Recipe.class));
-                                                        Log.d("tag", category.getTag());
-                                                    }
+                    for(DocumentSnapshot document : categoryDocumentSnapshots) {
+                        final Category category = document.toObject(Category.class);
+                        if (category != null) {
+                            showcaseRepository.fetchRecipeListFromRemote(category.getTag())
+                                .addOnSuccessListener(recipeDocumentSnapshots -> {
+                                    category.setRecipes(new ArrayList<>());
+                                    for(DocumentSnapshot document1 : recipeDocumentSnapshots) {
+                                        category.getRecipes().add(document1.toObject(Recipe.class));
+                                        Log.d("tag", category.getTag());
+                                    }
 
-                                                    categories.add(category);
-                                                    queryResult.setValue(new QueryResult(categories));
+                                    categories.add(category);
+                                    queryResult.setValue(new QueryResult(categories));
 
-                                                }
-                                            });
-                                }
-                            }
+                                });
                         }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            queryResult.setValue(new QueryResult(e));
-                        }
-                    });
+                    }
+                })
+                    .addOnFailureListener(e -> queryResult.setValue(new QueryResult(e)));
         }
     }
 }

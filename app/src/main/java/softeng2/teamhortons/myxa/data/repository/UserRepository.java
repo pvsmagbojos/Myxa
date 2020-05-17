@@ -2,15 +2,9 @@ package softeng2.teamhortons.myxa.data.repository;
 
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.Objects;
 
 import softeng2.teamhortons.myxa.data.model.User;
 
@@ -44,18 +38,11 @@ public class UserRepository {
         final User user = new User(email, fName, lName, age, isMale).withId(userId);
 
         dataSource.collection("users").document(userId).set(user)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        UserRepository.this.user = user;
-                        Log.d("SUCCESS", "Successfully recorded to database");
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.e("ERROR", "Database connection Error", e);
-            }
-        });
+                .addOnSuccessListener(aVoid -> {
+                    UserRepository.this.user = user;
+                    Log.d("SUCCESS", "Successfully recorded to database");
+                }).addOnFailureListener(
+                        e -> Log.e("ERROR", "Database connection Error", e));
     }
 
     public User getUser() {
@@ -69,21 +56,14 @@ public class UserRepository {
 
     private Task<DocumentSnapshot> refreshUserData() {
         return dataSource.collection("users").document(this.userId).get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        if(documentSnapshot.toObject(User.class) != null) {
-                            UserRepository.this.user = documentSnapshot.toObject(User.class);
-                            Log.d("SUCCESS", "Successfully retrieved user data");
-                        } else {
-                            Log.e("ERROR", "Data not found", new Exception());
-                        }
+                .addOnSuccessListener(documentSnapshot -> {
+                    if(documentSnapshot.toObject(User.class) != null) {
+                        UserRepository.this.user = documentSnapshot.toObject(User.class);
+                        Log.d("SUCCESS", "Successfully retrieved user data");
+                    } else {
+                        Log.e("ERROR", "Data not found", new Exception());
                     }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.e("ERROR", "User data retrieval failed", e);
-            }
-        });
+                }).addOnFailureListener(
+                        e -> Log.e("ERROR", "User data retrieval failed", e));
     }
 }

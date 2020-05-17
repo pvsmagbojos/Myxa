@@ -39,15 +39,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/raleway_bold"
-        android:labelFor="@id/editText_confirm_password"
+        android:labelFor="@id/editText_password"
         android:text="@string/prompt_password"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/editText_confirm_password"
-        app:layout_constraintEnd_toEndOf="@+id/editText_confirm_password"
-        app:layout_constraintStart_toStartOf="@+id/editText_confirm_password" />
+        app:layout_constraintBottom_toTopOf="@+id/editText_password"
+        app:layout_constraintEnd_toEndOf="@+id/editText_password"
+        app:layout_constraintStart_toStartOf="@+id/editText_password" />
 
     <EditText
-        android:id="@+id/editText_confirm_password"
+        android:id="@+id/editText_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"

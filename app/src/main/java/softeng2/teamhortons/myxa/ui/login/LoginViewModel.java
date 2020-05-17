@@ -2,16 +2,9 @@ package softeng2.teamhortons.myxa.ui.login;
 
 import android.util.Patterns;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 
 import softeng2.teamhortons.myxa.R;
 import softeng2.teamhortons.myxa.data.repository.AuthRepository;
@@ -37,22 +30,10 @@ class LoginViewModel extends ViewModel {
 
     void login(String email, String password) {
         authRepository.login(email, password).addOnCompleteListener(
-                new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                task.addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                    @Override
-                    public void onSuccess(AuthResult authResult) {
-                        loginResult.setValue(new LoginResult(authResult.getUser()));
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        loginResult.setValue(new LoginResult(R.string.toast_login_failed));
-                    }
-                });
-            }
-        });
+                task -> task.addOnSuccessListener(
+                        authResult -> loginResult.setValue(new LoginResult(authResult.getUser())))
+                .addOnFailureListener(
+                        e -> loginResult.setValue(new LoginResult(R.string.toast_login_failed))));
     }
 
     void loginDataChanged(String email, String password) {

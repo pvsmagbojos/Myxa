@@ -1,12 +1,9 @@
 package softeng2.teamhortons.myxa.ui.menu.home;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import softeng2.teamhortons.myxa.ui.menu.ScheduleFragment;
 import softeng2.teamhortons.myxa.ui.menu.home.showcase.ShowcaseFragment;
 
 public class HomePagerAdapter extends FragmentStateAdapter {
@@ -17,7 +14,6 @@ public class HomePagerAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        Log.d("pageradapter", String.valueOf(position));
         switch(position) {
             case 0:
                 return new ShowcaseFragment();
@@ -26,7 +22,7 @@ public class HomePagerAdapter extends FragmentStateAdapter {
             case 2:
                 return new DeliveriesFragment();
         }
-        return new ScheduleFragment();
+        return new ShowcaseFragment();
     }
 
     @Override

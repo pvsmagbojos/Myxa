@@ -1,25 +1,21 @@
 package softeng2.teamhortons.myxa.ui.menu.home.showcase;
 
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
 
 import softeng2.teamhortons.myxa.R;
-import softeng2.teamhortons.myxa.data.model.Category;
 import softeng2.teamhortons.myxa.ui.menu.home.showcase.adapter.CategoryListAdapter;
 
 /**
@@ -57,21 +53,18 @@ public class ShowcaseFragment extends Fragment{
         categoryListRecyclerView.setHasFixedSize(true);
         categoryListRecyclerView.setLayoutManager(new LinearLayoutManager(
                         this.getContext(), LinearLayoutManager.VERTICAL, false));
-        categoryListRecyclerView.setAdapter(new CategoryListAdapter(new ArrayList<Category>(), this.getContext()));
+        categoryListRecyclerView.setAdapter(new CategoryListAdapter(new ArrayList<>(), this.getContext()));
 
         categoryViewModel.getQueryResult().observe(getViewLifecycleOwner(),
-                new Observer<QueryResult>() {
-            @Override
-            public void onChanged(QueryResult queryResult) {
-                if (queryResult.getError() != null) {
-                    Log.e(TAG, "FetchFromRemote Failed", queryResult.getError());
-                }
-                if (queryResult.getSuccess() != null) {
-                    categoryListRecyclerView.swapAdapter(
-                            new CategoryListAdapter(queryResult.getSuccess(),getContext()),false);
-                }
-            }
-        });
+                queryResult -> {
+                    if (queryResult.getError() != null) {
+                        Log.e(TAG, "FetchFromRemote Failed", queryResult.getError());
+                    }
+                    if (queryResult.getSuccess() != null) {
+                        categoryListRecyclerView.swapAdapter(
+                                new CategoryListAdapter(queryResult.getSuccess(),getContext()),false);
+                    }
+                });
     }
 
     @Override

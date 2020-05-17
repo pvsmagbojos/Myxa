@@ -3,15 +3,14 @@ package softeng2.teamhortons.myxa.ui.main;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 import softeng2.teamhortons.myxa.R;
-import softeng2.teamhortons.myxa.ui.menu.MenuActivity;
 import softeng2.teamhortons.myxa.ui.login.LoginActivity;
+import softeng2.teamhortons.myxa.ui.menu.MenuActivity;
 
 import static softeng2.teamhortons.myxa.generic.RequestCode.REQUEST_LOGIN;
 
