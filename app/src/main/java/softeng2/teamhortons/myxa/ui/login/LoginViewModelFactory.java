@@ -4,8 +4,6 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.annotation.NonNull;
 
-import com.google.firebase.auth.FirebaseAuth;
-
 import softeng2.teamhortons.myxa.data.repository.AuthRepository;
 
 /**
