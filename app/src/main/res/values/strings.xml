@@ -43,7 +43,6 @@
     <string name="prompt_plate_number">"Plate Number"</string>
     <string name="prompt_license_number">"License Number"</string>
 
-
     <string-array name="gender">
         <item>Male</item>
         <item>Female</item>
