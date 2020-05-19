@@ -16,13 +16,13 @@ public class AuthRepository {
     private FirebaseAuth dataSource;
 
     // private constructor : singleton access
-    private AuthRepository(FirebaseAuth dataSource) {
-        this.dataSource = dataSource;
+    private AuthRepository() {
+        this.dataSource = FirebaseAuth.getInstance();
     }
 
-    public static AuthRepository getInstance(FirebaseAuth dataSource) {
+    public static AuthRepository getInstance() {
         if(instance == null){
-            instance = new AuthRepository(dataSource);
+            instance = new AuthRepository();
         }
         return instance;
     }

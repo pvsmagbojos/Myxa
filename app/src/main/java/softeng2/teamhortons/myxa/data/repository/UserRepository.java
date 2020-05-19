@@ -23,13 +23,13 @@ public class UserRepository {
     private String userId = null;
 
     // private constructor : singleton access
-    private UserRepository(FirebaseFirestore dataSource) {
-        this.dataSource = dataSource;
+    private UserRepository() {
+        this.dataSource = FirebaseFirestore.getInstance();
     }
 
-    public static UserRepository getInstance(FirebaseFirestore dataSource) {
+    public static UserRepository getInstance() {
         if(instance == null){
-            instance = new UserRepository(dataSource);
+            instance = new UserRepository();
         }
         return instance;
     }

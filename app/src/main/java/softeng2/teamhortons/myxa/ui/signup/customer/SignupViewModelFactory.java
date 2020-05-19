@@ -20,8 +20,8 @@ public class SignupViewModelFactory implements ViewModelProvider.Factory {
     @SuppressWarnings("unchecked")
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         if (modelClass.isAssignableFrom(SignupViewModel.class)) {
-            return (T) new SignupViewModel(AuthRepository.getInstance(FirebaseAuth.getInstance()),
-                    UserRepository.getInstance(FirebaseFirestore.getInstance()));
+            return (T) new SignupViewModel(AuthRepository.getInstance(),
+                    UserRepository.getInstance());
         } else {
             throw new IllegalArgumentException("Unknown ViewModel class");
         }

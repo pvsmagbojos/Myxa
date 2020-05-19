@@ -13,7 +13,7 @@ public class CategoryViewModelFactory implements ViewModelProvider.Factory {
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         if (modelClass.isAssignableFrom(CategoryViewModel.class)) {
-            return (T) new CategoryViewModel(ShowcaseRepository.getInstance(FirebaseFirestore.getInstance()));
+            return (T) new CategoryViewModel(ShowcaseRepository.getInstance());
         } else {
             throw new IllegalArgumentException("Unknown ViewModel class");
         }
