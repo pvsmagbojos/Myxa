@@ -26,12 +26,8 @@ public class ShowcaseFragment extends Fragment{
     private ShowcaseViewModel showcaseViewModel;
     private String TAG = "ShowcaseFragment";
 
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
     public ShowcaseFragment() {
-        //ignore
+        // Required empty public constructor
     }
 
     @Override

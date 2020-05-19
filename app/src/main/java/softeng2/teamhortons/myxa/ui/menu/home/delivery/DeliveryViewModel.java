@@ -4,6 +4,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import java.util.ArrayList;
 
 import softeng2.teamhortons.myxa.data.model.Order;
@@ -23,7 +26,33 @@ class DeliveryViewModel extends ViewModel {
     }
 
     LiveData<QueryResult> getQueryResult() {
+        reload();
         return queryResult;
+    }
+
+    LiveData<ArrayList<Order>> getPastOrdersList() {
+        return pastOrdersList;
+    }
+
+    LiveData<ArrayList<Order>> getOngoingOrdersList() {
+        return ongoingOrdersList;
+    }
+
+    LiveData<ArrayList<Order>> getScheduledOrdersList() {
+        return scheduledOrdersList;
+    }
+
+    void reload() {
+        if (this.queryResult.getValue() != null) {
+            if(queryResult.getValue().getSuccess() != null) {
+                queryResult.setValue(this.queryResult.getValue());
+            }
+        } else {
+            deliveryRepository.fetchDeliveryListFromRemote().addOnSuccessListener(
+                    queryDocumentSnapshots -> {
+
+            }).addOnFailureListener(e -> queryResult.setValue(new QueryResult(e)));
+        }
     }
 }
 
