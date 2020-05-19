@@ -43,7 +43,7 @@ class SignupViewModel extends ViewModel {
                             age,
                             email);
                 }).addOnFailureListener(
-                    e -> signupResult.setValue(new SignupResult(R.string.signup_failed))));
+                    e -> signupResult.setValue(new SignupResult(R.string.toast_signup_failed))));
     }
     void signUpDataChanged(String fName, String lName, String gender, String age,String email,
             String password, String confirmPassword) {

@@ -6,6 +6,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="background">@color/background</item>
+        <item name="android:fontFamily">@font/raleway</item>
         <item name="android:textColor">@color/textColor</item>
         <item name="android:editTextColor">@color/textColor</item>
         <item name="android:editTextBackground">@drawable/ic_edit_text_background</item>
@@ -19,13 +20,4 @@
     <style name="TextAppearance.AppTheme.Active" parent="TextAppearance.AppTheme">
         <item name="android:textColor">@color/colorPrimary</item>
     </style>
-
-    <style name="AppTheme.TabLayout" parent="AppTheme">
-        <item name="android:background">@color/colorPrimaryAlpha50</item>
-        <item name="tabBackground">@android:color/transparent</item>
-        <item name="tabIndicator">@drawable/tab_indicator</item>
-        <item name="tabIndicatorColor">@color/colorPrimaryDark</item>
-        <item name="tabIndicatorFullWidth">false</item>
-    </style>
-
 </resources>
