@@ -7,7 +7,7 @@
     tools:context=".ui.login.LoginActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/frameLayout_header"
+        android:id="@+id/constraintLayout_header"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/ic_logo_header_background"
@@ -17,7 +17,7 @@
 
         <ImageView
             android:id="@+id/imageView_logo_header"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="150dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
@@ -28,69 +28,84 @@
             android:elevation="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.51"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/myxa_512" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/textView_password"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearLayout_email"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/raleway_bold"
-        android:labelFor="@id/editText_password"
-        android:text="@string/prompt_password"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/editText_password"
-        app:layout_constraintEnd_toEndOf="@+id/editText_password"
-        app:layout_constraintStart_toStartOf="@+id/editText_password" />
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout_password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout_header">
 
-    <EditText
-        android:id="@+id/editText_password"
-        android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/textView_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/raleway_bold"
+            android:labelFor="@id/editText_email"
+            android:text="@string/prompt_email"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/editText_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:inputType="textEmailAddress" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout_password"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:inputType="textPassword"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/button_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_email" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout_email">
 
-    <TextView
-        android:id="@+id/textView_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/raleway_bold"
-        android:labelFor="@id/editText_email"
-        android:text="@string/prompt_email"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/editText_email"
-        app:layout_constraintEnd_toEndOf="@+id/editText_email"
-        app:layout_constraintStart_toStartOf="@+id/editText_email" />
+        <TextView
+            android:id="@+id/textView_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/raleway_bold"
+            android:labelFor="@id/editText_password"
+            android:text="@string/prompt_password"
+            android:textSize="18sp" />
 
-    <EditText
-        android:id="@+id/editText_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="16dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/editText_confirm_password"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout_header" />
+        <EditText
+            android:id="@+id/editText_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:inputType="textPassword" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/button_login"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
         android:background="@drawable/ic_rectangle_2"
         android:elevation="8dp"
         android:enabled="false"
@@ -98,9 +113,9 @@
         android:text="@string/button_log_in"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-        app:layout_constraintEnd_toEndOf="@+id/editText_confirm_password"
-        app:layout_constraintStart_toStartOf="@+id/editText_confirm_password"
-        app:layout_constraintTop_toBottomOf="@+id/editText_confirm_password" />
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout_password"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout_password"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout_password" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
