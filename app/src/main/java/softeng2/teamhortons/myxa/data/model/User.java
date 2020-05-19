@@ -3,6 +3,7 @@ package softeng2.teamhortons.myxa.data.model;
 /**
  * Data class that captures user information for logged in users retrieved from LoginRepository
  */
+@SuppressWarnings("unused")
 public class User extends Model {
 
     private String email;
@@ -11,10 +12,8 @@ public class User extends Model {
     private int age;
     private boolean isMale;
 
-    @SuppressWarnings("unused")
     public User() {
-        super();
-        // Default constructor required for calls to DataSnapshot.getValue(User.class)
+        // Default constructor required for calls to DataSnapshot.toObject(User.class)
     }
 
     public User(String email, String firstName, String lastName, int age, boolean isMale) {

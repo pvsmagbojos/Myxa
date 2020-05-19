@@ -1,10 +1,9 @@
 package softeng2.teamhortons.myxa.data.model;
 
-import com.google.firebase.firestore.PropertyName;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
+@SuppressWarnings("unused")
 public class Recipe {
     private String name;
     private double price;
@@ -16,7 +15,7 @@ public class Recipe {
 
     @SuppressWarnings("unused")
     public Recipe() {
-        // Default constructor required for calls to DataSnapshot.getValue(Recipe.class)
+        // Default constructor required for calls to DataSnapshot.toObject(Recipe.class)
     }
 
     public String getName() {
