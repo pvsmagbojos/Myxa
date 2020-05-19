@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 import softeng2.teamhortons.myxa.R;
-import softeng2.teamhortons.myxa.ui.SelectSignupActivity;
+import softeng2.teamhortons.myxa.ui.signup.SelectSignupActivity;
 import softeng2.teamhortons.myxa.ui.menu.MenuActivity;
 
 import static softeng2.teamhortons.myxa.generic.RequestCode.REQUEST_SIGNUP;
