@@ -27,7 +27,7 @@ public class CategoryListAdapter extends
         CategoryListViewHolder(View v) {
             super(v);
             this.categoryDescTextView = v.findViewById(R.id.textView_category_desc);
-            this.recipeListRecyclerView = v.findViewById(R.id.recyclerView_recipe);
+            this.recipeListRecyclerView = v.findViewById(R.id.recyclerView_recipes);
         }
     }
 

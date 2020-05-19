@@ -23,7 +23,7 @@
         app:cardMaxElevation="0dp">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView_recipe"
+            android:id="@+id/recyclerView_recipes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent" />

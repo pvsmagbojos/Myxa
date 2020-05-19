@@ -49,7 +49,7 @@ public class ShowcaseFragment extends Fragment{
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        final RecyclerView categoryListRecyclerView = view.findViewById(R.id.recyclerView_category);
+        final RecyclerView categoryListRecyclerView = view.findViewById(R.id.recyclerView_categories);
         categoryListRecyclerView.setHasFixedSize(true);
         categoryListRecyclerView.setLayoutManager(new LinearLayoutManager(
                         this.getContext(), LinearLayoutManager.VERTICAL, false));
