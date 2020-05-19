@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import softeng2.teamhortons.myxa.ui.menu.home.delivery.DeliveryFragment;
 import softeng2.teamhortons.myxa.ui.menu.home.showcase.ShowcaseFragment;
 
 public class HomePagerAdapter extends FragmentStateAdapter {
@@ -20,7 +21,7 @@ public class HomePagerAdapter extends FragmentStateAdapter {
             case 1:
                 return new YourFavoriteFragment();
             case 2:
-                return new DeliveriesFragment();
+                return new DeliveryFragment();
         }
         return new ShowcaseFragment();
     }
