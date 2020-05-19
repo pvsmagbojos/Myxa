@@ -56,8 +56,7 @@ class ShowcaseViewModel extends ViewModel {
                                 });
                         }
                     }
-                })
-                    .addOnFailureListener(e -> queryResult.setValue(new QueryResult(e)));
+                }).addOnFailureListener(e -> queryResult.setValue(new QueryResult(e)));
         }
     }
 }

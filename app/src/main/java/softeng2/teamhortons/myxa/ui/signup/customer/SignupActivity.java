@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import softeng2.teamhortons.myxa.R;
 import softeng2.teamhortons.myxa.ui.menu.MenuActivity;
@@ -36,7 +36,7 @@ public class SignupActivity extends AppCompatActivity {
         final Button signupButton = findViewById(R.id.button_signup);
 
 
-        signupViewModel = ViewModelProviders.of(this, new SignupViewModelFactory())
+        signupViewModel = new ViewModelProvider(this, new SignupViewModelFactory())
                 .get(SignupViewModel.class);
 
         signupViewModel.getSignupFormState().observe(this, signupFormState -> {

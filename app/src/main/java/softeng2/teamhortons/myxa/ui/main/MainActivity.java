@@ -6,7 +6,7 @@ import android.os.CountDownTimer;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import softeng2.teamhortons.myxa.R;
 import softeng2.teamhortons.myxa.ui.login.LoginActivity;
@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mainViewModel = ViewModelProviders.of(this, new MainViewModelFactory())
+        mainViewModel = new ViewModelProvider(this, new MainViewModelFactory())
                 .get(MainViewModel.class);
 
         new CountDownTimer(2000,1000) {

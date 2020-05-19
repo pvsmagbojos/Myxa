@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -37,8 +37,8 @@ public class ShowcaseFragment extends Fragment{
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        showcaseViewModel = ViewModelProviders.of(this, new ShowcaseViewModelFactory())
-                .get(ShowcaseViewModel.class);
+        showcaseViewModel = new ViewModelProvider(this,
+                new ShowcaseViewModelFactory()).get(ShowcaseViewModel.class);
     }
 
     @Override

@@ -12,11 +12,11 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import softeng2.teamhortons.myxa.R;
-import softeng2.teamhortons.myxa.ui.signup.SelectSignupActivity;
 import softeng2.teamhortons.myxa.ui.menu.MenuActivity;
+import softeng2.teamhortons.myxa.ui.signup.SelectSignupActivity;
 
 import static softeng2.teamhortons.myxa.generic.RequestCode.REQUEST_SIGNUP;
 
@@ -28,7 +28,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory())
+        loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
 
         final EditText emailEditText = findViewById(R.id.editText_email);
