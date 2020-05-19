@@ -14,13 +14,13 @@ import softeng2.teamhortons.myxa.data.model.Category;
 import softeng2.teamhortons.myxa.data.model.Recipe;
 import softeng2.teamhortons.myxa.data.repository.ShowcaseRepository;
 
-class CategoryViewModel extends ViewModel {
+class ShowcaseViewModel extends ViewModel {
 
     private ShowcaseRepository showcaseRepository;
 
     private MutableLiveData<QueryResult> queryResult = new MutableLiveData<>();
 
-    CategoryViewModel(ShowcaseRepository showcaseRepository) {
+    ShowcaseViewModel(ShowcaseRepository showcaseRepository) {
         this.showcaseRepository = showcaseRepository;
     }
 

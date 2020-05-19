@@ -23,7 +23,7 @@ import softeng2.teamhortons.myxa.ui.menu.home.showcase.adapter.CategoryListAdapt
  */
 public class ShowcaseFragment extends Fragment{
 
-    private CategoryViewModel categoryViewModel;
+    private ShowcaseViewModel showcaseViewModel;
     private String TAG = "ShowcaseFragment";
 
     /**
@@ -37,8 +37,8 @@ public class ShowcaseFragment extends Fragment{
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        categoryViewModel = ViewModelProviders.of(this, new CategoryViewModelFactory())
-                .get(CategoryViewModel.class);
+        showcaseViewModel = ViewModelProviders.of(this, new ShowcaseViewModelFactory())
+                .get(ShowcaseViewModel.class);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class ShowcaseFragment extends Fragment{
                         this.getContext(), LinearLayoutManager.VERTICAL, false));
         categoryListRecyclerView.setAdapter(new CategoryListAdapter(new ArrayList<>(), this.getContext()));
 
-        categoryViewModel.getQueryResult().observe(getViewLifecycleOwner(),
+        showcaseViewModel.getQueryResult().observe(getViewLifecycleOwner(),
                 queryResult -> {
                     if (queryResult.getError() != null) {
                         Log.e(TAG, "FetchFromRemote Failed", queryResult.getError());
@@ -70,6 +70,6 @@ public class ShowcaseFragment extends Fragment{
     @Override
     public void onResume() {
         super.onResume();
-        categoryViewModel.reload();
+        showcaseViewModel.reload();
     }
 }
