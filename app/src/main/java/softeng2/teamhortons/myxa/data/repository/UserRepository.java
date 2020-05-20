@@ -20,7 +20,6 @@ public class UserRepository {
     // If user credentials will be cached in local storage, it is recommended it be encrypted
     // @see https://developer.android.com/training/articles/keystore
     private User user = null;
-    private String userId = null;
 
     // private constructor : singleton access
     private UserRepository() {
@@ -45,20 +44,16 @@ public class UserRepository {
                         e -> Log.e("ERROR", "Database connection Error", e));
     }
 
-    public User getUser() {
+    User getUser() {
         return this.user;
     }
 
-    public Task<DocumentSnapshot> setUser(String userId) {
-        this.userId = userId;
-        return refreshUserData();
-    }
 
-    private Task<DocumentSnapshot> refreshUserData() {
-        return dataSource.collection("users").document(this.userId).get()
+    public Task<DocumentSnapshot> refreshUserData(String userId) {
+        return dataSource.collection("users").document(userId).get()
                 .addOnSuccessListener(documentSnapshot -> {
                     if(documentSnapshot.toObject(User.class) != null) {
-                        UserRepository.this.user = documentSnapshot.toObject(User.class);
+                        user = documentSnapshot.toObject(User.class);
                         Log.d("SUCCESS", "Successfully retrieved user data");
                     } else {
                         Log.e("ERROR", "Data not found", new Exception());
