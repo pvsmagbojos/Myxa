@@ -34,12 +34,11 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
     }
 
     RecipeListAdapter(ArrayList<Recipe> dataset, Context context) {
-        Log.d("RecipeListDataSet", dataset.toString());
         this.dataset = dataset;
 
         try { this.mOnClick = ((OnItemClickListener) context); }
         catch (ClassCastException e) {
-            Log.e("ERROR", "this is a message", e);
+            Log.e("ERROR", e.getMessage(), e);
             throw new ClassCastException("Activity must implement OnItemClickListerner.");
         }
     }

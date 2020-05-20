@@ -8,11 +8,11 @@ import com.google.firebase.firestore.IgnoreExtraProperties;
 @IgnoreExtraProperties
 public class Order extends Model {
 
-    DocumentReference userRef;
-    DocumentReference riderRef;
-    double totalPrice;
-    Timestamp datePosted;
-    Timestamp dateCompleted;
+    private DocumentReference userRef;
+    private DocumentReference riderRef;
+    private double totalPrice;
+    private Timestamp datePosted;
+    private Timestamp dateCompleted;
 
     public Order() {
         // Default constructor required for calls to DataSnapshot.toObject(Order.class)
