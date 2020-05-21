@@ -14,7 +14,8 @@
     <string name="select_account_type">Select Account Type</string>
     <string name="select_one_of_the_choice_above">Select one of the choice above</string>
 
-    <string name="btn_continue">CONTINUE</string>
+    <string name="btn_continue">Continue</string>
+    <string name="btn_checkout">Checkout</string>
 
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -32,12 +33,15 @@
     <string name="invalid_password">Password must be at least 8 characters</string>
     <string name="invalid_confirm_password">Passwords do not match</string>
 
+    <string name="label_ongoing">Ongoing</string>
+    <string name="label_past">Past</string>
+
     <string name="toast_login_failed">"Login failed"</string>
-    <string name="signup_failed">"Sign-up failed"</string>
+    <string name="toast_signup_failed">"Sign-up failed"</string>
+
     <string name="action_continue_rider">"Continue"</string>
     <string name="prompt_plate_number">"Plate Number"</string>
     <string name="prompt_license_number">"License Number"</string>
-    <string name="btn_checkout">Checkout</string>
 
     <string-array name="gender">
         <item>Male</item>
@@ -48,23 +52,17 @@
     <string name="title_home">Home</string>
     <string name="title_schedule">Diet Schedule</string>
     <string name="title_cart">Your Cart</string>
+    <string name="nav_for_you">For You</string>
+    <string name="nav_your_fave">Favorites</string>
+    <string name="nav_deliveries">Deliveries</string>
 
     <string name="home_fragment_text">This is the home fragment</string>
     <string name="diet_schedule_fragment_text">This is the diet schedule fragment</string>
     <string name="your_cart_fragment_text">This is the your cart fragment</string>
-    <string name="your_favorites">Your Favorites</string>
-    <string name="deliveries">Deliveries</string>
-    <string name="for_you">For You</string>
-    <string name="popular_this_week">Popular this week</string>
-    <string name="your_recent_items">Your recent items</string>
-    <string name="healthy_options">Healthy options</string>
-    <string name="ongoing">Ongoing</string>
+
     <string name="scheduled">Scheduled</string>
-    <string name="past">Past</string>
     <string name="driver_on_the_way">Driver on the Way</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="load_ingredients_here">-load ingredients here-</string>
     <string name="content">Content</string>
     <string name="ingredients">Ingredients</string>
@@ -78,9 +76,7 @@
     <string name="recipe_name">Recipe Name</string>
     <string name="todo">TODO</string>
 
-    <string name="nav_for_you">For You</string>
-    <string name="nav_your_fave">Favorites</string>
-    <string name="nav_deliveries">Deliveries</string>
+
 
 
 </resources>

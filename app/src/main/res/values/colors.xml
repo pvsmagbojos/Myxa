@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#CDDC39</color>
-    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorPrimaryDark">#AFB42B</color>
     <color name="colorPrimaryPale">#F0F4C3</color>
     <color name="colorAccent">#FFEB3B</color>
     <color name="background">#FFFFFF</color>
@@ -9,6 +9,8 @@
     <color name="viewBackground">#80C4C4C4</color>
 
     <color name="colorPrimaryAlpha50">#80CDDC39</color>
+    <color name="colorPrimaryPaleAlpha50">#80F0F4C3</color>
+    <color name="colorPrimaryRipple">#1FCDDC39</color>
 
     <color name="colorSelectedPrimary">#CDDC39</color>
     <color name="colorUnselectedPrimary">#AAAFAA</color>

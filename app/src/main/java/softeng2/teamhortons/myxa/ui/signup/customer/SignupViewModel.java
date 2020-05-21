@@ -2,16 +2,9 @@ package softeng2.teamhortons.myxa.ui.signup.customer;
 
 import android.util.Patterns;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 
 import softeng2.teamhortons.myxa.R;
 import softeng2.teamhortons.myxa.data.repository.AuthRepository;
@@ -40,29 +33,17 @@ class SignupViewModel extends ViewModel {
     void signUp(final String firstName, final String lastName, final boolean isMale, final int age,
                 final String email, String password) {
         authRepository.signUp(email, password).addOnCompleteListener(
-                new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        task.addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                            @Override
-                            public void onSuccess(AuthResult authResult) {
-                                signupResult.setValue(new SignupResult(authResult.getUser()));
-                                userRepository.recordToDatabase(
-                                        authResult.getUser().getUid(),
-                                        firstName,
-                                        lastName,
-                                        isMale,
-                                        age,
-                                        email);
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                signupResult.setValue(new SignupResult(R.string.signup_failed));
-                            }
-                        });
-                    }
-                });
+                task -> task.addOnSuccessListener(authResult -> {
+                    signupResult.setValue(new SignupResult(authResult.getUser()));
+                    userRepository.recordToDatabase(
+                            authResult.getUser().getUid(),
+                            firstName,
+                            lastName,
+                            isMale,
+                            age,
+                            email);
+                }).addOnFailureListener(
+                    e -> signupResult.setValue(new SignupResult(R.string.toast_signup_failed))));
     }
     void signUpDataChanged(String fName, String lName, String gender, String age,String email,
             String password, String confirmPassword) {

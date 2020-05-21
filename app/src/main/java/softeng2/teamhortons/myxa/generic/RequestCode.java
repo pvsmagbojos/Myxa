@@ -1,10 +1,5 @@
 package softeng2.teamhortons.myxa.generic;
 
-import androidx.annotation.IntDef;
-
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-
 public class RequestCode {
     public static final int REQUEST_LOGIN = 0;
     public static final int REQUEST_SIGNUP = 1;

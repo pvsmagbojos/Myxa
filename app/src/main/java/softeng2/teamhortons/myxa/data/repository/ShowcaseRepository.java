@@ -12,13 +12,13 @@ public class ShowcaseRepository {
     private final String TAG = "ShowcaseRepository";
 
     // private constructor : singleton access
-    private ShowcaseRepository(FirebaseFirestore dataSource) {
-        this.dataSource = dataSource;
+    private ShowcaseRepository() {
+        this.dataSource = FirebaseFirestore.getInstance();
     }
 
-    public static ShowcaseRepository getInstance(FirebaseFirestore dataSource) {
+    public static ShowcaseRepository getInstance() {
         if(instance == null){
-            instance = new ShowcaseRepository(dataSource);
+            instance = new ShowcaseRepository();
         }
         return instance;
     }

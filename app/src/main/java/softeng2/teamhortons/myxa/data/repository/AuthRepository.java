@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 /**
  * Class that requests authentication and user information from Firebase authentication servers and
@@ -16,15 +17,19 @@ public class AuthRepository {
     private FirebaseAuth dataSource;
 
     // private constructor : singleton access
-    private AuthRepository(FirebaseAuth dataSource) {
-        this.dataSource = dataSource;
+    private AuthRepository() {
+        this.dataSource = FirebaseAuth.getInstance();
     }
 
-    public static AuthRepository getInstance(FirebaseAuth dataSource) {
+    public static AuthRepository getInstance() {
         if(instance == null){
-            instance = new AuthRepository(dataSource);
+            instance = new AuthRepository();
         }
         return instance;
+    }
+
+    public String getLoggedInUserId() {
+        return dataSource.getCurrentUser().getUid();
     }
 
     public boolean isLoggedIn() {

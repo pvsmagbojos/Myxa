@@ -19,12 +19,7 @@ public class RiderSignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_rider_signup_scroll);
 
         signUpButton = findViewById(R.id.rider_signup_button);
-        signUpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                backToLogin();
-            }
-        });
+        signUpButton.setOnClickListener(v -> backToLogin());
     }
 
     public void backToLogin(){

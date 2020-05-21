@@ -2,23 +2,22 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:background">@color/background</item>
+        <item name="background">@color/background</item>
+        <item name="android:fontFamily">@font/raleway</item>
         <item name="android:textColor">@color/textColor</item>
+        <item name="android:editTextColor">@color/textColor</item>
         <item name="android:editTextBackground">@drawable/ic_edit_text_background</item>
     </style>
 
-    <style name="BottomNavigationView" parent="@style/TextAppearance.AppCompat.Caption">
-        <item name="android:textSize">14sp</item>
+    <style name="TextAppearance.AppTheme" parent="@style/TextAppearance.AppCompat.Button">
         <item name="android:textColor">@color/textColor</item>
+        <item name="font">@font/raleway</item>
     </style>
 
-    <style name="BottomNavigationView.Active" parent="@style/TextAppearance.AppCompat.Caption">
-        <item name="android:textSize">14sp</item>
+    <style name="TextAppearance.AppTheme.Active" parent="TextAppearance.AppTheme">
         <item name="android:textColor">@color/colorPrimary</item>
     </style>
-
 </resources>

@@ -1,19 +1,19 @@
 package softeng2.teamhortons.myxa.data.model;
 
-import com.google.firebase.firestore.Exclude;
+import com.google.firebase.firestore.IgnoreExtraProperties;
 
 import java.util.ArrayList;
 
+@SuppressWarnings("unused")
+@IgnoreExtraProperties
 public class Category {
 
     private String desc;
     private String tag;
-    @Exclude
     private ArrayList<Recipe> recipes;
 
-    @SuppressWarnings("unused")
     public Category() {
-        // Default constructor required for calls to DataSnapshot.getValue(Category.class)
+        // Default constructor required for calls to DataSnapshot.toObject(Category.class)
     }
 
     public String getDesc() {

@@ -4,9 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
-
 import softeng2.teamhortons.myxa.data.repository.AuthRepository;
 import softeng2.teamhortons.myxa.data.repository.UserRepository;
 
@@ -20,8 +17,8 @@ public class SignupViewModelFactory implements ViewModelProvider.Factory {
     @SuppressWarnings("unchecked")
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         if (modelClass.isAssignableFrom(SignupViewModel.class)) {
-            return (T) new SignupViewModel(AuthRepository.getInstance(FirebaseAuth.getInstance()),
-                    UserRepository.getInstance(FirebaseFirestore.getInstance()));
+            return (T) new SignupViewModel(AuthRepository.getInstance(),
+                    UserRepository.getInstance());
         } else {
             throw new IllegalArgumentException("Unknown ViewModel class");
         }

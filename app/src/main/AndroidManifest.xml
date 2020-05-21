@@ -9,9 +9,9 @@
         android:roundIcon="@mipmap/myxa_logo_bg"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewRecipeActivity" />
+        <activity android:name=".ui.ViewRecipeActivity" />
         <activity android:name=".ui.menu.MenuActivity" />
-        <activity android:name=".SelectSignupActivity" />
+        <activity android:name=".ui.signup.SelectSignupActivity" />
         <activity android:name=".ui.signup.customer.SignupActivity" />
         <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".ui.signup.rider.RiderSignUpActivity" />

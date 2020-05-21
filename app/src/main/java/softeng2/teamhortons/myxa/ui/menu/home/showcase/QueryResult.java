@@ -1,4 +1,4 @@
-package softeng2.teamhortons.myxa.ui.menu.fragment.showcase;
+package softeng2.teamhortons.myxa.ui.menu.home.showcase;
 
 import androidx.annotation.Nullable;
 

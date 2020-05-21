@@ -1,13 +1,13 @@
-package softeng2.teamhortons.myxa;
+package softeng2.teamhortons.myxa.ui.signup;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-
+import softeng2.teamhortons.myxa.R;
 import softeng2.teamhortons.myxa.ui.signup.customer.SignupActivity;
 import softeng2.teamhortons.myxa.ui.signup.rider.RiderSignUpActivity;
 
@@ -23,23 +23,14 @@ public class SelectSignupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_select_signup);
 
         customerPortal = findViewById(R.id.customer_portal_button);
-        customerPortal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivityForResult(new Intent(getApplicationContext(),
-                                SignupActivity.class), REQUEST_SIGNUP_CUSTOMER);
-            }
-        });
+        customerPortal.setOnClickListener(v -> startActivityForResult(
+                new Intent(getApplicationContext(),
+                        SignupActivity.class), REQUEST_SIGNUP_CUSTOMER));
 
         riderPortal = findViewById(R.id.rider_portal_button);
-        riderPortal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivityForResult(
-                        new Intent(getApplicationContext(),
-                                RiderSignUpActivity.class), REQUEST_SIGNUP_RIDER);
-            }
-        });
+        riderPortal.setOnClickListener(v -> startActivityForResult(
+                new Intent(getApplicationContext(),
+                        RiderSignUpActivity.class), REQUEST_SIGNUP_RIDER));
     }
 
     @Override

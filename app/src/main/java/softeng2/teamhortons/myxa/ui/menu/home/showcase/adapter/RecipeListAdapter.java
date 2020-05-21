@@ -1,4 +1,4 @@
-package softeng2.teamhortons.myxa.ui.menu.fragment.showcase.adapter;
+package softeng2.teamhortons.myxa.ui.menu.home.showcase.adapter;
 
 import android.content.Context;
 import android.util.Log;
