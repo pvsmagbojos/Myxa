@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -44,18 +45,18 @@ public class ViewRecipeActivity extends AppCompatActivity {
 
         getIntent();
 
-        //recipeName - fix autosizing
         recipeTextView.setText(getIntent().getStringExtra("recipeName"));
 
         //ingredients - fix
         ingredientsTextView.setText(getIntent().getSerializableExtra("recipeIngredients").toString());
 
-        //procedure - fix
-//        Bundle args = getIntent().getBundleExtra("BUNDLE");
-//        ArrayList<String> procedures = (ArrayList<String>) args.getSerializable("ARRAYLIST");
-//        procedureTextView.setText(procedures.toString());
+        ArrayList<String> procedures = getIntent().getStringArrayListExtra("recipeProcedure");
+        String procedureText = "";
+        for(int i =0;i<procedures.size();i++){
+            procedureText += (i+1) + ". " + procedures.get(i) + "\n";
+        }
+        procedureTextView.setText(procedureText);
 
-        //price
         double price = getIntent().getDoubleExtra("recipePrice", 0.0);
         priceTextView.setText(Double.toString(price));
 

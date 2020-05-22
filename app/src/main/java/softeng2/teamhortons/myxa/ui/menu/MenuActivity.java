@@ -46,9 +46,7 @@ public class MenuActivity extends AppCompatActivity implements RecipeListAdapter
         intent.putExtra("recipeName", rName);
         intent.putExtra("recipeIngredients", rIngredients);
 
-        Bundle args = new Bundle();
-        args.putSerializable("recipeProcedure", rProcedure);
-        intent.putExtra("BUNDLE",args);
+        intent.putExtra("recipeProcedure",rProcedure);
 
         intent.putExtra("recipePrice", rPrice);
         intent.putExtra("recipeImage", img);
