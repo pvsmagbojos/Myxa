@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import softeng2.teamhortons.myxa.R;
+import softeng2.teamhortons.myxa.ui.RiderActivity;
 import softeng2.teamhortons.myxa.ui.menu.MenuActivity;
 import softeng2.teamhortons.myxa.ui.signup.SelectSignupActivity;
 
@@ -22,6 +23,7 @@ import static softeng2.teamhortons.myxa.generic.RequestCode.REQUEST_SIGNUP;
 
 public class LoginActivity extends AppCompatActivity {
     private LoginViewModel loginViewModel;
+    private LoginViewModelRider loginViewModelRider;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -30,10 +32,13 @@ public class LoginActivity extends AppCompatActivity {
 
         loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
+        loginViewModelRider = new ViewModelProvider(this, new LoginViewModelFactoryRider())
+                .get(LoginViewModelRider.class);
 
         final EditText emailEditText = findViewById(R.id.editText_email);
         final EditText passwordEditText = findViewById(R.id.editText_password);
-        final Button loginButton = findViewById(R.id.button_login);
+        final Button loginButtonCustomer = findViewById(R.id.button_login_customer);
+        final Button loginButtonRider = findViewById(R.id.button_login_rider);
         //final ProgressBar loadingProgressBar = findViewById(R.id.loading);
 
         findViewById(R.id.textView_register_link).setOnClickListener(v -> startActivityForResult(
@@ -44,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
             if (loginFormState == null) {
                 return;
             }
-            loginButton.setEnabled(loginFormState.isDataValid());
+            loginButtonCustomer.setEnabled(loginFormState.isDataValid());
             if (loginFormState.getEmailError() != null) {
                 emailEditText.setError(getString(loginFormState.getEmailError()));
             }
@@ -63,6 +68,20 @@ public class LoginActivity extends AppCompatActivity {
             }
             if (loginResult.getSuccess() != null) {
                 setResult(RESULT_OK, new Intent(LoginActivity.this, MenuActivity.class));
+                finish();
+            }
+        });
+
+        loginViewModelRider.getLoginResultRider().observe(this, loginResultRider -> {
+            if (loginResultRider == null) {
+                return;
+            }
+            //loadingProgressBar.setVisibility(View.GONE);
+            if (loginResultRider.getErrorRider() != null) {
+                showLoginFailed(loginResultRider.getErrorRider());
+            }
+            if (loginResultRider.getSuccessRider() != null) {
+                setResult(RESULT_OK, new Intent(LoginActivity.this, RiderActivity.class));
                 finish();
             }
         });
@@ -92,9 +111,14 @@ public class LoginActivity extends AppCompatActivity {
             return false;
         });
 
-        loginButton.setOnClickListener(v -> {
+        loginButtonCustomer.setOnClickListener(v -> {
             //loadingProgressBar.setVisibility(View.VISIBLE);
             loginViewModel.login(emailEditText.getText().toString(), passwordEditText.getText().toString());
+        });
+
+        loginButtonRider.setOnClickListener(v -> {
+            //loadingProgressBar.setVisibility(View.VISIBLE);
+            loginViewModelRider.loginRider(emailEditText.getText().toString(), passwordEditText.getText().toString());
         });
     }
 

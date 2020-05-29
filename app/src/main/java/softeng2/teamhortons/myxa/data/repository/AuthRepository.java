@@ -44,7 +44,7 @@ public class AuthRepository {
         return dataSource.createUserWithEmailAndPassword(email, password);
     }
 
-    public void logout() {
-        dataSource.signOut();
-    }
+//    public void logout() {
+//        dataSource.signOut();
+//    }
 }

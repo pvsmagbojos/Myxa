@@ -4,7 +4,9 @@
 
 
     <string name="button_sign_up">SIGN UP</string>
-    <string name="button_log_in">LOG IN</string>
+    <string name="log_in_as">LOG IN AS</string>
+    <string name="button_log_in_customer">CUSTOMER</string>
+    <string name="button_log_in_rider">RIDER</string>
     <string name="button_rider_portal">Rider Portal</string>
     <string name="button_customer_portal">Customer Portal</string>
 
