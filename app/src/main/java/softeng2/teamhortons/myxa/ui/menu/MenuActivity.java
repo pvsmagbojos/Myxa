@@ -38,7 +38,8 @@ public class MenuActivity extends AppCompatActivity implements RecipeListAdapter
         Double rPrice = recipe.getPrice();
         HashMap<String, String> rIngredients = recipe.getRecipe_ingredients();
         ArrayList<String> rProcedure = recipe.getProcedure();
-        String img = recipe.getImgUriPreview();
+        String imgPreview = recipe.getImgUriPreview();
+        String img = recipe.getImgUri();
 
 
         //pass values
@@ -49,6 +50,7 @@ public class MenuActivity extends AppCompatActivity implements RecipeListAdapter
         intent.putExtra("recipeProcedure",rProcedure);
 
         intent.putExtra("recipePrice", rPrice);
+        intent.putExtra("recipeImagePreview", imgPreview);
         intent.putExtra("recipeImage", img);
         //show modal
         startActivity(intent);
