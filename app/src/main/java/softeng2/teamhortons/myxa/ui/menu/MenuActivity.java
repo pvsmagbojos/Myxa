@@ -2,6 +2,7 @@ package softeng2.teamhortons.myxa.ui.menu;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -15,12 +16,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import softeng2.teamhortons.myxa.R;
+import softeng2.teamhortons.myxa.data.model.CartItem;
 import softeng2.teamhortons.myxa.data.model.Recipe;
 import softeng2.teamhortons.myxa.ui.ViewRecipeActivity;
+import softeng2.teamhortons.myxa.ui.menu.home.cart.adapter.CartItemAdapter;
 import softeng2.teamhortons.myxa.ui.menu.home.showcase.adapter.RecipeListAdapter;
 
 
-public class MenuActivity extends AppCompatActivity implements RecipeListAdapter.OnItemClickListener {
+public class MenuActivity extends AppCompatActivity implements RecipeListAdapter.OnItemClickListener, CartItemAdapter.OnItemClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,9 +60,29 @@ public class MenuActivity extends AppCompatActivity implements RecipeListAdapter
     }
 
     @Override
+    public void removeRecipe(CartItem cartItem) {
+        //test
+        Log.d("MenuActivity", cartItem.getName());
+    }
+
+    @Override
+    public void plusQuantity(CartItem cartItem) {
+        //test
+        Log.d("MenuActivity", cartItem.getName());
+    }
+
+    @Override
+    public void minusQuantity(CartItem cartItem) {
+        //test
+        Log.d("MenuActivity", cartItem.getName());
+    }
+
+    @Override
     public void onBackPressed() {
         super.onBackPressed();
         FirebaseAuth.getInstance().signOut();
         finish();
     }
+
+
 }

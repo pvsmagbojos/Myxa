@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,36 +24,51 @@ import softeng2.teamhortons.myxa.data.model.CartItem;
 import softeng2.teamhortons.myxa.data.model.Category;
 
 import softeng2.teamhortons.myxa.R;
+import softeng2.teamhortons.myxa.data.model.Recipe;
 import softeng2.teamhortons.myxa.ui.menu.home.showcase.adapter.RecipeListAdapter;
 
 
 public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartItemViewHolder> {
 
     private ArrayList<CartItem> dataset;
-    private RecipeListAdapter.OnItemClickListener mOnClick;
+    private OnItemClickListener mOnClick;
 
     static class CartItemViewHolder extends RecyclerView.ViewHolder{
         TextView name;
         ImageView imgUriPreview;
         TextView price;
-        EditText quantity;
+        TextView quantity;
+
+        Button btnRemove;
+        Button btnPlusQuantity;
+        Button btnMinusQuantity;
+
 
         public CartItemViewHolder(@NonNull View v) {
             super(v);
             name = v.findViewById(R.id.textView_cart_item_name);
             imgUriPreview = v.findViewById(R.id.imageView_cart_item_image);
             price = v.findViewById(R.id.textView_cart_item_price);
-            quantity = v.findViewById(R.id.editText_cart_item_qty);
+            quantity = v.findViewById(R.id.textView_cart_item_qty);
+
+            // buttons
+            btnRemove = v.findViewById(R.id.button_remove_recipe);
+            btnPlusQuantity = v.findViewById(R.id.button_qtyPlus);
+            btnMinusQuantity = v.findViewById(R.id.button_qtyMinus);
         }
     }
 
-
+    public interface OnItemClickListener{
+        void removeRecipe(CartItem cartItem);
+        void plusQuantity(CartItem cartItem);
+        void minusQuantity(CartItem cartItem);
+    }
 
     public CartItemAdapter(ArrayList<CartItem> dataset, Context context) {
         Log.d("CartItemDataset", dataset.toString());
         this.dataset = dataset;
 
-        try { this.mOnClick = ((RecipeListAdapter.OnItemClickListener) context); }
+        try { this.mOnClick = ((OnItemClickListener) context); }
         catch (ClassCastException e) {
             Log.e("ERROR", "this is a message", e);
             throw new ClassCastException("Activity must implement OnItemClickListener");
@@ -79,7 +95,8 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartIt
 
         holder.name.setText(dataset.get(position).getName());
         holder.price.setText(String.valueOf(dataset.get(position).getPrice()));
-        //holder.quantity.setText(dataset.get(position).getQuantity(), TextView.BufferType.NORMAL);
+        holder.quantity.setText(String.valueOf(dataset.get(position).getQuantity()));
+
         Picasso.get()
                 .load(dataset.get(position).getImgUriPreview())
                 .fit()
@@ -87,13 +104,27 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartIt
                 .into(holder.imgUriPreview);
 
         final int pos = position;
-//        holder.imgUriPreview.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //function call
-//                mOnClick.viewModal(dataset.get(pos));
-//            }
-//        });
+        holder.btnRemove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //function call
+                mOnClick.removeRecipe(dataset.get(pos));
+            }
+        });
+        holder.btnPlusQuantity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //function call
+                mOnClick.plusQuantity(dataset.get(pos));
+            }
+        });
+        holder.btnMinusQuantity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //function call
+                mOnClick.minusQuantity(dataset.get(pos));
+            }
+        });
     }
 
     @Override
