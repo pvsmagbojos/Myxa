@@ -38,6 +38,10 @@ class ShowcaseViewModel extends ViewModel {
             showcaseRepository.fetchCategoryListFromRemote()
                 .addOnSuccessListener(categoryDocumentSnapshots -> {
                     final ArrayList<Category> categories = new ArrayList<>();
+                    // 0 low_carb - Low Carb
+                    // 1 healthy
+                    // 2 popular
+                    // 3 easy
 
                     for(DocumentSnapshot document : categoryDocumentSnapshots) {
                         final Category category = document.toObject(Category.class);

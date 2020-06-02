@@ -4,7 +4,9 @@
 
 
     <string name="button_sign_up">SIGN UP</string>
-    <string name="button_log_in">LOG IN</string>
+    <string name="log_in_as">LOG IN AS</string>
+    <string name="button_log_in_customer">CUSTOMER</string>
+    <string name="button_log_in_rider">RIDER</string>
     <string name="button_rider_portal">Rider Portal</string>
     <string name="button_customer_portal">Customer Portal</string>
 
@@ -77,6 +79,25 @@
     <string name="price_here">- price here -</string>
     <string name="recipe_name">Recipe Name</string>
     <string name="todo">TODO</string>
+
+    <string name="diet_schedule_year_text">0000</string>
+    <string name="diet_schedule_date_text">0000</string>
+    <string name="diet_plan_popup_close">Close</string>
+
+    <string name="diet_plan_diet_name">Diet Name</string>
+    <string name="diet_plan_calories">2,500 Avg. Calorie Count</string>
+    <string name="diet_plan_description_header">Description</string>
+    <string name="diet_plan_description_main">What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book it has?</string>
+    <string name="diet_plan_food_options_header">Food Options</string>
+    <string name="diet_plan_food_options_edit_button">Edit</string>
+    <string name="diet_plan_food_options_recipe_one">Recipe 1</string>
+    <string name="diet_plan_food_options_recipe_two">Recipe 2</string>
+    <string name="diet_plan_food_options_recipe_three">Recipe 3</string>
+    <string name="diet_plan_food_options_prep_time_recipe_one">12 - 30 minutes</string>
+    <string name="diet_plan_food_options_prep_time_recipe_two">10 - 25 minutes</string>
+    <string name="diet_plan_food_options_prep_time_recipe_three">16 - 20 minutes</string>
+    <string name="diet_plan_food_add_to_cart_button">Add to Cart</string>
+
 
 
 

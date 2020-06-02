@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_schedule"
-        android:name="softeng2.teamhortons.myxa.ui.menu.ScheduleFragment"
+        android:name="softeng2.teamhortons.myxa.ui.menu.home.schedule.DietScheduleFragment"
         android:label="@string/title_schedule"
         tools:layout="@layout/fragment_schedule" />
 
@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_cart"
-        android:name="softeng2.teamhortons.myxa.ui.menu.CartFragment"
+        android:name="softeng2.teamhortons.myxa.ui.menu.home.cart.CartFragment"
         android:label="@string/title_cart"
         tools:layout="@layout/fragment_cart" />
 

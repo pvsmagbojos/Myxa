@@ -1,12 +1,27 @@
 package softeng2.teamhortons.myxa.ui;
 
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +32,8 @@ public class ViewRecipeActivity extends AppCompatActivity {
     public String recipeToGet = "egg-omelette";
 
     // ------RECIPE PROPERTIES------
+    final HashMap<String, String> names_and_ingredients =  new HashMap<>();
+
     public String recipeName;
 
     public Map<String, String> ingredients;
@@ -42,20 +59,33 @@ public class ViewRecipeActivity extends AppCompatActivity {
         final Button addToCartButton = findViewById(R.id.addToCartButton);
         final Button faveButton = findViewById(R.id.faveButton);
 
-        getIntent();
+        // set image
+        Picasso.get()
+                .load(getIntent().getStringExtra("recipeImage"))
+                .fit()
+                .centerCrop()
+                .into(recipeImage);
 
-        //recipeName - fix autosizing
         recipeTextView.setText(getIntent().getStringExtra("recipeName"));
 
-        //ingredients - fix
-        ingredientsTextView.setText(getIntent().getSerializableExtra("recipeIngredients").toString());
+        // set ingredients
+        HashMap<String, String> recipe_ingredients = (HashMap<String, String>) getIntent().getSerializableExtra("recipeIngredients");
 
-        //procedure - fix
-//        Bundle args = getIntent().getBundleExtra("BUNDLE");
-//        ArrayList<String> procedures = (ArrayList<String>) args.getSerializable("ARRAYLIST");
-//        procedureTextView.setText(procedures.toString());
+        ingredientsTextView.setText("");
+        for(Map.Entry<String, String> ingredient : recipe_ingredients.entrySet()) {
+            ingredientsTextView.setText(ingredientsTextView.getText()
+                    + ingredient.getValue() + " " + ingredient.getKey() + "\n");
+        }
 
-        //price
+        // set procedure
+        ArrayList<String> procedures = getIntent().getStringArrayListExtra("recipeProcedure");
+        String procedureText = "";
+        for(int i =0;i<procedures.size();i++){
+            procedureText += (i+1) + ". " + procedures.get(i) + "\n\n";
+        }
+        procedureTextView.setText(procedureText);
+
+        // set price
         double price = getIntent().getDoubleExtra("recipePrice", 0.0);
         priceTextView.setText(Double.toString(price));
 
