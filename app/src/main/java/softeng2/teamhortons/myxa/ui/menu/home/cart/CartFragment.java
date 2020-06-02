@@ -15,11 +15,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
 import softeng2.teamhortons.myxa.R;
-import softeng2.teamhortons.myxa.data.model.Cart;
 import softeng2.teamhortons.myxa.data.model.CartItem;
 import softeng2.teamhortons.myxa.ui.menu.home.cart.adapter.CartItemAdapter;
 
@@ -52,6 +54,8 @@ public class CartFragment extends Fragment
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        final TextView totalTextView = view.findViewById(R.id.textView_cart_total_price);
+
         final RecyclerView cartListRecyclerView = view.findViewById(R.id.recyclerView_cart);
         cartListRecyclerView.setHasFixedSize(true);
         cartListRecyclerView.setLayoutManager(new LinearLayoutManager(
@@ -70,6 +74,12 @@ public class CartFragment extends Fragment
                         if(cartQueryResult.getSuccess() != null) {
                             cartListRecyclerView.setAdapter(
                                     new CartItemAdapter(cartQueryResult.getSuccess(), getContext()));
+
+                            double total = 0;
+                            for(CartItem c : cartQueryResult.getSuccess()) {
+                                total += c.getPrice();
+                            }
+                            totalTextView.setText(String.valueOf(total));
                         }
                     }
                 });
