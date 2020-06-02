@@ -1,4 +1,4 @@
-package softeng2.teamhortons.myxa.ui.login;
+package softeng2.teamhortons.myxa.ui.signup.rider;
 
 import androidx.annotation.Nullable;
 
@@ -7,27 +7,27 @@ import com.google.firebase.auth.FirebaseUser;
 /**
  * Authentication result : success (user details) or error message.
  */
-class LoginResultRider {
+class SignupResult {
     @Nullable
     private FirebaseUser success;
     @Nullable
     private Integer error;
 
-    LoginResultRider(@Nullable Integer error) {
+    SignupResult(@Nullable Integer error) {
         this.error = error;
     }
 
-    LoginResultRider(@Nullable FirebaseUser success) {
+    SignupResult(@Nullable FirebaseUser success) {
         this.success = success;
     }
 
     @Nullable
-    FirebaseUser getSuccessRider() {
+    FirebaseUser getSuccess() {
         return success;
     }
 
     @Nullable
-    Integer getErrorRider() {
+    Integer getError() {
         return error;
     }
 }

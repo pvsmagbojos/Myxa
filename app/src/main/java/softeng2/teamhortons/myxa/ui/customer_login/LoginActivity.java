@@ -1,9 +1,10 @@
-package softeng2.teamhortons.myxa.ui.login;
+package softeng2.teamhortons.myxa.ui.customer_login;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,15 +16,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import softeng2.teamhortons.myxa.R;
-import softeng2.teamhortons.myxa.ui.RiderActivity;
 import softeng2.teamhortons.myxa.ui.menu.MenuActivity;
+import softeng2.teamhortons.myxa.ui.rider_login.RiderLoginActivity;
 import softeng2.teamhortons.myxa.ui.signup.SelectSignupActivity;
 
 import static softeng2.teamhortons.myxa.generic.RequestCode.REQUEST_SIGNUP;
 
 public class LoginActivity extends AppCompatActivity {
     private LoginViewModel loginViewModel;
-    private LoginViewModelRider loginViewModelRider;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,18 +32,20 @@ public class LoginActivity extends AppCompatActivity {
 
         loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
-        loginViewModelRider = new ViewModelProvider(this, new LoginViewModelFactoryRider())
-                .get(LoginViewModelRider.class);
 
         final EditText emailEditText = findViewById(R.id.editText_email);
         final EditText passwordEditText = findViewById(R.id.editText_password);
         final Button loginButtonCustomer = findViewById(R.id.button_login_customer);
-        final Button loginButtonRider = findViewById(R.id.button_login_rider);
+
         //final ProgressBar loadingProgressBar = findViewById(R.id.loading);
 
         findViewById(R.id.textView_register_link).setOnClickListener(v -> startActivityForResult(
                 new Intent(getApplicationContext(), SelectSignupActivity.class),
                 REQUEST_SIGNUP));
+
+        findViewById(R.id.rider_login).setOnClickListener(v -> startActivity(
+                new Intent(getApplicationContext(), RiderLoginActivity.class)
+        ));
 
         loginViewModel.getLoginFormState().observe(this, loginFormState -> {
             if (loginFormState == null) {
@@ -68,20 +70,6 @@ public class LoginActivity extends AppCompatActivity {
             }
             if (loginResult.getSuccess() != null) {
                 setResult(RESULT_OK, new Intent(LoginActivity.this, MenuActivity.class));
-                finish();
-            }
-        });
-
-        loginViewModelRider.getLoginResultRider().observe(this, loginResultRider -> {
-            if (loginResultRider == null) {
-                return;
-            }
-            //loadingProgressBar.setVisibility(View.GONE);
-            if (loginResultRider.getErrorRider() != null) {
-                showLoginFailed(loginResultRider.getErrorRider());
-            }
-            if (loginResultRider.getSuccessRider() != null) {
-                setResult(RESULT_OK, new Intent(LoginActivity.this, RiderActivity.class));
                 finish();
             }
         });
@@ -116,12 +104,6 @@ public class LoginActivity extends AppCompatActivity {
             loginViewModel.login(emailEditText.getText().toString(), passwordEditText.getText().toString());
         });
 
-        loginButtonRider.setOnClickListener(v -> {
-//            Intent intent = new Intent(this, ViewRecipeActivity.class);
-//
-//            //show modal
-//            startActivity(intent);
-        });
     }
 
     @Override

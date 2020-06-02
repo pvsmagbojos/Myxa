@@ -1,4 +1,4 @@
-package softeng2.teamhortons.myxa.ui.login;
+package softeng2.teamhortons.myxa.ui.customer_login;
 
 import androidx.annotation.Nullable;
 

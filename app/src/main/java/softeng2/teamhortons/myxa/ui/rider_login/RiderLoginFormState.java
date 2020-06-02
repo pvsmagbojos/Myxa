@@ -1,36 +1,36 @@
-package softeng2.teamhortons.myxa.ui.login;
+package softeng2.teamhortons.myxa.ui.rider_login;
 
 import androidx.annotation.Nullable;
 
 /**
  * Data validation state of the login form.
  */
-class LoginFormStateRider {
+class RiderLoginFormState {
     @Nullable
     private Integer emailError;
     @Nullable
     private Integer passwordError;
     private boolean isDataValid;
 
-    LoginFormStateRider(@Nullable Integer emailError, @Nullable Integer passwordError) {
+    RiderLoginFormState(@Nullable Integer emailError, @Nullable Integer passwordError) {
         this.emailError = emailError;
         this.passwordError = passwordError;
         this.isDataValid = false;
     }
 
-    LoginFormStateRider(boolean isDataValid) {
+    RiderLoginFormState(boolean isDataValid) {
         this.emailError = null;
         this.passwordError = null;
         this.isDataValid = isDataValid;
     }
 
     @Nullable
-    Integer getEmailErrorRider() {
+    Integer getEmailError() {
         return emailError;
     }
 
     @Nullable
-    Integer getPasswordErrorRider() {
+    Integer getPasswordError() {
         return passwordError;
     }
 

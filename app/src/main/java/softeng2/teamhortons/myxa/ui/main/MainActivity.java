@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import softeng2.teamhortons.myxa.R;
-import softeng2.teamhortons.myxa.ui.login.LoginActivity;
+import softeng2.teamhortons.myxa.ui.customer_login.LoginActivity;
 import softeng2.teamhortons.myxa.ui.menu.MenuActivity;
 
 import static softeng2.teamhortons.myxa.generic.RequestCode.REQUEST_LOGIN;
@@ -50,9 +50,20 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         } else {
-            startActivityForResult(
-                    new Intent(getApplicationContext(), LoginActivity.class),
-                    REQUEST_LOGIN);
+            new CountDownTimer(3000, 1000) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    //ignore
+                }
+
+                @Override
+                public void onFinish() {
+                    startActivityForResult(
+                            new Intent(getApplicationContext(), LoginActivity.class),
+                            REQUEST_LOGIN);
+                }
+            }.start();
+
         }
     }
 
