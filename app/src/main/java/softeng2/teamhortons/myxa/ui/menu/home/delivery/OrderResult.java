@@ -6,17 +6,16 @@ import java.util.ArrayList;
 
 import softeng2.teamhortons.myxa.data.model.Order;
 
-class QueryResult {
-    @Nullable
+class OrderResult {
     private ArrayList<Order> success;
     @Nullable
     private Exception error;
 
-    QueryResult(@Nullable Exception error) {
+    OrderResult(@Nullable Exception error) {
         this.error = error;
     }
 
-    QueryResult(@Nullable ArrayList<Order> success) {
+    OrderResult(ArrayList<Order> success) {
         this.success = success;
     }
 

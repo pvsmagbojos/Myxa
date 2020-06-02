@@ -48,7 +48,6 @@ public class UserRepository {
         return this.user;
     }
 
-
     public Task<DocumentSnapshot> refreshUserData(String userId) {
         return dataSource.collection("users").document(userId).get()
                 .addOnSuccessListener(documentSnapshot -> {

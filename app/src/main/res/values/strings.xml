@@ -49,9 +49,11 @@
     </string-array>
 
     <string name="title_activity_home_page">HomePageActivity</string>
+
     <string name="title_home">Home</string>
     <string name="title_schedule">Diet Schedule</string>
     <string name="title_cart">Your Cart</string>
+
     <string name="nav_for_you">For You</string>
     <string name="nav_your_fave">Favorites</string>
     <string name="nav_deliveries">Deliveries</string>

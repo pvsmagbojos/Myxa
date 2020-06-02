@@ -10,23 +10,25 @@
     android:layout_marginBottom="@dimen/activity_vertical_margin">
 
     <TextView
-        android:id="@+id/textView_ongoig_label"
+        android:id="@+id/textView_ongoing_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/raleway_bold"
         android:text="@string/label_ongoing"
         android:textSize="18sp"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView_past_label"
+        android:id="@+id/textView_past_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/raleway_bold"
         android:text="@string/label_past"
         android:textSize="18sp"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerView_ongoing_deliveries" />
 
@@ -36,8 +38,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="@string/scheduled"
-        app:layout_constraintStart_toStartOf="@+id/textView_ongoig_label"
-        app:layout_constraintTop_toBottomOf="@+id/textView_ongoig_label" />
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@+id/textView_ongoing_category"
+        app:layout_constraintTop_toBottomOf="@+id/textView_ongoing_category" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_scheduled_deliveries"
@@ -45,16 +48,18 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView_schedule_label"
         app:layout_constraintTop_toBottomOf="@+id/textView_schedule_label" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView_ongoing_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/driver_on_the_way"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="@+id/textView_schedule_label"
         app:layout_constraintTop_toBottomOf="@+id/recyclerView_scheduled_deliveries" />
 
@@ -64,17 +69,19 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintStart_toStartOf="@+id/textView_ongoing_label"
+        app:layout_constraintTop_toBottomOf="@+id/textView_ongoing_label" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_past_deliveries"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView_past_label"
-        app:layout_constraintTop_toBottomOf="@+id/textView_past_label" />
+        app:layout_constraintStart_toStartOf="@+id/textView_past_category"
+        app:layout_constraintTop_toBottomOf="@+id/textView_past_category" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
