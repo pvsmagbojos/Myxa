@@ -16,8 +16,8 @@ public class LoginViewModelFactoryRider implements ViewModelProvider.Factory {
     @Override
     @SuppressWarnings("unchecked")
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        if (modelClass.isAssignableFrom(LoginViewModel.class)) {
-            return (T) new LoginViewModel(AuthRepository.getInstance());
+        if (modelClass.isAssignableFrom(LoginViewModelRider.class)) {
+            return (T) new LoginViewModelRider(AuthRepository.getInstance());
         } else {
             throw new IllegalArgumentException("Unknown ViewModel class");
         }

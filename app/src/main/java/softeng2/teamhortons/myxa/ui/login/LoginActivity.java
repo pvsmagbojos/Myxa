@@ -117,8 +117,10 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         loginButtonRider.setOnClickListener(v -> {
-            //loadingProgressBar.setVisibility(View.VISIBLE);
-            loginViewModelRider.loginRider(emailEditText.getText().toString(), passwordEditText.getText().toString());
+//            Intent intent = new Intent(this, ViewRecipeActivity.class);
+//
+//            //show modal
+//            startActivity(intent);
         });
     }
 
