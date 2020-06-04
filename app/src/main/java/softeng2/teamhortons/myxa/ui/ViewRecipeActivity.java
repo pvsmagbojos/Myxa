@@ -1,5 +1,6 @@
 package softeng2.teamhortons.myxa.ui;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.util.Log;
@@ -14,36 +15,28 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
+import java.lang.ref.Reference;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import softeng2.teamhortons.myxa.R;
+import softeng2.teamhortons.myxa.data.model.Recipe;
+import softeng2.teamhortons.myxa.data.repository.CartRepository;
 
 public class ViewRecipeActivity extends AppCompatActivity {
     public static int REQUEST_CODE = 1;
-    public String recipeToGet = "egg-omelette";
-
-    // ------RECIPE PROPERTIES------
-    final HashMap<String, String> names_and_ingredients =  new HashMap<>();
-
-    public String recipeName;
-
-    public Map<String, String> ingredients;
-    public String[] ingredientId;
-    public List<String> ingredientName;
-    public List<String> ingredientQty;
-
-    public List<String> procedure;
-    public String price;
-    // -----------------------------
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +86,40 @@ public class ViewRecipeActivity extends AppCompatActivity {
         backButton.setOnClickListener(v -> finish());
 
         addToCartButton.setOnClickListener(v -> {
-            //add to cart function
+            final ProgressDialog dialog = new ProgressDialog(ViewRecipeActivity.this);
+            dialog.setMessage("Adding to cart: " + getIntent().getStringExtra("recipeName"));
+            dialog.show();
+
+            final ArrayList<String> recipeDocId = new ArrayList<>();
+
+            // check if has cart document (users >  cart > cartItemID > qty,docRef)
+            FirebaseFirestore.getInstance().collection("recipes")
+                    .whereEqualTo("name", getIntent().getStringExtra("recipeName"))
+                    .limit(1)
+                    .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                @Override
+                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                    Log.d("TESTVIEW", String.valueOf(queryDocumentSnapshots.getDocuments().size()));
+
+                    for(DocumentSnapshot docSnap2 : queryDocumentSnapshots.getDocuments()) {
+                        recipeDocId.add(docSnap2.getId());
+
+                        HashMap<String, Object> newDoc = new HashMap<>();
+                        newDoc.put("recipe_id", (DocumentReference) docSnap2.getReference());
+                        newDoc.put("qty", (String) "1");
+
+                        FirebaseFirestore.getInstance().collection("users")
+                                .document(FirebaseAuth.getInstance().getUid())
+                                .collection("cart")
+                                .add(newDoc).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentReference> task) {
+                                dialog.hide();
+                            }
+                        });
+                    }
+                }
+            });
         });
 
         faveButton.setOnClickListener(v -> {
