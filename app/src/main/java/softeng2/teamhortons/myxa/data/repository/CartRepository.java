@@ -1,6 +1,7 @@
 package softeng2.teamhortons.myxa.data.repository;
 
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -23,7 +24,10 @@ public class CartRepository {
     }
 
     public Task<QuerySnapshot> fetchCartListFromRemote(String uid) {
-        return dataSource.collection("carts").whereEqualTo("uid", uid).limit(1).get();
+        return dataSource.collection("users")
+                .document(uid)
+                .collection("cart")
+                .get();
     }
 
     public Task<DocumentSnapshot> fetchRecipeFromRemote(String recipeId) {
