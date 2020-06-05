@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import softeng2.teamhortons.myxa.R;
 import softeng2.teamhortons.myxa.ui.menu.MenuActivity;
+import softeng2.teamhortons.myxa.ui.rider.PermissionCheck;
 import softeng2.teamhortons.myxa.ui.rider_login.RiderLoginActivity;
 import softeng2.teamhortons.myxa.ui.signup.SelectSignupActivity;
 
@@ -45,6 +46,10 @@ public class LoginActivity extends AppCompatActivity {
 
         findViewById(R.id.rider_login).setOnClickListener(v -> startActivity(
                 new Intent(getApplicationContext(), RiderLoginActivity.class)
+        ));
+
+        findViewById(R.id.toMapButton).setOnClickListener(v -> startActivity(
+                new Intent(getApplicationContext(), PermissionCheck.class)
         ));
 
         loginViewModel.getLoginFormState().observe(this, loginFormState -> {

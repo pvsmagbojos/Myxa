@@ -97,5 +97,7 @@
     <string name="diet_plan_food_add_to_cart_button">Add to Cart</string>
     <string name="log_in_as_rider">Log In as Rider</string>
 
+    <string name="rider_header">Navigation</string>
+
 
 </resources>
