@@ -47,6 +47,10 @@ public class CartFragment extends Fragment
     private CartViewModel cartViewModel;
     private String TAG = "CartFragment";
 
+    public CartViewModel getCartViewModel() {
+        return this.cartViewModel;
+    }
+
     final ArrayList<Double> total = new ArrayList<>();
 
     public CartFragment() {
@@ -79,7 +83,7 @@ public class CartFragment extends Fragment
         cartListRecyclerView.setLayoutManager(new LinearLayoutManager(
                 this.getContext(), LinearLayoutManager.VERTICAL, false));
 
-        cartListRecyclerView.setAdapter(new CartItemAdapter(new ArrayList<CartItem>(), this.getContext()));
+        cartListRecyclerView.setAdapter(new CartItemAdapter(new ArrayList<CartItem>(), this.getContext(), this));
 
         cartViewModel.getCartQueryResult().observe(getViewLifecycleOwner(),
                 new Observer<CartQueryResult>() {
@@ -91,7 +95,7 @@ public class CartFragment extends Fragment
 
                         if (cartQueryResult.getSuccess() != null) {
                             cartListRecyclerView.setAdapter(
-                                    new CartItemAdapter(cartQueryResult.getSuccess(), getContext()));
+                                    new CartItemAdapter(cartQueryResult.getSuccess(), getContext(), CartFragment.this));
 
                             double tempTotal = 0;
                             for (CartItem c : cartQueryResult.getSuccess()) {
@@ -130,6 +134,10 @@ public class CartFragment extends Fragment
                         .add(orderData).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentReference> task) {
+                        final DocumentReference orderDocRef = task.getResult();
+                        // put recipe in orders > cart
+
+                        // delete recipe in cart
                         FirebaseFirestore.getInstance().collection("users")
                                 .document(FirebaseAuth.getInstance().getUid())
                                 .collection("cart")
@@ -138,13 +146,25 @@ public class CartFragment extends Fragment
                             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                                 Log.d("CartFragment", queryDocumentSnapshots.getDocuments().toString());
                                 for(DocumentSnapshot docSnap3 : queryDocumentSnapshots.getDocuments()) {
-                                    docSnap3.getReference().delete();
-                                }
-                                dialog2.hide();
+                                    final DocumentReference deleteRecipe = docSnap3.getReference();
+                                    HashMap<String, Object> data = new HashMap<>();
+                                    data.put("qty", docSnap3.getString("qty"));
+                                    data.put("recipeRef", docSnap3.get("recipe_id"));
 
-                                cartViewModel.setCartQueryResult(new MutableLiveData<CartQueryResult>());
-                                cartViewModel.reload();
-                                getFragmentManager().beginTransaction().detach(CartFragment.this).attach(CartFragment.this).commit();
+                                    orderDocRef.collection("cart")
+                                            .add(data).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                        @Override
+                                        public void onSuccess(DocumentReference documentReference) {
+                                            deleteRecipe.delete();
+
+                                            dialog2.hide();
+
+                                            cartViewModel.setCartQueryResult(new MutableLiveData<CartQueryResult>());
+                                            cartViewModel.reload();
+                                            getFragmentManager().beginTransaction().detach(CartFragment.this).attach(CartFragment.this).commit();
+                                        }
+                                    });
+                                }
                             }
                         });
                     }

@@ -37,16 +37,16 @@ public class CartViewModel extends ViewModel {
         this.cartRepository = cartRepository;
     }
 
-    void setCartQueryResult(MutableLiveData<CartQueryResult> cartQueryResult) {
+    public void setCartQueryResult(MutableLiveData<CartQueryResult> cartQueryResult) {
         this.cartQueryResult = cartQueryResult;
     }
 
-    LiveData<CartQueryResult> getCartQueryResult() {
+    public LiveData<CartQueryResult> getCartQueryResult() {
         reload();
         return cartQueryResult;
     }
 
-    void reload() {
+    public void reload() {
         Log.d("CartViewModel", "awit");
         if(this.cartQueryResult.getValue() != null) {
             if (cartQueryResult.getValue().getSuccess() != null) {
@@ -105,69 +105,6 @@ public class CartViewModel extends ViewModel {
                     cartQueryResult.setValue(new CartQueryResult(e));
                 }
             });
-
-
-
-
-
-
-
-//            Log.d("CartViewModel", "awit3");
-//                //final ArrayList<Task<DocumentSnapshot>> recipes = new ArrayList<>();
-//                // not really sure if i should use UserRepository or FirebaseAuth, the latter temporarily
-//                cartRepository.fetchCartListFromRemote(FirebaseAuth.getInstance().getUid())
-//                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//
-//                            @Override
-//                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//                                //final Cart cart = new Cart();
-//
-//                                // loops only once, query limit = 1
-//                                for(final DocumentSnapshot document : queryDocumentSnapshots) {
-//                                    HashMap<String, String> cart_recipes = (HashMap<String, String>) document.get("cart_recipes");
-//
-//                                    //HashMap<String, Integer> cart_recipes = (HashMap<String, Integer>) document.get("cart_recipes");
-//                                    //cart.setCartRecipes(new ArrayList<CartItem>());
-//                                    final ArrayList<CartItem> cartItems = new ArrayList<>();
-//
-//                                    for(HashMap.Entry<String, String> recipe : cart_recipes.entrySet()) {
-//                                        final int qty = Integer.valueOf(recipe.getValue());
-//
-//
-//                                        cartRepository.fetchRecipeFromRemote(recipe.getKey()).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//                                            @Override
-//                                            public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                                                Log.d(TAG, documentSnapshot.get("name").toString());
-//                                                Log.d(TAG, documentSnapshot.get("imgUriPreview").toString());
-//                                                Log.d(TAG, String.valueOf(documentSnapshot.getDouble("price")));
-//                                                Log.d(TAG, String.valueOf(qty));
-//
-//
-//                                                CartItem cartItem = new CartItem(
-//                                                        documentSnapshot.get("name").toString(),
-//                                                        documentSnapshot.get("imgUriPreview").toString(),
-//                                                        documentSnapshot.getDouble("price"),
-//                                                        qty);
-//
-//                                                Log.d("ItemTest", cartItem.getName());
-//
-//                                                cartItems.add(cartItem);
-//
-//                                                //cart.setCartRecipes(cartItems);
-//                                                cartQueryResult.setValue(new CartQueryResult(cartItems));
-//                                            }
-//                                        });
-//
-//                                    }
-//                                }
-//                            }
-//                        })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        cartQueryResult.setValue(new CartQueryResult(e));
-//                    }
-//                });
 
         }
     }

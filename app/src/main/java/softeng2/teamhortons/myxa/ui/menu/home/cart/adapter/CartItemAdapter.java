@@ -1,5 +1,6 @@
 package softeng2.teamhortons.myxa.ui.menu.home.cart.adapter;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,10 +12,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
@@ -25,6 +35,9 @@ import softeng2.teamhortons.myxa.data.model.Category;
 
 import softeng2.teamhortons.myxa.R;
 import softeng2.teamhortons.myxa.data.model.Recipe;
+import softeng2.teamhortons.myxa.ui.menu.home.cart.CartFragment;
+import softeng2.teamhortons.myxa.ui.menu.home.cart.CartQueryResult;
+import softeng2.teamhortons.myxa.ui.menu.home.cart.CartViewModel;
 import softeng2.teamhortons.myxa.ui.menu.home.showcase.adapter.RecipeListAdapter;
 
 
@@ -32,6 +45,8 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartIt
 
     private ArrayList<CartItem> dataset;
     private OnItemClickListener mOnClick;
+    private CartFragment cartFragment;
+    private CartViewModel cartViewModel;
 
     static class CartItemViewHolder extends RecyclerView.ViewHolder{
         TextView name;
@@ -59,14 +74,17 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartIt
     }
 
     public interface OnItemClickListener{
-        void removeRecipe(CartItem cartItem);
-        void plusQuantity(CartItem cartItem);
-        void minusQuantity(CartItem cartItem);
+        Task removeRecipe(DocumentReference recipeRef);
+        Task plusQuantity(DocumentReference recipeRef);
+        Task minusQuantity(DocumentReference recipeRef);
     }
 
-    public CartItemAdapter(ArrayList<CartItem> dataset, Context context) {
+    public CartItemAdapter(ArrayList<CartItem> dataset, Context context, CartFragment cf) {
         Log.d("CartItemDataset", dataset.toString());
         this.dataset = dataset;
+        this.cartFragment = cf;
+        Log.d("CartFragmentObject", cf.toString());
+        this.cartViewModel = cf.getCartViewModel();
 
         try { this.mOnClick = ((OnItemClickListener) context); }
         catch (ClassCastException e) {
@@ -107,22 +125,73 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartIt
         holder.btnRemove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //function call
-                mOnClick.removeRecipe(dataset.get(pos));
+                FirebaseFirestore.getInstance().collection("recipes")
+                        .whereEqualTo("name", dataset.get(pos).getName())
+                        .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        Log.d("2CartItemAdapter", "remove, size: " + String.valueOf(queryDocumentSnapshots.size()));
+                        for(DocumentSnapshot docSnap : queryDocumentSnapshots.getDocuments()) {
+                            Log.d("2CartItemAdapter", docSnap.getReference().getPath());
+                            mOnClick.removeRecipe(docSnap.getReference()).addOnSuccessListener(new OnSuccessListener() {
+                                @Override
+                                public void onSuccess(Object o) {
+                                    cartViewModel.setCartQueryResult(new MutableLiveData<CartQueryResult>());
+                                    cartViewModel.reload();
+                                    cartFragment.getFragmentManager().beginTransaction().detach(cartFragment).attach(cartFragment).commit();
+                                }
+                            });
+                        }
+                    }
+                });
             }
         });
         holder.btnPlusQuantity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //function call
-                mOnClick.plusQuantity(dataset.get(pos));
+                FirebaseFirestore.getInstance().collection("recipes")
+                        .whereEqualTo("name", dataset.get(pos).getName())
+                        .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        Log.d("2CartItemAdapter", "plus, size: " + String.valueOf(queryDocumentSnapshots.size()));
+                        for(DocumentSnapshot docSnap : queryDocumentSnapshots.getDocuments()) {
+                            Log.d("2CartItemAdapter", docSnap.getReference().getPath());
+                            mOnClick.plusQuantity(docSnap.getReference()).addOnSuccessListener(new OnSuccessListener() {
+                                @Override
+                                public void onSuccess(Object o) {
+                                    cartViewModel.setCartQueryResult(new MutableLiveData<CartQueryResult>());
+                                    cartViewModel.reload();
+                                    cartFragment.getFragmentManager().beginTransaction().detach(cartFragment).attach(cartFragment).commit();
+                                }
+                            });
+                        }
+                    }
+                });
             }
         });
         holder.btnMinusQuantity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //function call
-                mOnClick.minusQuantity(dataset.get(pos));
+                FirebaseFirestore.getInstance().collection("recipes")
+                        .whereEqualTo("name", dataset.get(pos).getName())
+                        .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        Log.d("2CartItemAdapter", "minus, size: " + String.valueOf(queryDocumentSnapshots.size()));
+                        for(DocumentSnapshot docSnap : queryDocumentSnapshots.getDocuments()) {
+                            Log.d("2CartItemAdapter", docSnap.getReference().getPath());
+                            mOnClick.minusQuantity(docSnap.getReference()).addOnSuccessListener(new OnSuccessListener() {
+                                @Override
+                                public void onSuccess(Object o) {
+                                    cartViewModel.setCartQueryResult(new MutableLiveData<CartQueryResult>());
+                                    cartViewModel.reload();
+                                    cartFragment.getFragmentManager().beginTransaction().detach(cartFragment).attach(cartFragment).commit();
+                                }
+                            });
+                        }
+                    }
+                });
             }
         });
     }

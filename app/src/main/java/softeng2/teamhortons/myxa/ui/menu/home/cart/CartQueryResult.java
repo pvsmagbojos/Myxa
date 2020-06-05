@@ -8,7 +8,7 @@ import softeng2.teamhortons.myxa.data.model.Cart;
 import softeng2.teamhortons.myxa.data.model.CartItem;
 import softeng2.teamhortons.myxa.data.model.Recipe;
 
-class CartQueryResult {
+public class CartQueryResult {
     @Nullable
     private ArrayList<CartItem> success;
     @Nullable

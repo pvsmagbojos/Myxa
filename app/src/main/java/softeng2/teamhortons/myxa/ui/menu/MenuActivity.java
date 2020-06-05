@@ -9,8 +9,15 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,6 +26,7 @@ import softeng2.teamhortons.myxa.R;
 import softeng2.teamhortons.myxa.data.model.CartItem;
 import softeng2.teamhortons.myxa.data.model.Recipe;
 import softeng2.teamhortons.myxa.ui.ViewRecipeActivity;
+import softeng2.teamhortons.myxa.ui.menu.home.cart.CartViewModel;
 import softeng2.teamhortons.myxa.ui.menu.home.cart.adapter.CartItemAdapter;
 import softeng2.teamhortons.myxa.ui.menu.home.showcase.adapter.RecipeListAdapter;
 
@@ -57,21 +65,59 @@ public class MenuActivity extends AppCompatActivity implements RecipeListAdapter
     }
 
     @Override
-    public void removeRecipe(CartItem cartItem) {
-        //test
-        Log.d("MenuActivity", cartItem.getName());
+    public Task removeRecipe(DocumentReference recipeRef) {
+        return FirebaseFirestore.getInstance().collection("users")
+                .document(FirebaseAuth.getInstance().getUid())
+                .collection("cart")
+                .whereEqualTo("recipe_id", recipeRef)
+                .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for(DocumentSnapshot docSnap : queryDocumentSnapshots.getDocuments()) {
+                            docSnap.getReference().delete();
+                        }
+                    }
+                });
     }
 
     @Override
-    public void plusQuantity(CartItem cartItem) {
-        //test
-        Log.d("MenuActivity", cartItem.getName());
+    public Task plusQuantity(DocumentReference recipeRef) {
+        return FirebaseFirestore.getInstance().collection("users")
+                .document(FirebaseAuth.getInstance().getUid())
+                .collection("cart")
+                .whereEqualTo("recipe_id", recipeRef)
+                .limit(1)
+                .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for(DocumentSnapshot docSnap : queryDocumentSnapshots.getDocuments()) {
+                            int quantity = Integer.parseInt(docSnap.getString("qty"));
+                            quantity++;
+                            docSnap.getReference().update("qty", String.valueOf(quantity));
+                        }
+                    }
+                });
     }
 
     @Override
-    public void minusQuantity(CartItem cartItem) {
-        //test
-        Log.d("MenuActivity", cartItem.getName());
+    public Task minusQuantity(DocumentReference recipeRef) {
+        return FirebaseFirestore.getInstance().collection("users")
+                .document(FirebaseAuth.getInstance().getUid())
+                .collection("cart")
+                .whereEqualTo("recipe_id", recipeRef)
+                .limit(1)
+                .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for(DocumentSnapshot docSnap : queryDocumentSnapshots.getDocuments()) {
+                            int quantity = Integer.parseInt(docSnap.getString("qty"));
+                            if(quantity > 1) {
+                                quantity--;
+                                docSnap.getReference().update("qty", String.valueOf(quantity));
+                            }
+                        }
+                    }
+                });
     }
 
     @Override
