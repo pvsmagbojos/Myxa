@@ -15,6 +15,7 @@ class LoginViewModel extends ViewModel {
 
     private MutableLiveData<LoginFormState> loginFormState = new MutableLiveData<>();
     private MutableLiveData<LoginResult> loginResult = new MutableLiveData<>();
+    private MutableLiveData<LoginResultRider> loginResultRider = new MutableLiveData<>();
 
     LoginViewModel(AuthRepository authRepository) {
         this.authRepository = authRepository;
@@ -28,12 +29,26 @@ class LoginViewModel extends ViewModel {
         return loginResult;
     }
 
-    void login(String email, String password) {
-        authRepository.login(email, password).addOnCompleteListener(
-                task -> task.addOnSuccessListener(
-                        authResult -> loginResult.setValue(new LoginResult(authResult.getUser())))
-                .addOnFailureListener(
-                        e -> loginResult.setValue(new LoginResult(R.string.toast_login_failed))));
+    LiveData<LoginResultRider> getLoginResultRider() {
+        return loginResultRider;
+    }
+
+    void login(String email, String password, int userType) {
+        if(userType == 1){
+            authRepository.login(email, password).addOnCompleteListener(
+                    task -> task.addOnSuccessListener(
+                            authResult -> loginResult.setValue(new LoginResult(authResult.getUser())))
+                            .addOnFailureListener(
+                                    e -> loginResult.setValue(new LoginResult(R.string.toast_login_failed))));
+        }
+        if(userType == 2){
+            authRepository.login(email, password).addOnCompleteListener(
+                    task -> task.addOnSuccessListener(
+                            authResult -> loginResultRider.setValue(new LoginResultRider(authResult.getUser())))
+                            .addOnFailureListener(
+                                    e -> loginResultRider.setValue(new LoginResultRider(R.string.toast_login_failed))));
+        }
+
     }
 
     void loginDataChanged(String email, String password) {

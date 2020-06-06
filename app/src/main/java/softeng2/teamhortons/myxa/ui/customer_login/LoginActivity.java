@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,7 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 import softeng2.teamhortons.myxa.R;
 import softeng2.teamhortons.myxa.ui.menu.MenuActivity;
 import softeng2.teamhortons.myxa.ui.rider.PermissionCheck;
-import softeng2.teamhortons.myxa.ui.rider_login.RiderLoginActivity;
+import softeng2.teamhortons.myxa.ui.rider.RiderActivity;
 import softeng2.teamhortons.myxa.ui.signup.SelectSignupActivity;
 
 import static softeng2.teamhortons.myxa.generic.RequestCode.REQUEST_SIGNUP;
@@ -37,16 +36,13 @@ public class LoginActivity extends AppCompatActivity {
         final EditText emailEditText = findViewById(R.id.editText_email);
         final EditText passwordEditText = findViewById(R.id.editText_password);
         final Button loginButtonCustomer = findViewById(R.id.button_login_customer);
+        final Button loginButtonRider = findViewById(R.id.button_rider_login);
 
         //final ProgressBar loadingProgressBar = findViewById(R.id.loading);
 
         findViewById(R.id.textView_register_link).setOnClickListener(v -> startActivityForResult(
                 new Intent(getApplicationContext(), SelectSignupActivity.class),
                 REQUEST_SIGNUP));
-
-        findViewById(R.id.rider_login).setOnClickListener(v -> startActivity(
-                new Intent(getApplicationContext(), RiderLoginActivity.class)
-        ));
 
         findViewById(R.id.toMapButton).setOnClickListener(v -> startActivity(
                 new Intent(getApplicationContext(), PermissionCheck.class)
@@ -79,6 +75,20 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        loginViewModel.getLoginResultRider().observe(this, loginResultRider -> {
+            if (loginResultRider == null) {
+                return;
+            }
+            //loadingProgressBar.setVisibility(View.GONE);
+            if (loginResultRider.getError() != null) {
+                showLoginFailed(loginResultRider.getError());
+            }
+            if (loginResultRider.getSuccess() != null) {
+                setResult(RESULT_OK, new Intent(LoginActivity.this, RiderActivity.class));
+                finish();
+            }
+        });
+
         TextWatcher afterTextChangedListener = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -106,7 +116,12 @@ public class LoginActivity extends AppCompatActivity {
 
         loginButtonCustomer.setOnClickListener(v -> {
             //loadingProgressBar.setVisibility(View.VISIBLE);
-            loginViewModel.login(emailEditText.getText().toString(), passwordEditText.getText().toString());
+            loginViewModel.login(emailEditText.getText().toString(), passwordEditText.getText().toString(), 1);
+        });
+
+        loginButtonRider.setOnClickListener(v -> {
+            //loadingProgressBar.setVisibility(View.VISIBLE);
+            loginViewModel.login(emailEditText.getText().toString(), passwordEditText.getText().toString(), 2);
         });
 
     }

@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider;
 import softeng2.teamhortons.myxa.R;
 import softeng2.teamhortons.myxa.ui.customer_login.LoginActivity;
 import softeng2.teamhortons.myxa.ui.menu.MenuActivity;
+import softeng2.teamhortons.myxa.ui.rider.RiderActivity;
 
 public class RiderSignUpActivity extends AppCompatActivity {
     private SignupViewModel signupViewModel;
@@ -85,7 +86,7 @@ public class RiderSignUpActivity extends AppCompatActivity {
                 showLoginFailed(signupResult.getError());
             }
             if (signupResult.getSuccess() != null) {
-                setResult(RESULT_FIRST_USER, new Intent(RiderSignUpActivity.this, MenuActivity.class));
+                setResult(RESULT_FIRST_USER, new Intent(RiderSignUpActivity.this, RiderActivity.class));
                 finish();
             }
         });
