@@ -17,7 +17,6 @@ import androidx.lifecycle.ViewModelProvider;
 import softeng2.teamhortons.myxa.R;
 import softeng2.teamhortons.myxa.ui.menu.MenuActivity;
 import softeng2.teamhortons.myxa.ui.rider.PermissionCheck;
-import softeng2.teamhortons.myxa.ui.rider.RiderActivity;
 import softeng2.teamhortons.myxa.ui.signup.SelectSignupActivity;
 
 import static softeng2.teamhortons.myxa.generic.RequestCode.REQUEST_SIGNUP;
@@ -43,10 +42,6 @@ public class LoginActivity extends AppCompatActivity {
         findViewById(R.id.textView_register_link).setOnClickListener(v -> startActivityForResult(
                 new Intent(getApplicationContext(), SelectSignupActivity.class),
                 REQUEST_SIGNUP));
-
-        findViewById(R.id.toMapButton).setOnClickListener(v -> startActivity(
-                new Intent(getApplicationContext(), PermissionCheck.class)
-        ));
 
         loginViewModel.getLoginFormState().observe(this, loginFormState -> {
             if (loginFormState == null) {
@@ -84,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                 showLoginFailed(loginResultRider.getError());
             }
             if (loginResultRider.getSuccess() != null) {
-                setResult(RESULT_OK, new Intent(LoginActivity.this, RiderActivity.class));
+                setResult(RESULT_OK, new Intent(LoginActivity.this, PermissionCheck.class));
                 finish();
             }
         });

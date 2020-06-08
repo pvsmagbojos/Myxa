@@ -150,21 +150,11 @@
             tools:ignore="OnClick" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/toMapButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Test For Map"
-        app:layout_constraintBottom_toTopOf="@+id/button_rider_login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_login_customer" />
-
     <Button
         android:id="@+id/button_rider_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="@string/log_in_as_rider"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="@+id/button_login_customer"
         app:layout_constraintStart_toStartOf="@+id/button_login_customer" />
