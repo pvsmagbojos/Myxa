@@ -34,7 +34,12 @@ public class RiderActivity extends AppCompatActivity implements OnMapReadyCallba
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rider);
-        initGoogleMap(savedInstanceState);
+        try {
+            initGoogleMap(savedInstanceState);
+        } catch (Exception e) {
+
+        }
+
     }
     private void initGoogleMap(Bundle savedInstanceState){
         Bundle mapViewBundle = null;
