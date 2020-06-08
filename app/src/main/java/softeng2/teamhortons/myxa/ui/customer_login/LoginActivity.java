@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
                 showLoginFailed(loginResultRider.getError());
             }
             if (loginResultRider.getSuccess() != null) {
-                setResult(RESULT_OK, new Intent(LoginActivity.this, RiderActivity.class));
+                setResult(RESULT_OK, new Intent(LoginActivity.this, PermissionCheck.class));
                 finish();
             }
         });
