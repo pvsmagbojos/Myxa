@@ -9,10 +9,10 @@
     <com.google.android.gms.maps.MapView
         android:id="@+id/riderMapView"
         android:layout_width="match_parent"
-        android:layout_height="332dp"
+        android:layout_height="387dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView7"
         app:layout_constraintVertical_bias="0.0" />
@@ -52,4 +52,25 @@
         app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toTopOf="@+id/riderMapView"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/showOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Order"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/riderMapView"
+        app:layout_constraintVertical_bias="0.19999999" />
+
+    <Button
+        android:id="@+id/finishDelivery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Finish Delivery"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showOrder" />
 </androidx.constraintlayout.widget.ConstraintLayout>
