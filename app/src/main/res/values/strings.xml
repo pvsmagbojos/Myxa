@@ -82,19 +82,19 @@
     <string name="diet_schedule_date_text">0000</string>
     <string name="diet_plan_popup_close">Close</string>
 
-    <string name="diet_plan_diet_name">Diet Name</string>
+    <string name="diet_plan_diet_name">My Vegetarian Diet</string>
     <string name="diet_plan_calories">2,500 Avg. Calorie Count</string>
     <string name="diet_plan_description_header">Description</string>
-    <string name="diet_plan_description_main">What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book it has?</string>
+    <string name="diet_plan_description_main">A vegetarian diet does not include any meat, poultry, or seafood. It is a meal plan made up of foods that come mostly from plants. Vegetarians also do not eat products containing gelatin or rennin (an enzyme found in calf\'s stomachs that is used to produce many cheeses).</string>
     <string name="diet_plan_food_options_header">Food Options</string>
     <string name="diet_plan_food_options_edit_button">Edit</string>
-    <string name="diet_plan_food_options_recipe_one">Recipe 1</string>
-    <string name="diet_plan_food_options_recipe_two">Recipe 2</string>
-    <string name="diet_plan_food_options_recipe_three">Recipe 3</string>
+    <string name="diet_plan_food_options_recipe_one">Vegan Chilli</string>
+    <string name="diet_plan_food_options_recipe_two">Kale Stew</string>
+    <string name="diet_plan_food_options_recipe_three">Vegan Pie</string>
     <string name="diet_plan_food_options_prep_time_recipe_one">12 - 30 minutes</string>
     <string name="diet_plan_food_options_prep_time_recipe_two">10 - 25 minutes</string>
     <string name="diet_plan_food_options_prep_time_recipe_three">16 - 20 minutes</string>
-    <string name="diet_plan_food_add_to_cart_button">Add to Cart</string>
+    <string name="diet_plan_food_add_to_cart_button">Set Diet Plan</string>
     <string name="log_in_as_rider">Log In as Rider</string>
 
     <string name="rider_header">Navigation</string>
