@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.firebase.auth.FirebaseAuth;
 
 import softeng2.teamhortons.myxa.R;
 import softeng2.teamhortons.myxa.generic.RequestCode;
@@ -129,5 +130,12 @@ public class PermissionCheck extends AppCompatActivity {
     }
     public void getMap(){
         startActivity(new Intent(PermissionCheck.this, RiderActivity.class));
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        FirebaseAuth.getInstance().signOut();
+        finish();
     }
 }

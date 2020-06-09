@@ -25,11 +25,15 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.maps.GeoApiContext;
 
 import softeng2.teamhortons.myxa.R;
 import softeng2.teamhortons.myxa.generic.ConstantVariable;
 import softeng2.teamhortons.myxa.services.LocationService;
+import softeng2.teamhortons.myxa.ui.customer_login.LoginActivity;
+
+import static softeng2.teamhortons.myxa.generic.RequestCode.REQUEST_LOGIN;
 
 public class RiderActivity extends AppCompatActivity implements OnMapReadyCallback {
     private MapView mMapView;
@@ -147,5 +151,16 @@ public class RiderActivity extends AppCompatActivity implements OnMapReadyCallba
     public void onLowMemory() {
         super.onLowMemory();
         mMapView.onLowMemory();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        FirebaseAuth.getInstance().signOut();
+        //startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+        startActivityForResult(
+                new Intent(getApplicationContext(), LoginActivity.class),
+                REQUEST_LOGIN);
+        finish();
     }
 }
