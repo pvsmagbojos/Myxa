@@ -121,7 +121,7 @@ public class CartFragment extends Fragment
                         .document(FirebaseAuth.getInstance().getUid());
 
                 DocumentReference riderDocRef = FirebaseFirestore.getInstance().collection("riders")
-                        .document("johndoe1990");
+                        .document("nUfgKbTVORVA6Af83IcaT48XLRC3");
 
                 HashMap<String, Object> orderData = new HashMap<>();
                 orderData.put("dateCompleted", null);

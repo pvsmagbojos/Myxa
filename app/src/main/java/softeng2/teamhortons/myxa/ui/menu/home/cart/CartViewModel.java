@@ -19,6 +19,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -26,7 +27,7 @@ import softeng2.teamhortons.myxa.data.model.Cart;
 import softeng2.teamhortons.myxa.data.model.CartItem;
 import softeng2.teamhortons.myxa.data.repository.CartRepository;
 
-public class CartViewModel extends ViewModel {
+public class CartViewModel extends ViewModel implements Serializable {
     private String TAG = "CartViewModel";
 
     private CartRepository cartRepository;
