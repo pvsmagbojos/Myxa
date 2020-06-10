@@ -10,6 +10,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import softeng2.teamhortons.myxa.R;
 import softeng2.teamhortons.myxa.ui.customer_login.LoginActivity;
 import softeng2.teamhortons.myxa.ui.menu.MenuActivity;
@@ -78,5 +80,12 @@ public class MainActivity extends AppCompatActivity {
         if(resultCode == RESULT_CANCELED) {
             finish();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        FirebaseAuth.getInstance().signOut();
+        finish();
     }
 }
