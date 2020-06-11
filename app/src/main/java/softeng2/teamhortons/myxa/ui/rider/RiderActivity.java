@@ -6,20 +6,15 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.app.ActivityManager;
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -28,8 +23,6 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -49,6 +42,7 @@ import softeng2.teamhortons.myxa.R;
 import softeng2.teamhortons.myxa.generic.ConstantVariable;
 import softeng2.teamhortons.myxa.services.LocationService;
 import softeng2.teamhortons.myxa.ui.customer_login.LoginActivity;
+import softeng2.teamhortons.myxa.ui.rider.orders.RiderOrdersActivity;
 
 import static softeng2.teamhortons.myxa.generic.RequestCode.REQUEST_LOGIN;
 
@@ -72,6 +66,10 @@ public class RiderActivity extends AppCompatActivity implements OnMapReadyCallba
 
         final Switch switchAcceptingOrders = findViewById(R.id.switch_acceptingOrders);
         final Button finishDelivery = findViewById(R.id.finishDelivery);
+
+        findViewById(R.id.button_rider_history).setOnClickListener( v -> {
+            startActivity(new Intent(getApplicationContext(), RiderOrdersActivity.class));
+        });
 
         customerName = "";
         totalPrice = "";
