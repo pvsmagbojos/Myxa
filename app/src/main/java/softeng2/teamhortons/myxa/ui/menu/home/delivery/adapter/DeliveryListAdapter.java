@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 
 import softeng2.teamhortons.myxa.R;
@@ -50,11 +51,13 @@ public class DeliveryListAdapter extends RecyclerView.Adapter<DeliveryListAdapte
     public void onBindViewHolder(@NonNull DeliveryListViewHolder holder, int position) {
         //TODO: Add method to parse different order types for reusability
         //TODO: Add method to parse timestamps into status
-        holder.orderDescTextView.setText(dataset.get(position).getDatePosted().toDate().toString());
+        holder.orderDescTextView.setText(DateFormat.getDateInstance(DateFormat.LONG).format(dataset.get(position).getDatePosted().toDate()) +
+                " | " + DateFormat.getTimeInstance(DateFormat.SHORT).format(dataset.get(position).getDatePosted().toDate()));
         if(dataset.get(position).getDateCompleted() == null) {
-            holder.orderStatusTextView.setText("null");
+            holder.orderStatusTextView.setText("Processing");
         } else {
-            holder.orderStatusTextView.setText(dataset.get(position).getDateCompleted().toDate().toString());
+            holder.orderStatusTextView.setText("Delivered: " + DateFormat.getDateInstance(DateFormat.LONG).format(dataset.get(position).getDatePosted().toDate()) +
+                    " | " + DateFormat.getTimeInstance(DateFormat.SHORT).format(dataset.get(position).getDatePosted().toDate()));
         }
 
         holder.orderPriceTextView.setText(Double.toString(dataset.get(position).getTotalPrice()));
