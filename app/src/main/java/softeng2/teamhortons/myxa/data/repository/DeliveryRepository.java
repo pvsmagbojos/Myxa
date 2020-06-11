@@ -3,6 +3,7 @@ package softeng2.teamhortons.myxa.data.repository;
 import android.util.Log;
 
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -31,7 +32,7 @@ public class DeliveryRepository {
         DocumentReference ref = dataSource.collection("users")
                 .document(UserRepository.getInstance().getUser().getId());
         Log.d("OrderQueryRef", ref.toString());
-        return dataSource.collection("orders").get().addOnSuccessListener(
+        return dataSource.collection("orders").whereEqualTo("userRef", FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().getUid())).get().addOnSuccessListener(
                 queryDocumentSnapshots -> {
             for(DocumentSnapshot doc : queryDocumentSnapshots) {
                 Log.d("OrderQuery", doc.getData().toString());
