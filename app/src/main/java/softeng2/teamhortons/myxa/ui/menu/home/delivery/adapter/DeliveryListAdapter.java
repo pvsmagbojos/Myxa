@@ -50,11 +50,11 @@ public class DeliveryListAdapter extends RecyclerView.Adapter<DeliveryListAdapte
     public void onBindViewHolder(@NonNull DeliveryListViewHolder holder, int position) {
         //TODO: Add method to parse different order types for reusability
         //TODO: Add method to parse timestamps into status
-        holder.orderDescTextView.setText(dataset.get(position).getDatePosted().toString());
+        holder.orderDescTextView.setText("Order Date:\n\t " + dataset.get(position).getDatePosted().toDate().toString());
         if(dataset.get(position).getDateCompleted() == null) {
-            holder.orderStatusTextView.setText("null");
+            holder.orderStatusTextView.setText("On Going");
         } else {
-            holder.orderStatusTextView.setText(dataset.get(position).getDateCompleted().toString());
+            holder.orderStatusTextView.setText("Order Completed:\n\t " + dataset.get(position).getDateCompleted().toDate().toString());
         }
 
         holder.orderPriceTextView.setText(Double.toString(dataset.get(position).getTotalPrice()));
